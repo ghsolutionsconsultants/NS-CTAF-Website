@@ -1,65 +1,334 @@
-import Image from "next/image";
+import Link from "next/link";
+import {
+  ArrowRight,
+  ShieldCheck,
+  Search,
+  ScanLine,
+  FileCheck2,
+  BadgeCheck,
+  Radar,
+  Fingerprint,
+} from "lucide-react";
+import { Container, Section, SectionHeading, Button, StatTile, Eyebrow } from "@/components/ui";
+import { Reveal, Stagger, StaggerItem } from "@/components/reveal";
+import { DomainsGrid } from "@/components/domains-grid";
+import { CtaLevelCards } from "@/components/cta-levels";
+import { RegistryCard } from "@/components/registry-card";
+import { TrustScoreGauge } from "@/components/trust-score-gauge";
+import { site } from "@/data/site";
+import { registry } from "@/data/registry";
+import { alignments } from "@/data/alignments";
+import { trustScoreBands } from "@/data/framework";
 
-export default function Home() {
+const flow = [
+  { icon: ScanLine, title: "Evidence", text: "SBOMs, signing, scans, attestations, runtime and governance data collected and registered." },
+  { icon: Radar, title: "Assessment", text: "86 controls scored across 5 axes, hard gates applied, evidence independently validated." },
+  { icon: FileCheck2, title: "Output", text: "Trust Score, domain scores, board report, and a prioritised 12-month roadmap." },
+  { icon: BadgeCheck, title: "Certification", text: "A CTA-1 to CTA-4 certificate and a public Trust Registry listing." },
+];
+
+export default function HomePage() {
+  const featured = registry.slice(0, 4);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <>
+      {/* Hero */}
+      <section className="relative overflow-hidden bg-mesh bg-trust-grid text-white">
+        <Container className="relative grid gap-12 py-20 md:py-28 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
+          <div className="animate-fade-up">
+            <Eyebrow>{site.category}</Eyebrow>
+            <h1 className="mt-5 text-4xl font-bold leading-[1.04] !text-white md:text-5xl lg:text-6xl">
+              Code Trust Assurance Framework
+            </h1>
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-blue-soft/85 md:text-xl">
+              Measure, evidence, and certify software trust across code identity, integrity,
+              secure development, supply chain, runtime behaviour, and governance.
+            </p>
+            <p className="mt-4 font-display text-lg font-semibold text-orange">{site.tagline}</p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Button href="/contact" variant="orange" size="lg">
+                Get Assessed <ArrowRight className="h-4 w-4" />
+              </Button>
+              <Button href="/framework" variant="light" size="lg">
+                Explore the Framework
+              </Button>
+              <Link
+                href="/verify"
+                className="inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-3.5 text-base font-medium text-white transition hover:bg-white/10"
+              >
+                <ShieldCheck className="h-4 w-4" /> Verify a Certificate
+              </Link>
+              <Link
+                href="/registry"
+                className="inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-3.5 text-base font-medium text-white transition hover:bg-white/10"
+              >
+                <Search className="h-4 w-4" /> Search Certified Companies
+              </Link>
+            </div>
+          </div>
+
+          <Reveal delay={0.15} className="relative">
+            <div className="rounded-[calc(var(--radius-brand)+6px)] border border-white/12 bg-white/5 p-6 backdrop-blur-sm">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2 text-sm text-blue-soft/80">
+                  <Fingerprint className="h-4 w-4 text-orange" /> Specimen · Paxley Software
+                </div>
+                <span className="rounded-full bg-orange px-2.5 py-1 text-xs font-bold text-white">CTA-4</span>
+              </div>
+              <div className="mt-4 flex justify-center rounded-2xl bg-white p-6">
+                <TrustScoreGauge score={84} />
+              </div>
+              <div className="mt-4 grid grid-cols-3 gap-2 text-center">
+                {["86/86 controls", "L4 overall", "Active"].map((t) => (
+                  <div key={t} className="rounded-lg bg-white/8 px-2 py-2 text-xs font-medium text-blue-soft/85">
+                    {t}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Reveal>
+        </Container>
+
+        {/* Metrics strip */}
+        <div className="border-t border-white/10 bg-navy/40">
+          <Container className="grid grid-cols-2 gap-6 py-8 md:grid-cols-3 lg:grid-cols-6">
+            <StatTile light value={site.metrics.controls} label="Controls" />
+            <StatTile light value={site.metrics.domains} label="Domains" />
+            <StatTile light value={`${site.metrics.axes}-axis`} label="Scoring model" />
+            <StatTile light value="L1–L5" label="Maturity" />
+            <StatTile light value="CTA-1→4" label="Certification" />
+            <StatTile light value={site.metrics.alignments} label="Alignments" />
+          </Container>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+      </section>
+
+      {/* Problem → solution */}
+      <Section>
+        <Container>
+          <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
+            <Reveal>
+              <Eyebrow>The trust gap</Eyebrow>
+              <h2 className="mt-4 text-3xl font-bold md:text-4xl">
+                Organisations scan code. They still can’t <span className="text-blue">prove</span> software trust.
+              </h2>
+              <p className="mt-5 text-lg leading-relaxed text-slate">
+                SolarWinds, Log4Shell, and XZ Utils showed that perimeter-only security fails when
+                the threat originates in trusted software. Every dependency, pipeline, and
+                AI-generated commit is a trust decision — and most organisations cannot demonstrate,
+                continuously and with evidence, that those decisions are controlled.
+              </p>
+              <p className="mt-4 text-lg leading-relaxed text-slate">
+                CTAF treats every stage of software production and distribution as an independently
+                assessable trust boundary — producing a single, quantified Trust Score.
+              </p>
+              <div className="mt-6">
+                <Button href="/what-is-ctaf" variant="outline">
+                  Why CTAF exists <ArrowRight className="h-4 w-4" />
+                </Button>
+              </div>
+            </Reveal>
+            <Reveal delay={0.15}>
+              <div className="grid gap-4 sm:grid-cols-2">
+                {[
+                  { k: "Security tools", v: "Find issues in code you already have.", muted: true },
+                  { k: "CTAF", v: "Proves the whole system can be trusted.", muted: false },
+                  { k: "A scan", v: "Is a point-in-time snapshot.", muted: true },
+                  { k: "A Trust Score", v: "Is a continuous, evidence-backed measure.", muted: false },
+                ].map((c) => (
+                  <div
+                    key={c.k}
+                    className={`rounded-[var(--radius-brand)] border p-5 ${
+                      c.muted ? "border-line bg-grey" : "border-blue/20 bg-blue-soft"
+                    }`}
+                  >
+                    <div className={`font-display font-bold ${c.muted ? "text-slate" : "text-blue"}`}>
+                      {c.k}
+                    </div>
+                    <p className="mt-1 text-sm text-ink">{c.v}</p>
+                  </div>
+                ))}
+              </div>
+            </Reveal>
+          </div>
+        </Container>
+      </Section>
+
+      {/* Domains */}
+      <Section className="bg-grey">
+        <Container>
+          <SectionHeading
+            eyebrow="The framework"
+            title="Six domains. Eighty-six controls."
+            intro="CTAF measures trust across the full software lifecycle — each domain weighted by its impact on overall software trust posture."
+          />
+          <div className="mt-12">
+            <DomainsGrid />
+          </div>
+          <div className="mt-8">
+            <Button href="/framework" variant="dark">
+              Open the full framework <ArrowRight className="h-4 w-4" />
+            </Button>
+          </div>
+        </Container>
+      </Section>
+
+      {/* How it works */}
+      <Section>
+        <Container>
+          <SectionHeading
+            eyebrow="How assessment works"
+            title="From evidence to a public trust signal"
+            intro="Assessment combines evidence, maturity scoring, automated tooling, and independent assessor validation."
+          />
+          <Stagger className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+            {flow.map((s, i) => (
+              <StaggerItem key={s.title}>
+                <div className="flex h-full flex-col rounded-[var(--radius-brand)] border border-line bg-white p-6 shadow-[var(--shadow-brand-sm)]">
+                  <div className="flex items-center justify-between">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-navy text-white">
+                      <s.icon className="h-5 w-5" />
+                    </div>
+                    <span className="font-mono text-2xl font-bold text-line">0{i + 1}</span>
+                  </div>
+                  <h3 className="mt-5 text-lg font-bold text-navy">{s.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-slate">{s.text}</p>
+                </div>
+              </StaggerItem>
+            ))}
+          </Stagger>
+        </Container>
+      </Section>
+
+      {/* Certification levels */}
+      <Section className="bg-navy bg-trust-grid">
+        <Container>
+          <SectionHeading
+            light
+            eyebrow="Certification"
+            title="Four levels of Code Trust Assurance"
+            intro="Based on the Trust Score and minimum domain thresholds — with seven hard gates that must pass regardless of overall score."
+          />
+          <div className="mt-12">
+            <CtaLevelCards />
+          </div>
+          <div className="mt-8">
+            <Button href="/certification" variant="light">
+              How certification works <ArrowRight className="h-4 w-4" />
+            </Button>
+          </div>
+        </Container>
+      </Section>
+
+      {/* Registry preview */}
+      <Section>
+        <Container>
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <SectionHeading
+              eyebrow="Trust Registry"
+              title="Verify certified companies"
+              intro="A public directory where the market can verify certified companies by continent, country, sector, year, and certification level."
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+            <Button href="/registry" variant="outline">
+              Search the registry <ArrowRight className="h-4 w-4" />
+            </Button>
+          </div>
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {featured.map((e) => (
+              <RegistryCard key={e.slug} entry={e} />
+            ))}
+          </div>
+          <div className="mt-8 flex flex-wrap items-center gap-3 rounded-[var(--radius-brand)] border border-line bg-grey p-5">
+            <ShieldCheck className="h-6 w-6 text-blue" />
+            <p className="flex-1 text-sm text-ink">
+              Basic certificate verification is public. Certificate downloads, bulk checks, API
+              verification, and full reports are available through Report Access bundles.
+            </p>
+            <Button href="/verify" variant="primary" size="sm">
+              Verify a Certificate
+            </Button>
+          </div>
+        </Container>
+      </Section>
+
+      {/* Trust score bands */}
+      <Section className="bg-grey">
+        <Container>
+          <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+            <Reveal>
+              <SectionHeading
+                eyebrow="Executive-readable"
+                title="One number the board understands"
+                intro="The 0–100 Trust Score summarises true code-trust posture across all six domains — mapped directly to certification readiness."
+              />
+              <div className="mt-8 flex justify-center rounded-[var(--radius-brand)] border border-line bg-white p-8">
+                <TrustScoreGauge score={71} label="Example score" />
+              </div>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <div className="overflow-hidden rounded-[var(--radius-brand)] border border-line bg-white">
+                {trustScoreBands.map((b, i) => (
+                  <div
+                    key={b.range}
+                    className={`flex items-center gap-4 px-5 py-4 ${i !== 0 ? "border-t border-line" : ""}`}
+                  >
+                    <div className="w-20 font-mono text-sm font-semibold text-navy">{b.range}</div>
+                    <div className="flex-1">
+                      <div className="font-display font-semibold text-navy">
+                        {b.label} <span className="text-slate">· {b.readiness}</span>
+                      </div>
+                      <div className="text-sm text-slate">{b.action}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </Reveal>
+          </div>
+        </Container>
+      </Section>
+
+      {/* Alignments */}
+      <Section>
+        <Container>
+          <SectionHeading
+            align="center"
+            eyebrow="One assessment, many obligations"
+            title="Aligned with the standards that matter"
+            intro="CTAF maps to major software-security frameworks and regulations — so a single assessment addresses multiple compliance obligations."
+          />
+          <div className="mx-auto mt-10 flex max-w-4xl flex-wrap justify-center gap-3">
+            {alignments.map((a) => (
+              <span
+                key={a.name}
+                className="rounded-full border border-line bg-white px-4 py-2 text-sm font-medium text-ink shadow-[var(--shadow-brand-sm)]"
+              >
+                {a.name}
+              </span>
+            ))}
+          </div>
+        </Container>
+      </Section>
+
+      <div className="border-t border-line" />
+      <section className="py-16 md:py-20">
+        <Container>
+          <div className="relative overflow-hidden rounded-[calc(var(--radius-brand)+8px)] bg-mesh bg-trust-grid px-8 py-14 text-center md:px-16">
+            <h2 className="mx-auto max-w-2xl text-3xl font-bold !text-white md:text-4xl">
+              Before you trust a vendor’s software, verify its code trust posture.
+            </h2>
+            <p className="mx-auto mt-4 max-w-2xl text-blue-soft/80">
+              Fixed fee {site.fee} · {site.turnaround} · Final report, CTA certificate, and 12-month roadmap.
+            </p>
+            <div className="mt-8 flex flex-wrap justify-center gap-3">
+              <Button href="/contact" variant="orange" size="lg">
+                Get Assessed
+              </Button>
+              <Button href="/assessment" variant="light" size="lg">
+                See the assessment journey
+              </Button>
+            </div>
+          </div>
+        </Container>
+      </section>
+    </>
   );
 }

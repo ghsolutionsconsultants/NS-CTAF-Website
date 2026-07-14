@@ -1,26 +1,120 @@
 @import "tailwindcss";
 
+/* ============================================================
+   NS-CTAF design system — Nucleus Systems brand tokens
+   Ported verbatim from the existing Nucleus Systems website.
+   ============================================================ */
+
+@theme {
+  /* Brand colors */
+  --color-navy: #0a192f;
+  --color-ink: #15233a;
+  --color-slate: #54657c;
+  --color-blue: #0b50c8;
+  --color-blue-bright: #1565e0;
+  --color-blue-soft: #eaf0fc;
+  --color-orange: #f4801e;
+  --color-orange-soft: #fdebda;
+  --color-grey: #f5f7fa;
+  --color-line: #e3e9f1;
+  --color-white: #ffffff;
+
+  /* CTA certification level scale (graduated blues → orange for CTA-4) */
+  --color-cta1: #7aa3e8;
+  --color-cta2: #1565e0;
+  --color-cta3: #0b50c8;
+  --color-cta4: #f4801e;
+
+  /* Maturity ramp L1 → L5 (slate → blue) */
+  --color-l1: #94a3b8;
+  --color-l2: #6b8fd4;
+  --color-l3: #1565e0;
+  --color-l4: #0b50c8;
+  --color-l5: #0a3aa0;
+
+  /* Status colors */
+  --color-status-active: #0f9d58;
+  --color-status-expiring: #f4801e;
+  --color-status-expired: #b0392f;
+  --color-status-suspended: #a15c00;
+  --color-status-withdrawn: #6b7280;
+
+  /* Typography */
+  --font-display: var(--font-space-grotesk), system-ui, sans-serif;
+  --font-body: var(--font-ibm-plex-sans), system-ui, sans-serif;
+  --font-mono: var(--font-ibm-plex-mono), ui-monospace, monospace;
+
+  /* Radii & shadows */
+  --radius-brand: 14px;
+  --shadow-brand-sm: 0 6px 20px rgba(15, 35, 70, 0.06);
+  --shadow-brand: 0 18px 50px rgba(15, 35, 70, 0.08);
+  --shadow-brand-lg: 0 30px 80px rgba(15, 35, 70, 0.14);
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --maxw: 1180px;
+  --pad: clamp(18px, 5vw, 56px);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-white);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
+
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-display);
+  color: var(--color-navy);
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+}
+
+::selection {
+  background: var(--color-blue);
+  color: #fff;
+}
+
+/* Layout helpers */
+.container-brand {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--pad);
+}
+
+/* Utility: subtle grid/dot backdrop for dark sections */
+.bg-trust-grid {
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.07) 1px, transparent 0);
+  background-size: 22px 22px;
+}
+
+.bg-mesh {
+  background:
+    radial-gradient(1200px 600px at 80% -10%, rgba(21, 101, 224, 0.18), transparent 60%),
+    radial-gradient(900px 500px at 0% 10%, rgba(244, 128, 30, 0.10), transparent 55%),
+    var(--color-navy);
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Thin scrollbar for control library tables */
+.thin-scroll::-webkit-scrollbar { height: 8px; width: 8px; }
+.thin-scroll::-webkit-scrollbar-thumb { background: var(--color-line); border-radius: 8px; }
