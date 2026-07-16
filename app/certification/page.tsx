@@ -22,7 +22,7 @@ export default function CertificationPage() {
       <PageHero
         eyebrow="Certification programme"
         title="Turn assessment results into a trust signal"
-        intro="CTAF certification turns internal software assurance into an external trust signal — four levels, an independent review, and a public, verifiable certificate."
+        intro="NS-CTAF certification turns internal software assurance into an external trust signal — four levels, an independent review, and a public, verifiable certificate."
       >
         <Button href="/registry" variant="light" size="lg">
           View the Trust Registry

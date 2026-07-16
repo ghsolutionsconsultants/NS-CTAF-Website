@@ -7,7 +7,7 @@ import { certStatuses } from "@/data/certification";
 export const metadata: Metadata = {
   title: "Verify a Certificate",
   description:
-    "Verify a CTAF certificate by its ID. Confirm the certified company, certification level, and current status on the public Trust Registry.",
+    "Verify a NS-CTAF certificate by its ID. Confirm the certified company, certification level, and current status on the public Trust Registry.",
 };
 
 export default function VerifyPage() {
@@ -15,7 +15,7 @@ export default function VerifyPage() {
     <>
       <PageHero
         eyebrow="Certificate verification"
-        title="Verify a CTAF certificate"
+        title="Verify a NS-CTAF certificate"
         intro="Enter a certificate ID to confirm the certified company, its certification level, and the certificate’s current status. Basic verification is always free."
       />
 

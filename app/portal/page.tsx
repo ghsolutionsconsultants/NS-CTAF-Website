@@ -6,7 +6,7 @@ import { Building2, FileSearch, ClipboardCheck, Lock, ArrowRight } from "lucide-
 export const metadata: Metadata = {
   title: "Portal",
   description:
-    "The CTAF portal for assessed companies, report subscribers, and assessors — evidence upload, registry search, and assessment workflow.",
+    "The NS-CTAF portal for assessed companies, report subscribers, and assessors — evidence upload, registry search, and assessment workflow.",
 };
 
 const areas = [
@@ -46,7 +46,7 @@ export default function PortalPage() {
   return (
     <>
       <PageHero
-        eyebrow="CTAF portal"
+        eyebrow="NS-CTAF portal"
         title="One workspace for the whole trust lifecycle"
         intro="The portal digitises assessment workflows for assessed companies, report subscribers, and assessors. Sign-in launches with the certification programme."
       />

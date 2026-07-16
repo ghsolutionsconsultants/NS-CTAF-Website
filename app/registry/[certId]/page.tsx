@@ -30,7 +30,7 @@ export async function generateMetadata({
   if (!entry) return { title: "Certificate not found" };
   return {
     title: `${entry.company} — ${entry.level}`,
-    description: `${entry.company} holds a ${entry.level} certification for ${entry.product}. Verify status on the CTAF Trust Registry.`,
+    description: `${entry.company} holds a ${entry.level} certification for ${entry.product}. Verify status on the NS-CTAF Trust Registry.`,
   };
 }
 

@@ -1,4 +1,4 @@
-// Frameworks and regulations NS-CTAF maps to. A single CTAF assessment
+// Frameworks and regulations NS-CTAF maps to. A single NS-CTAF assessment
 // simultaneously addresses multiple compliance obligations.
 
 export interface Alignment {

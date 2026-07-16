@@ -8,7 +8,7 @@ import { resources } from "@/data/content";
 export const metadata: Metadata = {
   title: "Resources",
   description:
-    "The CTAF knowledge hub: whitepapers, certification and buyer guides, checklists, SBOM and secure-pipeline guidance, glossary, and FAQs.",
+    "The NS-CTAF knowledge hub: whitepapers, certification and buyer guides, checklists, SBOM and secure-pipeline guidance, glossary, and FAQs.",
 };
 
 export default function ResourcesPage() {

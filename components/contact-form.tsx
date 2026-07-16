@@ -38,7 +38,7 @@ export function ContactForm() {
         const res = await fetch(FORM_ENDPOINT, {
           method: "POST",
           headers: { "Content-Type": "application/json", Accept: "application/json" },
-          body: JSON.stringify({ ...data, reference, subject: "New CTAF assessment request" }),
+          body: JSON.stringify({ ...data, reference, subject: "New NS-CTAF assessment request" }),
         });
         if (!res.ok) throw new Error();
       } catch {
@@ -129,7 +129,7 @@ export function ContactForm() {
         )}
       </button>
       <p className="mt-3 text-xs text-slate">
-        By submitting you agree to be contacted about a CTAF assessment. We never share your details.
+        By submitting you agree to be contacted about a NS-CTAF assessment. We never share your details.
       </p>
     </form>
   );

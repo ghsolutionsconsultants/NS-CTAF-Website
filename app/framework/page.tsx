@@ -198,7 +198,7 @@ export default function FrameworkPage() {
           <SectionHeading
             eyebrow="Framework alignment"
             title="One assessment, many obligations"
-            intro="CTAF maps to the standards and regulations that shape software security worldwide."
+            intro="NS-CTAF maps to the standards and regulations that shape software security worldwide."
           />
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {alignments.map((a) => (

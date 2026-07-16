@@ -37,10 +37,10 @@ export function SiteHeader() {
           : "border-b border-transparent bg-white/70 backdrop-blur-sm"
       }`}
     >
-      <div className="container-brand flex h-16 items-center justify-between gap-4">
+      <div className="container-brand flex h-16 items-center justify-between gap-6">
         <BrandLockup />
 
-        <nav className="hidden items-center gap-1 lg:flex">
+        <nav className="hidden items-center gap-1 xl:flex">
           {headerNav.map((item) => {
             const active = pathname === item.href || pathname.startsWith(item.href + "/");
             return (
@@ -88,23 +88,23 @@ export function SiteHeader() {
           </div>
         </nav>
 
-        <div className="hidden items-center gap-2 lg:flex">
+        <div className="hidden shrink-0 items-center gap-2 xl:flex">
           <Link
             href="/verify"
-            className="inline-flex items-center gap-1.5 rounded-full border border-line px-4 py-2 text-sm font-medium text-ink transition-colors hover:border-blue hover:text-blue"
+            className="inline-flex h-10 items-center gap-1.5 whitespace-nowrap rounded-full border border-line px-4 text-sm font-medium text-ink transition-colors hover:border-blue hover:text-blue"
           >
-            <ShieldCheck className="h-4 w-4" /> Verify a Certificate
+            <ShieldCheck className="h-4 w-4 shrink-0" /> Verify a Certificate
           </Link>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-1.5 rounded-full bg-orange px-4 py-2 text-sm font-medium text-white shadow-[0_10px_24px_rgba(244,128,30,0.28)] transition hover:brightness-105"
+            className="inline-flex h-10 items-center gap-1.5 whitespace-nowrap rounded-full bg-orange px-4 text-sm font-medium text-white shadow-[0_10px_24px_rgba(244,128,30,0.28)] transition hover:brightness-105"
           >
-            Start Assessment <ArrowRight className="h-4 w-4" />
+            Start Assessment <ArrowRight className="h-4 w-4 shrink-0" />
           </Link>
         </div>
 
         <button
-          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-line text-ink lg:hidden"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-line text-ink xl:hidden"
           onClick={() => setOpen((v) => !v)}
           aria-label="Toggle menu"
         >
@@ -113,7 +113,7 @@ export function SiteHeader() {
       </div>
 
       {open && (
-        <div className="border-t border-line bg-white lg:hidden">
+        <div className="border-t border-line bg-white xl:hidden">
           <div className="container-brand max-h-[75vh] overflow-y-auto py-4">
             <div className="grid gap-1">
               {primaryNav.map((item) => (
@@ -126,18 +126,18 @@ export function SiteHeader() {
                 </Link>
               ))}
             </div>
-            <div className="mt-4 grid gap-2">
+            <div className="mt-4 grid gap-2 border-t border-line pt-4">
               <Link
                 href="/verify"
-                className="inline-flex items-center justify-center gap-1.5 rounded-full border border-line px-4 py-3 text-sm font-medium text-ink"
+                className="flex w-full items-center justify-center gap-2 rounded-full border border-line px-4 py-3 text-sm font-medium text-ink"
               >
-                <ShieldCheck className="h-4 w-4" /> Verify a Certificate
+                <ShieldCheck className="h-4 w-4 shrink-0" /> Verify a Certificate
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center gap-1.5 rounded-full bg-orange px-4 py-3 text-sm font-medium text-white"
+                className="flex w-full items-center justify-center gap-2 rounded-full bg-orange px-4 py-3 text-sm font-medium text-white shadow-[0_10px_24px_rgba(244,128,30,0.28)]"
               >
-                Start Assessment <ArrowRight className="h-4 w-4" />
+                Start Assessment <ArrowRight className="h-4 w-4 shrink-0" />
               </Link>
             </div>
           </div>

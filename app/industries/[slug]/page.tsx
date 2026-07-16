@@ -21,7 +21,7 @@ export async function generateMetadata({
   const ind = industries.find((i) => i.slug === slug);
   if (!ind) return { title: "Industry not found" };
   return {
-    title: `CTAF for ${ind.title}`,
+    title: `NS-CTAF for ${ind.title}`,
     description: ind.focus,
   };
 }
@@ -37,7 +37,7 @@ export default async function IndustryPage({
 
   return (
     <>
-      <PageHero eyebrow={`CTAF for ${ind.title}`} title={ind.focus}>
+      <PageHero eyebrow={`NS-CTAF for ${ind.title}`} title={ind.focus}>
         <Button href="/contact" variant="orange" size="lg">
           Get Assessed <ArrowRight className="h-4 w-4" />
         </Button>

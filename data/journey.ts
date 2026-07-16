@@ -131,7 +131,7 @@ export const assessmentPhases = [
   },
   {
     phase: "3. Automated Tool Review",
-    description: "Use the CTAF assessment tool to structure scoring, dashboards, recommendations, roadmap, and readiness.",
+    description: "Use the NS-CTAF assessment tool to structure scoring, dashboards, recommendations, roadmap, and readiness.",
     output: "Draft scorecard and preliminary roadmap.",
   },
   {
@@ -152,7 +152,7 @@ export const assessmentPhases = [
 ];
 
 export const deliverables = [
-  "CTAF Trust Score and domain maturity scores",
+  "NS-CTAF Trust Score and domain maturity scores",
   "Control-level maturity analysis across applicable controls",
   "Evidence quality review and evidence register",
   "Certification readiness assessment",
@@ -165,7 +165,7 @@ export const methodPrinciples = [
   "Evidence-first assessment, cryptographic evidence preferred",
   "No maturity inflation through policy-only evidence",
   "Clear scope definition before scoring begins",
-  "Repeatable scoring across the five CTAF axes",
+  "Repeatable scoring across the five NS-CTAF axes",
   "Hard scoring gates cap maturity where trust conditions are absent",
   "Independent review before certification is issued",
 ];

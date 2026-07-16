@@ -8,9 +8,9 @@ import { site } from "@/data/site";
 import { ArrowRight, ShieldAlert, Boxes, Cpu, FileCheck2 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "What is CTAF",
+  title: "What is NS-CTAF",
   description:
-    "CTAF is a measurable trust assurance architecture for software — not a checklist or a scan. Learn what it is, why it exists, and who created it.",
+    "NS-CTAF is a measurable trust assurance architecture for software — not a checklist or a scan. Learn what it is, why it exists, and who created it.",
 };
 
 const whyPoints = [
@@ -24,9 +24,9 @@ export default function WhatIsCtafPage() {
   return (
     <>
       <PageHero
-        eyebrow="What is CTAF"
+        eyebrow="What is NS-CTAF"
         title="A measurable architecture for software trust"
-        intro="CTAF measures whether software can be trusted across its full lifecycle — from developer identity and code integrity to secure development, dependencies, runtime behaviour, and governance accountability."
+        intro="NS-CTAF measures whether software can be trusted across its full lifecycle — from developer identity and code integrity to secure development, dependencies, runtime behaviour, and governance accountability."
       >
         <Button href="/framework" variant="light" size="lg">
           Explore the framework <ArrowRight className="h-4 w-4" />
@@ -39,7 +39,7 @@ export default function WhatIsCtafPage() {
             <div>
               <SectionHeading eyebrow="Definition" title="Not a checklist. Not a scan." />
               <p className="mt-5 text-lg leading-relaxed text-slate">
-                CTAF is not a simple checklist or a vulnerability scanning method. It is a
+                NS-CTAF is not a simple checklist or a vulnerability scanning method. It is a
                 measurable trust assurance architecture that evaluates evidence quality,
                 implementation coverage, operating effectiveness, monitoring, and automation.
               </p>
@@ -50,11 +50,11 @@ export default function WhatIsCtafPage() {
               </p>
             </div>
             <div>
-              <SectionHeading eyebrow="Why CTAF exists" title="Every input is a trust decision" />
+              <SectionHeading eyebrow="Why NS-CTAF exists" title="Every input is a trust decision" />
               <p className="mt-5 text-slate">
                 Modern software is assembled from internal code, open-source components, build tools,
                 CI/CD pipelines, containers, cloud services, APIs, and increasingly AI-generated code.
-                CTAF exists because most organisations cannot prove, continuously and with evidence,
+                NS-CTAF exists because most organisations cannot prove, continuously and with evidence,
                 that those trust decisions are controlled.
               </p>
               <div className="mt-6 space-y-3">
@@ -75,7 +75,7 @@ export default function WhatIsCtafPage() {
           <SectionHeading
             eyebrow="How it works"
             title="Six domains of software trust"
-            intro="CTAF structures trust into six weighted domains, each an independently assessable dimension of the software supply chain."
+            intro="NS-CTAF structures trust into six weighted domains, each an independently assessable dimension of the software supply chain."
           />
           <div className="mt-12">
             <DomainsGrid />
@@ -86,9 +86,9 @@ export default function WhatIsCtafPage() {
       <Section>
         <Container>
           <SectionHeading
-            eyebrow="Who created CTAF"
+            eyebrow="Who created NS-CTAF"
             title="Built by Nucleus Systems"
-            intro="CTAF was created by Nucleus Systems as part of its work in software assurance, code security, secure delivery, supply-chain risk, and evidence-based maturity measurement."
+            intro="NS-CTAF was created by Nucleus Systems as part of its work in software assurance, code security, secure delivery, supply-chain risk, and evidence-based maturity measurement."
           />
           <div className="mt-8 grid gap-5 md:grid-cols-3">
             {[
@@ -113,8 +113,8 @@ export default function WhatIsCtafPage() {
         <Container>
           <SectionHeading
             eyebrow="Real-life use cases"
-            title="Who CTAF helps"
-            intro="From software vendors to regulators, CTAF turns software trust into something measurable and comparable."
+            title="Who NS-CTAF helps"
+            intro="From software vendors to regulators, NS-CTAF turns software trust into something measurable and comparable."
           />
           <div className="mt-10 overflow-hidden rounded-[var(--radius-brand)] border border-line bg-white">
             {useCases.map((u, i) => (

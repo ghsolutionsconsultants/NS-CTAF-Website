@@ -1,4 +1,4 @@
-// CTAF Trust Registry — seed data. The first four entries correspond to the
+// NS-CTAF Trust Registry — seed data. The first four entries correspond to the
 // specimen certificate PDFs; the remainder are demonstration listings that
 // exercise the registry filters (continent, country, sector, level, status, year).
 import type { CtaLevel, CertStatus } from "./certification";

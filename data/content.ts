@@ -117,14 +117,14 @@ export interface Resource {
 }
 
 export const resources: Resource[] = [
-  { title: "CTAF Executive Whitepaper", type: "Whitepaper", blurb: "The case for code trust assurance intelligence, for boards and executives.", icon: "FileText" },
-  { title: "CTAF Certification Guide", type: "Guide", blurb: "How the CTA-1 to CTA-4 certification programme works, end to end.", icon: "Award" },
+  { title: "NS-CTAF Executive Whitepaper", type: "Whitepaper", blurb: "The case for code trust assurance intelligence, for boards and executives.", icon: "FileText" },
+  { title: "NS-CTAF Certification Guide", type: "Guide", blurb: "How the CTA-1 to CTA-4 certification programme works, end to end.", icon: "Award" },
   { title: "Assessment Preparation Checklist", type: "Checklist", blurb: "Get your evidence, scope, and teams ready before assessment.", icon: "ListChecks" },
   { title: "Buyer’s Guide to Software Trust", type: "Guide", blurb: "For procurement and vendor-risk teams evaluating software suppliers.", icon: "ShoppingCart" },
   { title: "SBOM & Dependency Assurance Guide", type: "Guide", blurb: "Practical guidance on SBOMs, CVE correlation, and supply-chain control.", icon: "Boxes" },
   { title: "Secure Build Pipeline Guide", type: "Guide", blurb: "Signing, provenance, reproducible builds, and SLSA in practice.", icon: "Workflow" },
   { title: "AI-Generated Code Assurance Guide", type: "Guide", blurb: "Attribution, enhanced review, and trust classification for AI code.", icon: "Cpu" },
-  { title: "CTAF Glossary", type: "Reference", blurb: "Definitions for every term used across the framework.", icon: "BookOpen" },
+  { title: "NS-CTAF Glossary", type: "Reference", blurb: "Definitions for every term used across the framework.", icon: "BookOpen" },
   { title: "Frequently Asked Questions", type: "FAQ", blurb: "Common questions on assessment, scoring, and certification.", icon: "HelpCircle" },
 ];
 
@@ -136,12 +136,12 @@ export interface TrainingTrack {
 }
 
 export const trainingTracks: TrainingTrack[] = [
-  { title: "CTAF Executive Briefing", audience: "Boards, CEOs, CIOs, CISOs, audit committees", blurb: "Understand code trust as a business, operational, and regulatory risk.", icon: "Presentation" },
-  { title: "CTAF Practitioner", audience: "Security engineers, DevSecOps, AppSec teams", blurb: "Operate CTAF controls across the delivery lifecycle.", icon: "Wrench" },
-  { title: "CTAF Developer Foundation", audience: "Software engineers and engineering managers", blurb: "Build trust-by-design into everyday development.", icon: "Code2" },
-  { title: "CTAF Security Champion", audience: "Nominated champions in engineering teams", blurb: "Drive secure development from within the team.", icon: "Shield" },
-  { title: "CTAF Assessor Training", audience: "Internal and external accredited assessors", blurb: "Assess evidence, apply hard gates, and score consistently.", icon: "ClipboardCheck" },
-  { title: "CTAF Procurement Training", audience: "Vendor risk, procurement, compliance teams", blurb: "Use CTAF to evaluate and compare software suppliers.", icon: "ShoppingBag" },
+  { title: "NS-CTAF Executive Briefing", audience: "Boards, CEOs, CIOs, CISOs, audit committees", blurb: "Understand code trust as a business, operational, and regulatory risk.", icon: "Presentation" },
+  { title: "NS-CTAF Practitioner", audience: "Security engineers, DevSecOps, AppSec teams", blurb: "Operate NS-CTAF controls across the delivery lifecycle.", icon: "Wrench" },
+  { title: "NS-CTAF Developer Foundation", audience: "Software engineers and engineering managers", blurb: "Build trust-by-design into everyday development.", icon: "Code2" },
+  { title: "NS-CTAF Security Champion", audience: "Nominated champions in engineering teams", blurb: "Drive secure development from within the team.", icon: "Shield" },
+  { title: "NS-CTAF Assessor Training", audience: "Internal and external accredited assessors", blurb: "Assess evidence, apply hard gates, and score consistently.", icon: "ClipboardCheck" },
+  { title: "NS-CTAF Procurement Training", audience: "Vendor risk, procurement, compliance teams", blurb: "Use NS-CTAF to evaluate and compare software suppliers.", icon: "ShoppingBag" },
 ];
 
 export interface PartnerTrack {
@@ -154,11 +154,11 @@ export interface PartnerTrack {
 export const partnerTracks: PartnerTrack[] = [
   {
     title: "Accredited Assessor Programme",
-    blurb: "Become an independent CTAF assessor.",
+    blurb: "Become an independent NS-CTAF assessor.",
     points: [
       "Formal accreditation and assessor training",
       "Annual recertification to stay accredited",
-      "Consistent scoring against the five CTAF axes",
+      "Consistent scoring against the five NS-CTAF axes",
     ],
     icon: "ClipboardCheck",
   },
@@ -168,7 +168,7 @@ export const partnerTracks: PartnerTrack[] = [
     points: [
       "Implementation support for assessed organisations",
       "Readiness and remediation engagements",
-      "Access to CTAF enablement and materials",
+      "Access to NS-CTAF enablement and materials",
     ],
     icon: "Handshake",
   },
@@ -184,7 +184,7 @@ export const partnerTracks: PartnerTrack[] = [
   },
   {
     title: "Regional Representatives",
-    blurb: "Extend CTAF into new markets.",
+    blurb: "Extend NS-CTAF into new markets.",
     points: [
       "Regional expansion and market development",
       "Local language and regulatory context",

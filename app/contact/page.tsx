@@ -8,7 +8,7 @@ import { Mail, CircleDollarSign, CalendarClock, ShieldCheck } from "lucide-react
 export const metadata: Metadata = {
   title: "Get Assessed",
   description:
-    "Request a CTAF assessment. Fixed fee, ~20 business days, and a CTA certificate. Tell us about your software and target certification level.",
+    "Request a NS-CTAF assessment. Fixed fee, ~20 business days, and a CTA certificate. Tell us about your software and target certification level.",
 };
 
 export default function ContactPage() {
@@ -16,7 +16,7 @@ export default function ContactPage() {
     <>
       <PageHero
         eyebrow="Get assessed"
-        title="Start your CTAF assessment"
+        title="Start your NS-CTAF assessment"
         intro="Tell us about your software and target certification level. Our team confirms eligibility and scope, then issues a fixed-fee proposal."
       />
       <Section>

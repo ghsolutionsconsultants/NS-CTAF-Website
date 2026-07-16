@@ -10,7 +10,7 @@ import { ArrowUpRight } from "lucide-react";
 export const metadata: Metadata = {
   title: "Industries",
   description:
-    "Why CTAF matters to software vendors, banks, SaaS, open source, AI companies, regulators, investors, and critical infrastructure.",
+    "Why NS-CTAF matters to software vendors, banks, SaaS, open source, AI companies, regulators, investors, and critical infrastructure.",
 };
 
 export default function IndustriesPage() {
@@ -18,7 +18,7 @@ export default function IndustriesPage() {
     <>
       <PageHero
         eyebrow="Industries"
-        title="Why CTAF matters to your sector"
+        title="Why NS-CTAF matters to your sector"
         intro="Different buyers face different trust problems. Each sector page explains the trust problem, priority domains, target certification level, and business value."
       />
       <Section>

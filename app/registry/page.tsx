@@ -8,7 +8,7 @@ import { ShieldCheck } from "lucide-react";
 export const metadata: Metadata = {
   title: "Trust Registry",
   description:
-    "The CTAF Trust Registry — a searchable public directory of certified companies. Verify certificates by continent, country, sector, level, status, and year.",
+    "The NS-CTAF Trust Registry — a searchable public directory of certified companies. Verify certificates by continent, country, sector, level, status, and year.",
 };
 
 export default function RegistryPage() {
@@ -16,7 +16,7 @@ export default function RegistryPage() {
   return (
     <>
       <PageHero
-        eyebrow="CTAF Trust Registry"
+        eyebrow="NS-CTAF Trust Registry"
         title="Verify certified companies"
         intro="A public directory where customers, procurement teams, regulators, and investors can verify certified companies and check certificate status."
       >
