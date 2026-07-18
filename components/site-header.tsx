@@ -88,18 +88,20 @@ export function SiteHeader() {
           </div>
         </nav>
 
-        <div className="hidden shrink-0 items-center gap-2 xl:flex">
+        <div className="hidden shrink-0 items-center gap-3 xl:flex">
           <Link
             href="/verify"
-            className="inline-flex h-10 items-center gap-1.5 whitespace-nowrap rounded-full border border-line px-4 text-sm font-medium text-ink transition-colors hover:border-blue hover:text-blue"
+            className="inline-flex h-11 items-center gap-2 whitespace-nowrap rounded-full border border-line px-5 text-sm font-medium leading-none text-ink transition-colors hover:border-blue hover:text-blue"
           >
-            <ShieldCheck className="h-4 w-4 shrink-0" /> Verify a Certificate
+            <ShieldCheck className="h-4 w-4 shrink-0" />
+            <span>Verify a Certificate</span>
           </Link>
           <Link
             href="/contact"
-            className="inline-flex h-10 items-center gap-1.5 whitespace-nowrap rounded-full bg-orange px-4 text-sm font-medium text-white shadow-[0_10px_24px_rgba(244,128,30,0.28)] transition hover:brightness-105"
+            className="inline-flex h-11 items-center gap-2 whitespace-nowrap rounded-full bg-orange px-5 text-sm font-medium leading-none text-white shadow-[0_10px_24px_rgba(244,128,30,0.28)] transition hover:brightness-105"
           >
-            Start Assessment <ArrowRight className="h-4 w-4 shrink-0" />
+            <span>Start Assessment</span>
+            <ArrowRight className="h-4 w-4 shrink-0" />
           </Link>
         </div>
 

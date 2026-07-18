@@ -4,10 +4,10 @@ import { useState } from "react";
 import { CheckCircle2, Loader2, AlertCircle } from "lucide-react";
 import { ctaLevels } from "@/data/certification";
 
-// To make the form send real emails on static hosting, paste a form-service
-// endpoint here (e.g. Web3Forms https://api.web3forms.com/submit or a Formspree
-// URL). Leave empty to run in demo mode (client-side confirmation only).
-const FORM_ENDPOINT = "";
+// Web3Forms submission endpoint + access key. The key routes submissions to the
+// Nucleus Systems inbox configured in the Web3Forms dashboard.
+const FORM_ENDPOINT = "https://api.web3forms.com/submit";
+const WEB3FORMS_ACCESS_KEY = "a76872ef-3181-40ad-b719-09cfd1ed6879";
 
 type State =
   | { s: "idle" }
@@ -33,21 +33,23 @@ export function ContactForm() {
     setState({ s: "loading" });
     const reference = `NS-LEAD-${Date.now().toString(36).toUpperCase()}`;
 
-    if (FORM_ENDPOINT) {
-      try {
-        const res = await fetch(FORM_ENDPOINT, {
-          method: "POST",
-          headers: { "Content-Type": "application/json", Accept: "application/json" },
-          body: JSON.stringify({ ...data, reference, subject: "New NS-CTAF assessment request" }),
-        });
-        if (!res.ok) throw new Error();
-      } catch {
-        setState({ s: "error", message: "Network error — please email us instead." });
-        return;
-      }
-    } else {
-      // Demo mode — simulate processing latency.
-      await new Promise((r) => setTimeout(r, 400));
+    try {
+      const res = await fetch(FORM_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          subject: "New NS-CTAF assessment request",
+          from_name: "NS-CTAF Website",
+          reference,
+          ...data,
+        }),
+      });
+      const json = await res.json();
+      if (!json.success) throw new Error(json.message ?? "Submission failed");
+    } catch {
+      setState({ s: "error", message: "Something went wrong — please email enquiries@nucleus-systems.com." });
+      return;
     }
 
     setState({
