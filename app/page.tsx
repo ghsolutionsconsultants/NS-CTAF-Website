@@ -34,7 +34,8 @@ export default function HomePage() {
     <>
       {/* Hero */}
       <section className="relative overflow-hidden bg-mesh bg-trust-grid text-white">
-        <Container className="relative grid gap-12 py-20 md:py-28 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
+        <Container className="relative py-20 md:py-28">
+          <div className="grid gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
           <div className="animate-fade-up">
             <Eyebrow>{site.category}</Eyebrow>
             <h1 className="mt-5 text-4xl font-bold leading-[1.05] !text-white md:text-5xl lg:text-[3.5rem]">
@@ -48,26 +49,6 @@ export default function HomePage() {
               secure development, supply chain, runtime behaviour, and governance.
             </p>
             <p className="mt-4 font-display text-lg font-semibold text-orange">{site.tagline}</p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Button href="/contact" variant="orange" size="lg">
-                Get Assessed <ArrowRight className="h-4 w-4" />
-              </Button>
-              <Button href="/framework" variant="light" size="lg">
-                Explore the Framework
-              </Button>
-              <Link
-                href="/verify"
-                className="inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-3.5 text-base font-medium text-white transition hover:bg-white/10"
-              >
-                <ShieldCheck className="h-4 w-4" /> Verify a Certificate
-              </Link>
-              <Link
-                href="/registry"
-                className="inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-3.5 text-base font-medium text-white transition hover:bg-white/10"
-              >
-                <Search className="h-4 w-4" /> Search Certified Companies
-              </Link>
-            </div>
           </div>
 
           <Reveal delay={0.15} className="relative">
@@ -90,6 +71,29 @@ export default function HomePage() {
               </div>
             </div>
           </Reveal>
+          </div>
+
+          {/* Full-width CTA row — stays on a single line on desktop */}
+          <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap lg:mt-14 lg:flex-nowrap">
+            <Button href="/contact" variant="orange" size="md" className="whitespace-nowrap">
+              Get Assessed <ArrowRight className="h-4 w-4 shrink-0" />
+            </Button>
+            <Button href="/framework" variant="light" size="md" className="whitespace-nowrap">
+              Explore the Framework
+            </Button>
+            <Link
+              href="/verify"
+              className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full border border-white/25 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-white/10"
+            >
+              <ShieldCheck className="h-4 w-4 shrink-0" /> Verify a Certificate
+            </Link>
+            <Link
+              href="/registry"
+              className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full border border-white/25 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-white/10"
+            >
+              <Search className="h-4 w-4 shrink-0" /> Search Certified Companies
+            </Link>
+          </div>
         </Container>
 
         {/* Metrics strip */}

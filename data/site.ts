@@ -6,7 +6,7 @@ export const site = {
   shortName: "CTAF",
   owner: "Nucleus Systems (Pty) Ltd",
   frameworkVersion: "NS-CTAF v1.0",
-  email: "enquiries@nucleus-systems.com",
+  email: "info@nucleus-systems.com",
   fee: "$5,000 USD",
   turnaround: "~20 business days",
   tagline: "Security tools find issues. NS-CTAF proves trust.",

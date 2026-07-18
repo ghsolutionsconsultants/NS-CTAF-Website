@@ -32,7 +32,7 @@ export const journey: JourneyStage[] = [
     owner: "Client + NS",
     duration: "1–3 days",
     steps: [
-      "Reach out via enquiries@nucleus-systems.com or the website",
+      "Reach out via info@nucleus-systems.com or the website",
       "Introductory session or email exchange on scope",
       "NS confirms eligibility and target CTA level",
     ],
