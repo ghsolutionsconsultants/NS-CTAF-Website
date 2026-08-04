@@ -1,6 +1,42 @@
 # Serve the branded 404 page (Next.js static export emits /404.html).
 ErrorDocument 404 /404.html
 
+# ---------------------------------------------------------------------------
+# Caching
+#
+# Every build gives JS/CSS chunks a new content hash. If a stale HTML document
+# is served from cache it will reference chunk filenames that no longer exist,
+# every asset 404s, and the page renders as unstyled raw HTML. So: HTML must
+# always be revalidated, while hashed assets can be cached indefinitely.
+# ---------------------------------------------------------------------------
+
+<IfModule mod_headers.c>
+  # HTML: always revalidate against the server.
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache, must-revalidate, max-age=0"
+    Header unset ETag
+  </FilesMatch>
+
+  # Content-hashed build output: immutable, safe to cache for a year.
+  <FilesMatch "\.(js|css|woff2|woff)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+  # Images / documents: cache for a day.
+  <FilesMatch "\.(png|jpe?g|gif|svg|ico|webp|pdf)$">
+    Header set Cache-Control "public, max-age=86400"
+  </FilesMatch>
+</IfModule>
+
+# LiteSpeed (Hostinger's server) keeps its own page cache — exclude HTML from
+# it so a new deploy is visible immediately rather than after cache expiry.
+<IfModule LiteSpeed>
+  CacheLookup public on
+  <FilesMatch "\.html$">
+    CacheDisable public /
+  </FilesMatch>
+</IfModule>
+
 # Optional: uncomment to force HTTPS once your domain + SSL are active on Hostinger.
 # RewriteEngine On
 # RewriteCond %{HTTPS} off
