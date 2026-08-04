@@ -21,16 +21,20 @@ export function Section({
   id?: string;
 }) {
   return (
-    <section id={id} className={`py-16 md:py-24 ${className}`}>
+    <section id={id} className={`py-20 md:py-28 ${className}`}>
       {children}
     </section>
   );
 }
 
-export function Eyebrow({ children }: { children: ReactNode }) {
+export function Eyebrow({ children, light = false }: { children: ReactNode; light?: boolean }) {
   return (
-    <span className="inline-flex items-center gap-2 font-mono text-xs font-medium uppercase tracking-[0.18em] text-blue">
-      <span className="h-px w-6 bg-orange" />
+    <span
+      className={`inline-flex items-center gap-2.5 font-mono text-[11px] font-semibold uppercase tracking-[0.2em] ${
+        light ? "text-blue-soft/90" : "text-blue"
+      }`}
+    >
+      <span className="h-px w-7 bg-orange" />
       {children}
     </span>
   );
@@ -51,14 +55,18 @@ export function SectionHeading({
 }) {
   return (
     <div className={`max-w-3xl ${align === "center" ? "mx-auto text-center" : ""}`}>
-      {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
+      {eyebrow && <Eyebrow light={light}>{eyebrow}</Eyebrow>}
       <h2
-        className={`mt-4 text-3xl font-bold md:text-4xl ${light ? "!text-white" : ""}`}
+        className={`mt-5 text-[1.75rem] font-bold leading-[1.12] md:text-[2.35rem] ${light ? "!text-white" : ""}`}
       >
         {title}
       </h2>
       {intro && (
-        <p className={`mt-4 text-lg leading-relaxed ${light ? "text-blue-soft/80" : "text-slate"}`}>
+        <p
+          className={`mt-5 text-[1.0625rem] leading-relaxed md:text-lg ${
+            light ? "text-blue-soft/75" : "text-slate"
+          }`}
+        >
           {intro}
         </p>
       )}
@@ -77,18 +85,21 @@ type ButtonProps = {
 };
 
 const variantClasses: Record<NonNullable<ButtonProps["variant"]>, string> = {
-  primary: "bg-blue text-white hover:bg-blue-bright shadow-[0_10px_30px_rgba(11,80,200,0.28)]",
-  orange: "bg-orange text-white hover:brightness-105 shadow-[0_10px_30px_rgba(244,128,30,0.28)]",
-  dark: "bg-navy text-white hover:bg-ink",
-  outline: "border border-line bg-white text-ink hover:border-blue hover:text-blue",
+  primary:
+    "bg-blue text-white shadow-[var(--shadow-blue)] hover:bg-blue-bright hover:shadow-[0_14px_36px_rgba(11,80,200,0.34)] hover:-translate-y-0.5",
+  orange:
+    "bg-orange text-white shadow-[var(--shadow-orange)] hover:brightness-[1.06] hover:shadow-[0_14px_36px_rgba(244,128,30,0.34)] hover:-translate-y-0.5",
+  dark: "bg-navy text-white hover:bg-ink hover:-translate-y-0.5 hover:shadow-[var(--shadow-brand)]",
+  outline:
+    "border border-line bg-white text-ink hover:border-blue hover:text-blue hover:shadow-[var(--shadow-brand-sm)]",
   ghost: "text-ink hover:text-blue",
-  light: "bg-white text-navy hover:bg-blue-soft",
+  light: "bg-white text-navy hover:bg-blue-soft hover:-translate-y-0.5",
 };
 
 const sizeClasses = {
-  sm: "px-4 py-2 text-sm",
-  md: "px-5 py-2.5 text-sm",
-  lg: "px-7 py-3.5 text-base",
+  sm: "h-9 px-4 text-sm",
+  md: "h-11 px-5 text-sm",
+  lg: "h-[3.25rem] px-7 text-base",
 };
 
 export function Button({
@@ -100,7 +111,7 @@ export function Button({
   type = "button",
   target,
 }: ButtonProps) {
-  const cls = `inline-flex items-center justify-center gap-2 rounded-full font-medium font-[var(--font-display)] transition-all duration-200 ${variantClasses[variant]} ${sizeClasses[size]} ${className}`;
+  const cls = `inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full font-medium leading-none font-[var(--font-display)] transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${variantClasses[variant]} ${sizeClasses[size]} ${className}`;
   if (href) {
     const external = href.startsWith("http") || target === "_blank";
     if (external) {
@@ -159,11 +170,17 @@ export function StatTile({
   return (
     <div className="text-center">
       <div
-        className={`font-display text-3xl font-bold md:text-4xl ${light ? "text-white" : "text-navy"}`}
+        className={`tabular whitespace-nowrap font-display text-[1.75rem] font-bold leading-none tracking-tight md:text-[2.125rem] ${
+          light ? "text-white" : "text-navy"
+        }`}
       >
         {value}
       </div>
-      <div className={`mt-1 text-xs font-medium uppercase tracking-wider ${light ? "text-blue-soft/70" : "text-slate"}`}>
+      <div
+        className={`mt-2.5 text-[10px] font-semibold uppercase tracking-[0.16em] ${
+          light ? "text-blue-soft/60" : "text-slate"
+        }`}
+      >
         {label}
       </div>
     </div>
@@ -182,7 +199,7 @@ export function Card({
   const Comp = as;
   return (
     <Comp
-      className={`rounded-[var(--radius-brand)] border border-line bg-white p-6 shadow-[var(--shadow-brand-sm)] transition-shadow duration-300 hover:shadow-[var(--shadow-brand)] ${className}`}
+      className={`card-accent rounded-[var(--radius-brand)] border border-line bg-white p-6 shadow-[var(--shadow-brand-sm)] transition-all duration-300 hover:-translate-y-1 hover:border-blue/25 hover:shadow-[var(--shadow-brand)] ${className}`}
     >
       {children}
     </Comp>

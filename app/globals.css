@@ -44,11 +44,21 @@
   --font-body: var(--font-ibm-plex-sans), system-ui, sans-serif;
   --font-mono: var(--font-ibm-plex-mono), ui-monospace, monospace;
 
-  /* Radii & shadows */
-  --radius-brand: 14px;
-  --shadow-brand-sm: 0 6px 20px rgba(15, 35, 70, 0.06);
-  --shadow-brand: 0 18px 50px rgba(15, 35, 70, 0.08);
-  --shadow-brand-lg: 0 30px 80px rgba(15, 35, 70, 0.14);
+  /* Radii & shadows — layered for realistic depth */
+  --radius-brand: 16px;
+  --shadow-brand-sm:
+    0 1px 2px rgba(10, 25, 47, 0.04),
+    0 4px 12px rgba(15, 35, 70, 0.05);
+  --shadow-brand:
+    0 1px 2px rgba(10, 25, 47, 0.04),
+    0 8px 24px rgba(15, 35, 70, 0.07),
+    0 20px 48px rgba(15, 35, 70, 0.06);
+  --shadow-brand-lg:
+    0 2px 4px rgba(10, 25, 47, 0.05),
+    0 16px 40px rgba(15, 35, 70, 0.10),
+    0 36px 80px rgba(15, 35, 70, 0.10);
+  --shadow-blue: 0 10px 30px rgba(11, 80, 200, 0.24);
+  --shadow-orange: 0 10px 30px rgba(244, 128, 30, 0.26);
 }
 
 :root {
@@ -69,19 +79,39 @@ body {
   color: var(--color-ink);
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  font-feature-settings: "kern" 1, "liga" 1;
 }
 
 h1, h2, h3, h4, h5 {
   font-family: var(--font-display);
   color: var(--color-navy);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
   line-height: 1.08;
+  text-wrap: balance;
+}
+
+h1 { letter-spacing: -0.035em; }
+
+/* Long-form paragraphs read better with balanced ragging */
+p { text-wrap: pretty; }
+
+/* Figures, scores, and stats align in columns */
+.tabular, .font-mono {
+  font-variant-numeric: tabular-nums;
 }
 
 ::selection {
   background: var(--color-blue);
   color: #fff;
+}
+
+/* Consistent, visible keyboard focus */
+:focus-visible {
+  outline: 2px solid var(--color-blue-bright);
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
 /* Layout helpers */
@@ -95,15 +125,70 @@ h1, h2, h3, h4, h5 {
 /* Utility: subtle grid/dot backdrop for dark sections */
 .bg-trust-grid {
   background-image:
-    radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.07) 1px, transparent 0);
-  background-size: 22px 22px;
+    radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.06) 1px, transparent 0);
+  background-size: 24px 24px;
 }
 
+/* Deep, layered navy field used on hero and feature bands */
 .bg-mesh {
   background:
-    radial-gradient(1200px 600px at 80% -10%, rgba(21, 101, 224, 0.18), transparent 60%),
-    radial-gradient(900px 500px at 0% 10%, rgba(244, 128, 30, 0.10), transparent 55%),
-    var(--color-navy);
+    radial-gradient(1100px 620px at 78% -12%, rgba(21, 101, 224, 0.30), transparent 62%),
+    radial-gradient(820px 520px at 4% 4%, rgba(244, 128, 30, 0.13), transparent 58%),
+    radial-gradient(900px 700px at 50% 120%, rgba(11, 80, 200, 0.20), transparent 60%),
+    linear-gradient(168deg, #0d2140 0%, var(--color-navy) 48%, #071324 100%);
+}
+
+/* Hairline top/bottom edges that catch light on dark bands */
+.edge-glow {
+  position: relative;
+}
+.edge-glow::before,
+.edge-glow::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.14) 22%,
+    rgba(244, 128, 30, 0.30) 50%,
+    rgba(255, 255, 255, 0.14) 78%,
+    transparent
+  );
+}
+.edge-glow::before { top: 0; }
+.edge-glow::after { bottom: 0; }
+
+/* Light surface with a faint tint — softens long white stretches */
+.bg-soft {
+  background:
+    radial-gradient(760px 420px at 92% 0%, rgba(21, 101, 224, 0.055), transparent 62%),
+    radial-gradient(620px 380px at 0% 100%, rgba(244, 128, 30, 0.05), transparent 60%),
+    var(--color-grey);
+}
+
+/* Card that reveals a brand accent bar on hover */
+.card-accent {
+  position: relative;
+  overflow: hidden;
+}
+.card-accent::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-blue-bright), var(--color-orange));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.card-accent:hover::after,
+.card-accent:focus-within::after {
+  transform: scaleX(1);
 }
 
 @keyframes fade-up {
@@ -111,8 +196,39 @@ h1, h2, h3, h4, h5 {
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* `forwards` (not `both`) so the element's resting style is the *visible*
+   state. If the animation never runs, the content still shows. */
 .animate-fade-up {
-  animation: fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Scroll-driven entrances.
+   Progressive enhancement: without `animation-timeline` support the content is
+   simply visible — it never depends on JS or an observer to be readable. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      animation: fade-up 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 60%;
+    }
+
+    /* Children cascade in sequence as the group scrolls into view */
+    .reveal-group > * {
+      animation: fade-up 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 55%;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* Thin scrollbar for control library tables */

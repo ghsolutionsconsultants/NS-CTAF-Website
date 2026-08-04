@@ -13,17 +13,17 @@ export function PageHero({
   children?: ReactNode;
 }) {
   return (
-    <section className="relative overflow-hidden bg-mesh bg-trust-grid text-white">
+    <section className="edge-glow relative overflow-hidden bg-mesh bg-trust-grid text-white">
       <Container className="relative py-20 md:py-28">
         <div className="max-w-3xl animate-fade-up">
-          <Eyebrow>{eyebrow}</Eyebrow>
-          <h1 className="mt-5 text-4xl font-bold leading-[1.05] !text-white md:text-5xl lg:text-6xl">
+          <Eyebrow light>{eyebrow}</Eyebrow>
+          <h1 className="mt-6 text-[2.5rem] font-bold leading-[1.04] !text-white md:text-[3.25rem] lg:text-[3.5rem]">
             {title}
           </h1>
           {intro && (
-            <p className="mt-6 text-lg leading-relaxed text-blue-soft/85 md:text-xl">{intro}</p>
+            <p className="mt-6 text-lg leading-relaxed text-blue-soft/80 md:text-xl">{intro}</p>
           )}
-          {children && <div className="mt-8 flex flex-wrap gap-3">{children}</div>}
+          {children && <div className="mt-9 flex flex-wrap gap-3">{children}</div>}
         </div>
       </Container>
     </section>

@@ -37,44 +37,59 @@ export default function HomePage() {
         <Container className="relative py-20 md:py-28">
           <div className="grid gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
           <div className="animate-fade-up">
-            <Eyebrow>{site.category}</Eyebrow>
-            <h1 className="mt-5 text-4xl font-bold leading-[1.05] !text-white md:text-5xl lg:text-[3.5rem]">
+            <Eyebrow light>{site.category}</Eyebrow>
+            <h1 className="mt-6 text-[2.5rem] font-bold leading-[1.04] !text-white md:text-[3.25rem] lg:text-[3.6rem]">
               Nucleus Systems Code Trust Assurance Framework
             </h1>
-            <p className="mt-4 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-3 py-1 font-mono text-xs font-semibold uppercase tracking-[0.16em] text-blue-soft/90">
+            <p className="mt-5 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/[0.07] px-3.5 py-1.5 font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-blue-soft/90 backdrop-blur-sm">
               NS-CTAF
             </p>
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-blue-soft/85 md:text-xl">
+            <p className="mt-7 max-w-xl text-lg leading-relaxed text-blue-soft/80 md:text-xl">
               Measure, evidence, and certify software trust across code identity, integrity,
               secure development, supply chain, runtime behaviour, and governance.
             </p>
-            <p className="mt-4 font-display text-lg font-semibold text-orange">{site.tagline}</p>
+            <p className="mt-6 flex items-center gap-3 font-display text-lg font-semibold text-orange md:text-xl">
+              <span className="h-8 w-1 rounded-full bg-orange" />
+              {site.tagline}
+            </p>
           </div>
 
-          <Reveal delay={0.15} className="relative">
-            <div className="rounded-[calc(var(--radius-brand)+6px)] border border-white/12 bg-white/5 p-6 backdrop-blur-sm">
+          {/* Above the fold: rendered visible by default, entrance is CSS-only
+              enhancement so the card never depends on JS to be seen. */}
+          <div className="animate-fade-up relative [animation-delay:120ms]">
+            {/* Ambient glow behind the specimen card */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute -inset-8 rounded-full bg-blue-bright/20 blur-3xl"
+            />
+            <div className="relative rounded-[calc(var(--radius-brand)+8px)] border border-white/[0.14] bg-white/[0.07] p-6 shadow-[0_30px_80px_rgba(0,0,0,0.35)] backdrop-blur-md">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2 text-sm text-blue-soft/80">
                   <Fingerprint className="h-4 w-4 text-orange" /> Specimen · Paxley Software
                 </div>
-                <span className="rounded-full bg-orange px-2.5 py-1 text-xs font-bold text-white">CTA-4</span>
+                <span className="rounded-full bg-orange px-2.5 py-1 text-xs font-bold text-white shadow-[var(--shadow-orange)]">
+                  CTA-4
+                </span>
               </div>
-              <div className="mt-4 flex justify-center rounded-2xl bg-white p-6">
+              <div className="mt-5 flex justify-center rounded-2xl bg-white p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.9)]">
                 <TrustScoreGauge score={84} />
               </div>
               <div className="mt-4 grid grid-cols-3 gap-2 text-center">
                 {["86/86 controls", "L4 overall", "Active"].map((t) => (
-                  <div key={t} className="rounded-lg bg-white/8 px-2 py-2 text-xs font-medium text-blue-soft/85">
+                  <div
+                    key={t}
+                    className="rounded-lg border border-white/[0.08] bg-white/[0.06] px-2 py-2.5 text-xs font-medium text-blue-soft/85"
+                  >
                     {t}
                   </div>
                 ))}
               </div>
             </div>
-          </Reveal>
+          </div>
           </div>
 
           {/* Full-width CTA row — stays on a single line on desktop */}
-          <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap lg:mt-14 lg:flex-nowrap">
+          <div className="mt-12 flex flex-col gap-3 sm:flex-row sm:flex-wrap lg:flex-nowrap">
             <Button href="/contact" variant="orange" size="md" className="whitespace-nowrap">
               Get Assessed <ArrowRight className="h-4 w-4 shrink-0" />
             </Button>
@@ -83,13 +98,13 @@ export default function HomePage() {
             </Button>
             <Link
               href="/verify"
-              className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full border border-white/25 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-white/10"
+              className="inline-flex h-11 items-center justify-center gap-2 whitespace-nowrap rounded-full border border-white/25 px-5 text-sm font-medium leading-none text-white transition-all duration-300 hover:-translate-y-0.5 hover:border-white/50 hover:bg-white/10"
             >
               <ShieldCheck className="h-4 w-4 shrink-0" /> Verify a Certificate
             </Link>
             <Link
               href="/registry"
-              className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full border border-white/25 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-white/10"
+              className="inline-flex h-11 items-center justify-center gap-2 whitespace-nowrap rounded-full border border-white/25 px-5 text-sm font-medium leading-none text-white transition-all duration-300 hover:-translate-y-0.5 hover:border-white/50 hover:bg-white/10"
             >
               <Search className="h-4 w-4 shrink-0" /> Search Certified Companies
             </Link>
@@ -97,14 +112,27 @@ export default function HomePage() {
         </Container>
 
         {/* Metrics strip */}
-        <div className="border-t border-white/10 bg-navy/40">
-          <Container className="grid grid-cols-2 gap-6 py-8 md:grid-cols-3 lg:grid-cols-6">
-            <StatTile light value={site.metrics.controls} label="Controls" />
-            <StatTile light value={site.metrics.domains} label="Domains" />
-            <StatTile light value={`${site.metrics.axes}-axis`} label="Scoring model" />
-            <StatTile light value="L1–L5" label="Maturity" />
-            <StatTile light value="CTA-1→4" label="Certification" />
-            <StatTile light value={site.metrics.alignments} label="Alignments" />
+        <div className="edge-glow relative border-t border-white/10 bg-[#071324]/60 backdrop-blur-sm">
+          <Container className="grid grid-cols-2 gap-y-8 py-10 md:grid-cols-3 lg:grid-cols-6 lg:gap-y-0">
+            {[
+              { v: site.metrics.controls, l: "Controls" },
+              { v: site.metrics.domains, l: "Domains" },
+              { v: `${site.metrics.axes}-axis`, l: "Scoring model" },
+              { v: "L1–L5", l: "Maturity" },
+              { v: "CTA-1→4", l: "Certification" },
+              { v: site.metrics.alignments, l: "Alignments" },
+            ].map((m, i) => (
+              <div
+                key={m.l}
+                className={
+                  i > 0
+                    ? "lg:border-l lg:border-white/10"
+                    : ""
+                }
+              >
+                <StatTile light value={m.v} label={m.l} />
+              </div>
+            ))}
           </Container>
         </div>
       </section>
@@ -229,13 +257,13 @@ export default function HomePage() {
       {/* Registry preview */}
       <Section>
         <Container>
-          <div className="flex flex-wrap items-end justify-between gap-4">
+          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <SectionHeading
               eyebrow="Trust Registry"
               title="Verify certified companies"
               intro="A public directory where the market can verify certified companies by continent, country, sector, year, and certification level."
             />
-            <Button href="/registry" variant="outline">
+            <Button href="/registry" variant="outline" className="shrink-0 self-start md:self-end">
               Search the registry <ArrowRight className="h-4 w-4" />
             </Button>
           </div>

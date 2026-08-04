@@ -1,30 +1,26 @@
-"use client";
-
-import { motion } from "framer-motion";
 import type { ReactNode } from "react";
+
+/**
+ * Scroll-triggered entrance animations.
+ *
+ * These are CSS scroll-driven animations (see `.reveal` in globals.css), not
+ * JS. That means: no client bundle, no IntersectionObserver, and — most
+ * importantly — content is fully visible when scroll-timeline animations
+ * aren't supported or animations are disabled. The motion is enhancement only,
+ * never a precondition for reading the page.
+ */
 
 export function Reveal({
   children,
-  delay = 0,
-  y = 18,
   className = "",
 }: {
   children: ReactNode;
+  /** @deprecated retained for call-site compatibility; timing is CSS-driven */
   delay?: number;
   y?: number;
   className?: string;
 }) {
-  return (
-    <motion.div
-      className={className}
-      initial={{ opacity: 0, y }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] }}
-    >
-      {children}
-    </motion.div>
-  );
+  return <div className={`reveal ${className}`}>{children}</div>;
 }
 
 export function Stagger({
@@ -34,20 +30,7 @@ export function Stagger({
   children: ReactNode;
   className?: string;
 }) {
-  return (
-    <motion.div
-      className={className}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, margin: "-60px" }}
-      variants={{
-        hidden: {},
-        show: { transition: { staggerChildren: 0.08 } },
-      }}
-    >
-      {children}
-    </motion.div>
-  );
+  return <div className={`reveal-group ${className}`}>{children}</div>;
 }
 
 export function StaggerItem({
@@ -57,15 +40,5 @@ export function StaggerItem({
   children: ReactNode;
   className?: string;
 }) {
-  return (
-    <motion.div
-      className={className}
-      variants={{
-        hidden: { opacity: 0, y: 16 },
-        show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
-      }}
-    >
-      {children}
-    </motion.div>
-  );
+  return <div className={className}>{children}</div>;
 }

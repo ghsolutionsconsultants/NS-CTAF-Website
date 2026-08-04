@@ -11,10 +11,12 @@ export function CtaBand({
   return (
     <section className="py-16 md:py-20">
       <Container>
-        <div className="relative overflow-hidden rounded-[calc(var(--radius-brand)+8px)] bg-mesh bg-trust-grid px-8 py-14 text-center md:px-16">
-          <h2 className="mx-auto max-w-2xl text-3xl font-bold !text-white md:text-4xl">{title}</h2>
-          <p className="mx-auto mt-4 max-w-2xl text-blue-soft/80">{intro}</p>
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
+        <div className="edge-glow relative overflow-hidden rounded-[calc(var(--radius-brand)+10px)] bg-mesh bg-trust-grid px-8 py-16 text-center shadow-[var(--shadow-brand-lg)] md:px-16 md:py-20">
+          <h2 className="mx-auto max-w-2xl text-[1.75rem] font-bold leading-[1.15] !text-white md:text-[2.35rem]">
+            {title}
+          </h2>
+          <p className="mx-auto mt-5 max-w-2xl leading-relaxed text-blue-soft/75">{intro}</p>
+          <div className="mt-9 flex flex-wrap justify-center gap-3">
             <Button href="/contact" variant="orange" size="lg">
               Get Assessed
             </Button>
