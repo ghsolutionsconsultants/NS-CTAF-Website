@@ -82,18 +82,13 @@ jobs:
           }
           echo "$LIST"
 
-          # Hostinger's domain-scoped FTP user lands INSIDE the web root, so
-          # uploading to public_html/ creates public_html/public_html and the
-          # live site never changes. Ask the right question first: are we
-          # already in the web root? Only fall back to public_html/ if not.
-          ROOT=$(echo "$LIST" | sed 's#/$##')
-          if echo "$ROOT" | grep -qxE "index\.html|_next|404\.html"; then
-            TARGET="./"
-          elif echo "$ROOT" | grep -qx "public_html"; then
-            TARGET="public_html/"
-          else
-            TARGET="./"
-          fi
+          # This account's FTP user lands directly IN the web root — proven:
+          # mirroring to public_html/ produced public_html/public_html, which
+          # was publicly reachable at /public_html/. So upload to "." and let
+          # mirror --delete clear that stray copy. Not auto-detected, because
+          # the stray directory is itself named public_html and would fool it.
+          TARGET="./"
+
           echo "--- Uploading to: $TARGET ---"
 
           lftp -c "$COMMON
