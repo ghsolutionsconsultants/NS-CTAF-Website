@@ -39,8 +39,8 @@ export function ContactForm() {
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
           access_key: WEB3FORMS_ACCESS_KEY,
-          subject: "New NS-CTAF assessment request",
-          from_name: "NS-CTAF Website",
+          subject: "New Nucleus Systems Code Trust Assurance Framework assessment request",
+          from_name: "Nucleus Systems Website",
           reference,
           ...data,
         }),
@@ -131,7 +131,7 @@ export function ContactForm() {
         )}
       </button>
       <p className="mt-3 text-xs text-slate">
-        By submitting you agree to be contacted about a NS-CTAF assessment. We never share your details.
+        By submitting you agree to be contacted about a Nucleus Systems Code Trust Assurance Framework assessment. We never share your details.
       </p>
     </form>
   );

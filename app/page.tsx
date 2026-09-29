@@ -41,9 +41,6 @@ export default function HomePage() {
             <h1 className="mt-6 text-[2.5rem] font-bold leading-[1.04] !text-white md:text-[3.25rem] lg:text-[3.6rem]">
               Nucleus Systems Code Trust Assurance Framework
             </h1>
-            <p className="mt-5 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/[0.07] px-3.5 py-1.5 font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-blue-soft/90 backdrop-blur-sm">
-              NS-CTAF
-            </p>
             <p className="mt-7 max-w-xl text-lg leading-relaxed text-blue-soft/80 md:text-xl">
               A continuous, cryptographically verifiable, and measurable standard for software code
               trust — spanning identity, integrity, secure development, supply chain, runtime
@@ -154,12 +151,12 @@ export default function HomePage() {
                 continuously and with evidence, that those decisions are controlled.
               </p>
               <p className="mt-4 text-lg leading-relaxed text-slate">
-                NS-CTAF treats every stage of software production and distribution as an independently
+                Nucleus Systems Code Trust Assurance Framework treats every stage of software production and distribution as an independently
                 assessable trust boundary — producing a single, quantified Trust Score.
               </p>
               <div className="mt-6">
                 <Button href="/what-is-ctaf" variant="outline">
-                  Why NS-CTAF exists <ArrowRight className="h-4 w-4" />
+                  Why the Framework exists <ArrowRight className="h-4 w-4" />
                 </Button>
               </div>
             </Reveal>
@@ -167,7 +164,7 @@ export default function HomePage() {
               <div className="grid gap-4 sm:grid-cols-2">
                 {[
                   { k: "Security tools", v: "Find issues in code you already have.", muted: true },
-                  { k: "NS-CTAF", v: "Proves the whole system can be trusted.", muted: false },
+                  { k: "This framework", v: "Proves the whole system can be trusted.", muted: false },
                   { k: "A scan", v: "Is a point-in-time snapshot.", muted: true },
                   { k: "A Trust Score", v: "Is a continuous, evidence-backed measure.", muted: false },
                 ].map((c) => (
@@ -195,7 +192,7 @@ export default function HomePage() {
           <SectionHeading
             eyebrow="The framework"
             title="Six domains. Eighty-six controls."
-            intro="The Nucleus Systems Code Trust Assurance Framework (NS-CTAF) measures trust across the full software lifecycle — each domain weighted by its impact on overall software trust posture."
+            intro="The Nucleus Systems Code Trust Assurance Framework measures trust across the full software lifecycle — each domain weighted by its impact on overall software trust posture."
           />
           <div className="mt-12">
             <DomainsGrid />
@@ -329,7 +326,7 @@ export default function HomePage() {
             align="center"
             eyebrow="One assessment, many obligations"
             title="Aligned with the standards that matter"
-            intro="NS-CTAF maps to major software-security frameworks and regulations — so a single assessment addresses multiple compliance obligations."
+            intro="Nucleus Systems Code Trust Assurance Framework maps to major software-security frameworks and regulations — so a single assessment addresses multiple compliance obligations."
           />
           <div className="mx-auto mt-10 flex max-w-4xl flex-wrap justify-center gap-3">
             {alignments.map((a) => (

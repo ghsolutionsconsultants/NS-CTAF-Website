@@ -34,7 +34,7 @@ export function Logo({
 
 export function BrandLockup({ light = false }: { light?: boolean }) {
   return (
-    <Link href="/" className="group flex shrink-0 items-center" aria-label="Nucleus Systems — NS-CTAF home">
+    <Link href="/" className="group flex shrink-0 items-center" aria-label="Nucleus Systems — Nucleus Systems Code Trust Assurance Framework home">
       <Logo variant="full" className="h-7 w-auto md:h-8" />
     </Link>
   );

@@ -9,16 +9,16 @@ import { Check, ShieldCheck, Scale, Users, ArrowRight } from "lucide-react";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "The Nucleus Systems Code Trust Assurance Framework (NS-CTAF) makes software trust measurable, certifiable, and verifiable. Learn who created it and the credibility safeguards behind it.",
+    "The Nucleus Systems Code Trust Assurance Framework makes software trust measurable, certifiable, and verifiable. Learn who created it and the credibility safeguards behind it.",
 };
 
 export default function AboutPage() {
   return (
     <>
       <PageHero
-        eyebrow="About NS-CTAF"
+        eyebrow="About the Framework"
         title="Created by Nucleus Systems"
-        intro="The Nucleus Systems Code Trust Assurance Framework (NS-CTAF) is a public trust infrastructure for the software economy — defining trust, measuring trust, certifying trust, and making trust visible to the market."
+        intro="The Nucleus Systems Code Trust Assurance Framework is a public trust infrastructure for the software economy — defining trust, measuring trust, certifying trust, and making trust visible to the market."
       >
         <Button href="/contact" variant="orange" size="lg">
           Get in touch <ArrowRight className="h-4 w-4" />
@@ -29,9 +29,9 @@ export default function AboutPage() {
         <Container>
           <div className="grid gap-12 lg:grid-cols-2">
             <div>
-              <SectionHeading eyebrow="Who created NS-CTAF" title="A framework built on assurance work" />
+              <SectionHeading eyebrow="Who created the Framework" title="A framework built on assurance work" />
               <p className="mt-5 text-lg leading-relaxed text-slate">
-                NS-CTAF was created by {site.owner} as part of its work in software assurance, code
+                Nucleus Systems Code Trust Assurance Framework was created by {site.owner} as part of its work in software assurance, code
                 security, secure delivery, supply-chain risk, and evidence-based maturity
                 measurement. It is positioned as a new category — {site.category} — because it
                 measures trust, evidence, maturity, certification, and continuous assurance rather
@@ -70,8 +70,8 @@ export default function AboutPage() {
         <Container>
           <SectionHeading
             eyebrow="Credibility safeguards"
-            title="How NS-CTAF stays trustworthy"
-            intro="A framework that certifies trust must itself be governed transparently. These safeguards keep NS-CTAF credible as it scales."
+            title="How the Framework stays trustworthy"
+            intro="A framework that certifies trust must itself be governed transparently. These safeguards keep Nucleus Systems Code Trust Assurance Framework credible as it scales."
           />
           <div className="mt-10 grid gap-4 md:grid-cols-2">
             {governanceSafeguards.map((g) => (

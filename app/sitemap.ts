@@ -4,7 +4,7 @@ import { industries } from "@/data/content";
 
 export const dynamic = "force-static";
 
-const base = "https://ctaf.nucleus-systems.com";
+const base = "https://codetrustassurance.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [

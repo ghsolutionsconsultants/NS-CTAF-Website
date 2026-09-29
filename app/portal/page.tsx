@@ -6,7 +6,7 @@ import { Building2, FileSearch, ClipboardCheck, Lock, ArrowRight } from "lucide-
 export const metadata: Metadata = {
   title: "Portal",
   description:
-    "The Nucleus Systems Code Trust Assurance Framework (NS-CTAF) portal for assessed companies, report subscribers, and assessors — evidence upload, registry search, and assessment workflow.",
+    "The Nucleus Systems Code Trust Assurance Framework portal for assessed companies, report subscribers, and assessors — evidence upload, registry search, and assessment workflow.",
 };
 
 const areas = [
@@ -46,7 +46,7 @@ export default function PortalPage() {
   return (
     <>
       <PageHero
-        eyebrow="NS-CTAF portal"
+        eyebrow="The portal"
         title="One workspace for the whole trust lifecycle"
         intro="The portal digitises assessment workflows for assessed companies, report subscribers, and assessors. Sign-in launches with the certification programme."
       />

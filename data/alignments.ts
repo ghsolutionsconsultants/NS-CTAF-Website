@@ -1,4 +1,5 @@
-// Frameworks and regulations NS-CTAF maps to. A single NS-CTAF assessment
+// Frameworks and regulations the Nucleus Systems Code Trust Assurance Framework
+// maps to. A single assessment
 // simultaneously addresses multiple compliance obligations.
 
 export interface Alignment {

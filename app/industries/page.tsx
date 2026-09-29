@@ -10,7 +10,7 @@ import { ArrowUpRight } from "lucide-react";
 export const metadata: Metadata = {
   title: "Industries",
   description:
-    "Why the Nucleus Systems Code Trust Assurance Framework (NS-CTAF) matters to software vendors, banks, SaaS, open source, AI companies, regulators, investors, and critical infrastructure.",
+    "Why the Nucleus Systems Code Trust Assurance Framework matters to software vendors, banks, SaaS, open source, AI companies, regulators, investors, and critical infrastructure.",
 };
 
 export default function IndustriesPage() {
@@ -18,7 +18,7 @@ export default function IndustriesPage() {
     <>
       <PageHero
         eyebrow="Industries"
-        title="Why NS-CTAF matters to your sector"
+        title="Why the Framework matters to your sector"
         intro="Different buyers face different trust problems. Each sector page explains the trust problem, priority domains, target certification level, and business value."
       />
       <Section>

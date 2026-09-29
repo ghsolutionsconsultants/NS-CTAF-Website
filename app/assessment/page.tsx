@@ -15,7 +15,7 @@ import { ArrowRight, Check, CircleDollarSign, CalendarClock, FileBadge } from "l
 export const metadata: Metadata = {
   title: "Assessment Services",
   description:
-    "The Nucleus Systems Code Trust Assurance Framework (NS-CTAF) assessment: a fixed-fee, evidence-first engagement that scores 86 controls, computes your Trust Score, and determines CTA certification readiness.",
+    "The Nucleus Systems Code Trust Assurance Framework assessment: a fixed-fee, evidence-first engagement that scores 86 controls, computes your Trust Score, and determines CTA certification readiness.",
 };
 
 export default function AssessmentPage() {

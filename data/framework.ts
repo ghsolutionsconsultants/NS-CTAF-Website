@@ -1,4 +1,4 @@
-// NS-CTAF v1.0 framework data — domains, maturity model, scoring axes,
+// Nucleus Systems Code Trust Assurance Framework v1.0 framework data — domains, maturity model, scoring axes,
 // evidence tiers, and Trust Score bands.
 //
 // The 86-control library is deliberately NOT here: it is assessment IP and
@@ -148,7 +148,7 @@ export interface ScoringAxis {
   why: string;
 }
 
-// The official NS-CTAF v1.0 5-axis scoring model. A control is only as strong
+// The official Nucleus Systems Code Trust Assurance Framework v1.0 5-axis scoring model. A control is only as strong
 // as its weakest dimension, so strength in one axis cannot mask a critical
 // weakness in another.
 export const scoringAxes: ScoringAxis[] = [

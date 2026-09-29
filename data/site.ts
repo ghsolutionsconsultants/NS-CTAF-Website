@@ -1,15 +1,15 @@
 // Site-wide constants and navigation.
 
 export const site = {
-  name: "NS-CTAF",
-  fullName: "Nucleus Systems Code Trust Assurance Framework (NS-CTAF)",
-  shortName: "CTAF",
+  name: "Nucleus Systems Code Trust Assurance Framework",
+  fullName: "Nucleus Systems Code Trust Assurance Framework",
+  shortName: "Code Trust Assurance",
   owner: "Nucleus Systems (Pty) Ltd",
-  frameworkVersion: "NS-CTAF v1.0",
+  frameworkVersion: "Nucleus Systems Code Trust Assurance Framework v1.0",
   email: "info@nucleus-systems.com",
   fee: "$5,000 USD",
   turnaround: "~20 business days",
-  tagline: "Security tools find issues. NS-CTAF proves trust.",
+  tagline: "Security tools find issues. This framework proves trust.",
   category: "Code Trust Assurance Intelligence",
   metrics: {
     controls: 86,
@@ -34,9 +34,9 @@ export const primaryNav: NavItem[] = [
   { label: "Trust Registry", href: "/registry", description: "Search certified companies and verify certificates." },
   { label: "Report Access", href: "/report-access", description: "Annual bundles for certificates, reports, and API." },
   { label: "Resources", href: "/resources", description: "Whitepapers, guides, checklists, and FAQs." },
-  { label: "About", href: "/about", description: "Who created NS-CTAF and why." },
-  { label: "What is NS-CTAF", href: "/what-is-ctaf", description: "Definition, why it exists, and who created it." },
-  { label: "Industries", href: "/industries", description: "Why NS-CTAF matters to your sector." },
+  { label: "About", href: "/about", description: "Who created Nucleus Systems Code Trust Assurance Framework and why." },
+  { label: "What is the Framework", href: "/what-is-ctaf", description: "Definition, why it exists, and who created it." },
+  { label: "Industries", href: "/industries", description: "Why Nucleus Systems Code Trust Assurance Framework matters to your sector." },
   { label: "Training", href: "/training", description: "Role-based enablement pathways." },
   { label: "Partners & Assessors", href: "/partners", description: "Accredited assessor and partner programme." },
 ];
@@ -56,7 +56,7 @@ export const footerNav: { heading: string; items: NavItem[] }[] = [
   {
     heading: "Framework",
     items: [
-      { label: "What is NS-CTAF", href: "/what-is-ctaf" },
+      { label: "What is the Framework", href: "/what-is-ctaf" },
       { label: "The Framework", href: "/framework" },
       { label: "Maturity & Trust Score", href: "/framework#trust-score" },
     ],

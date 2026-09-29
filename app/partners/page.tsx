@@ -9,7 +9,7 @@ import { Check, ShieldCheck, ArrowRight } from "lucide-react";
 export const metadata: Metadata = {
   title: "Partner & Assessor Programme",
   description:
-    "Join the Nucleus Systems Code Trust Assurance Framework (NS-CTAF) ecosystem: accredited assessor programme, consulting partners, technology integration partners, and regional representatives — governed by strict independence and ethics policies.",
+    "Join the Nucleus Systems Code Trust Assurance Framework ecosystem: accredited assessor programme, consulting partners, technology integration partners, and regional representatives — governed by strict independence and ethics policies.",
 };
 
 export default function PartnersPage() {
@@ -18,7 +18,7 @@ export default function PartnersPage() {
       <PageHero
         eyebrow="Partner, assessor & ecosystem"
         title="Scale code trust through a trusted ecosystem"
-        intro="The Nucleus Systems Code Trust Assurance Framework (NS-CTAF) grows through accredited assessors, consulting and technology partners, and regional representatives — all held to strict independence, ethics, and quality-assurance standards."
+        intro="The Nucleus Systems Code Trust Assurance Framework grows through accredited assessors, consulting and technology partners, and regional representatives — all held to strict independence, ethics, and quality-assurance standards."
       >
         <Button href="/contact" variant="orange" size="lg">
           Apply to partner <ArrowRight className="h-4 w-4" />
@@ -30,7 +30,7 @@ export default function PartnersPage() {
           <SectionHeading
             eyebrow="Programme tracks"
             title="Four ways to join the ecosystem"
-            intro="Whether you assess, implement, integrate, or represent NS-CTAF regionally, there is a defined pathway."
+            intro="Whether you assess, implement, integrate, or represent Nucleus Systems Code Trust Assurance Framework regionally, there is a defined pathway."
           />
           <div className="mt-12 grid gap-5 md:grid-cols-2">
             {partnerTracks.map((t) => (
@@ -63,7 +63,7 @@ export default function PartnersPage() {
             <SectionHeading
               eyebrow="Independence & quality"
               title="Trust in the assessors, not just the assessment"
-              intro="A framework that certifies trust must hold its own assessors to the highest standard. These policies keep NS-CTAF certifications credible and comparable."
+              intro="A framework that certifies trust must hold its own assessors to the highest standard. These policies keep Nucleus Systems Code Trust Assurance Framework certifications credible and comparable."
             />
             <div className="grid gap-4 sm:grid-cols-2">
               {assessorPolicies.map((p) => (

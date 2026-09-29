@@ -19,7 +19,7 @@ export const journey: JourneyStage[] = [
     owner: "Client · Self-paced",
     duration: "Self-paced",
     steps: [
-      "Read the NS-CTAF framework overview and domain summaries",
+      "Read the Nucleus Systems Code Trust Assurance Framework framework overview and domain summaries",
       "Review CTA certification levels and minimum requirements",
       "Identify applicable regulations (EU CRA, DORA, EO 14028)",
     ],
@@ -131,7 +131,7 @@ export const assessmentPhases = [
   },
   {
     phase: "3. Automated Tool Review",
-    description: "Use the NS-CTAF assessment tool to structure scoring, dashboards, recommendations, roadmap, and readiness.",
+    description: "Use the Nucleus Systems Code Trust Assurance Framework assessment tool to structure scoring, dashboards, recommendations, roadmap, and readiness.",
     output: "Draft scorecard and preliminary roadmap.",
   },
   {
@@ -152,7 +152,7 @@ export const assessmentPhases = [
 ];
 
 export const deliverables = [
-  "NS-CTAF Trust Score and domain maturity scores",
+  "Nucleus Systems Code Trust Assurance Framework Trust Score and domain maturity scores",
   "Control-level maturity analysis across applicable controls",
   "Evidence quality review and evidence register",
   "Certification readiness assessment",
@@ -165,7 +165,7 @@ export const methodPrinciples = [
   "Evidence-first assessment, cryptographic evidence preferred",
   "No maturity inflation through policy-only evidence",
   "Clear scope definition before scoring begins",
-  "Repeatable scoring across the five NS-CTAF axes",
+  "Repeatable scoring across the five Nucleus Systems Code Trust Assurance Framework axes",
   "Hard scoring gates cap maturity where trust conditions are absent",
   "Independent review before certification is issued",
 ];

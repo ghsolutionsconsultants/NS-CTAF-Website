@@ -1,13 +1,13 @@
-// Explanatory NS-CTAF content, sourced from:
+// Explanatory Nucleus Systems Code Trust Assurance Framework content, sourced from:
 // "Code Trust Assurance Framework & Maturity Measurement Model —
-//  NS-CTAF v1.0, Brief Summary, May 2026" (Nucleus Systems).
+//  Nucleus Systems Code Trust Assurance Framework v1.0, Brief Summary, May 2026" (Nucleus Systems).
 //
 // Deliberately excludes the 86-control library, which is assessment IP and is
 // not published. See reference/ns-ctaf-controls.ts.
 
 /** The canonical one-paragraph definition used across the site. */
 export const definition =
-  "The Nucleus Systems Code Trust Assurance Framework & Maturity Measurement Model (NS-CTAF v1.0) is a continuous, cryptographically verifiable, and measurable standard for software code trust — spanning identity, integrity, secure development, supply chain, runtime assurance, and governance.";
+  "The Nucleus Systems Code Trust Assurance Framework & Maturity Measurement Model v1.0 is a continuous, cryptographically verifiable, and measurable standard for software code trust — spanning identity, integrity, secure development, supply chain, runtime assurance, and governance.";
 
 /** The shorter definition, for cards and intros. */
 export const definitionShort =
@@ -21,7 +21,7 @@ export interface Attribute {
 }
 
 export const frameworkAttributes: Attribute[] = [
-  { label: "Framework name", value: "Nucleus Systems Code Trust Assurance Framework & Maturity Measurement Model (NS-CTAF v1.0)" },
+  { label: "Framework name", value: "Nucleus Systems Code Trust Assurance Framework & Maturity Measurement Model, v1.0" },
   { label: "Edition", value: "Professional Edition v1.0 — 2026" },
   { label: "Controls", value: "86 controls, fully defined with requirements, guidance, and framework alignment" },
   { label: "Domains", value: "6 domains, weighted by trust significance and supply-chain risk impact" },
@@ -107,7 +107,7 @@ export const designPrinciples: Principle[] = [
   {
     name: "Automation-ready design",
     description: "Each control defines an automation pathway from manual (L2–L3) to continuously automated (L4–L5).",
-    why: "Manual processes cannot scale with AI-driven code growth. Automation pathways keep NS-CTAF relevant at modern code velocity.",
+    why: "Manual processes cannot scale with AI-driven code growth. Automation pathways keep Nucleus Systems Code Trust Assurance Framework relevant at modern code velocity.",
   },
   {
     name: "Regulation-anchored",
@@ -235,7 +235,7 @@ export const measurementQuestions = [
   "Where is the verifiable evidence that proves all of this is working over time?",
 ];
 
-/** What NS-CTAF evaluates, rather than rewarding documentation. */
+/** What Nucleus Systems Code Trust Assurance Framework evaluates, rather than rewarding documentation. */
 export const whatItEvaluates = [
   "Consistency of implementation",
   "Depth of coverage",

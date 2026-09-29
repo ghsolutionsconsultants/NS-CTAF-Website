@@ -8,7 +8,7 @@ import { resources } from "@/data/content";
 export const metadata: Metadata = {
   title: "Resources",
   description:
-    "The Nucleus Systems Code Trust Assurance Framework (NS-CTAF) knowledge hub: whitepapers, certification and buyer guides, checklists, SBOM and secure-pipeline guidance, glossary, and FAQs.",
+    "The Nucleus Systems Code Trust Assurance Framework knowledge hub: whitepapers, certification and buyer guides, checklists, SBOM and secure-pipeline guidance, glossary, and FAQs.",
 };
 
 export default function ResourcesPage() {

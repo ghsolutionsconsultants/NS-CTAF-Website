@@ -25,15 +25,15 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://ctaf.nucleus-systems.com"),
+  metadataBase: new URL("https://codetrustassurance.com"),
   title: {
-    default: "Nucleus Systems Code Trust Assurance Framework (NS-CTAF)",
-    template: "%s | NS-CTAF",
+    default: "Nucleus Systems Code Trust Assurance Framework",
+    template: "%s | Nucleus Systems Code Trust Assurance Framework",
   },
   description:
-    "The Nucleus Systems Code Trust Assurance Framework (NS-CTAF): the global standard for measuring, evidencing, and certifying software supply-chain trust. 86 controls, 6 domains, a 0–100 Trust Score, and CTA-1 to CTA-4 certification.",
+    "The Nucleus Systems Code Trust Assurance Framework: the global standard for measuring, evidencing, and certifying software supply-chain trust. 86 controls, 6 domains, a 0–100 Trust Score, and CTA-1 to CTA-4 certification.",
   keywords: [
-    "NS-CTAF",
+    "Nucleus Systems Code Trust Assurance Framework",
     "Code Trust Assurance Framework",
     "software supply chain security",
     "SBOM",
@@ -45,16 +45,16 @@ export const metadata: Metadata = {
   authors: [{ name: "Nucleus Systems" }],
   openGraph: {
     type: "website",
-    title: "Nucleus Systems Code Trust Assurance Framework (NS-CTAF)",
+    title: "Nucleus Systems Code Trust Assurance Framework",
     description:
-      "Security tools find issues. NS-CTAF proves trust. The global framework for measuring, evidencing, and certifying software trust.",
-    siteName: "NS-CTAF",
-    url: "https://ctaf.nucleus-systems.com",
+      "Security tools find issues. This framework proves trust. The global standard for measuring, evidencing, and certifying software trust.",
+    siteName: "Nucleus Systems Code Trust Assurance Framework",
+    url: "https://codetrustassurance.com",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nucleus Systems Code Trust Assurance Framework (NS-CTAF)",
-    description: "Security tools find issues. NS-CTAF proves trust.",
+    title: "Nucleus Systems Code Trust Assurance Framework",
+    description: "Security tools find issues. This framework proves trust.",
   },
   robots: { index: true, follow: true },
 };
