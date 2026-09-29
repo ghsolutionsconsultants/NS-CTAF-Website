@@ -234,3 +234,98 @@ p { text-wrap: pretty; }
 /* Thin scrollbar for control library tables */
 .thin-scroll::-webkit-scrollbar { height: 8px; width: 8px; }
 .thin-scroll::-webkit-scrollbar-thumb { background: var(--color-line); border-radius: 8px; }
+
+/* ---------------------------------------------------------------------------
+   Motion & polish — all CSS-only, all progressive enhancement.
+   --------------------------------------------------------------------------- */
+
+/* Scroll progress bar. Uses a scroll-driven animation, so it costs no JS and
+   simply does not render where scroll timelines are unsupported. */
+.scroll-progress { display: none; }
+
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .scroll-progress {
+      display: block;
+      position: fixed;
+      inset-block-start: 0;
+      inset-inline: 0;
+      height: 3px;
+      z-index: 60;
+      transform-origin: 0 50%;
+      scale: 0 1;
+      background: linear-gradient(90deg, var(--color-blue-bright), var(--color-orange));
+      animation: scroll-progress linear both;
+      animation-timeline: scroll(root block);
+    }
+    @keyframes scroll-progress { to { scale: 1 1; } }
+  }
+}
+
+/* Slow drifting light across dark hero bands — adds depth without distraction. */
+@media (prefers-reduced-motion: no-preference) {
+  .bg-mesh { position: relative; }
+  .bg-mesh::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(
+      620px 420px at var(--mesh-x, 30%) var(--mesh-y, 20%),
+      rgba(21, 101, 224, 0.20),
+      transparent 70%
+    );
+    animation: mesh-drift 22s ease-in-out infinite alternate;
+  }
+  @keyframes mesh-drift {
+    from { --mesh-x: 20%; --mesh-y: 15%; opacity: 0.75; }
+    to   { --mesh-x: 78%; --mesh-y: 60%; opacity: 1; }
+  }
+  @property --mesh-x { syntax: "<percentage>"; inherits: false; initial-value: 30%; }
+  @property --mesh-y { syntax: "<percentage>"; inherits: false; initial-value: 20%; }
+}
+
+/* Sheen that sweeps across solid buttons on hover. */
+.sheen { position: relative; overflow: hidden; isolation: isolate; }
+.sheen::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  translate: -120% 0;
+  background: linear-gradient(
+    100deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.28) 50%,
+    transparent 80%
+  );
+  transition: translate 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.sheen:hover::after { translate: 120% 0; }
+@media (prefers-reduced-motion: reduce) { .sheen::after { display: none; } }
+
+/* Brand gradient text for a single emphasised phrase. */
+.text-gradient {
+  background: linear-gradient(92deg, var(--color-blue-bright), var(--color-orange));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Range inputs in the simulator */
+input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  height: 18px;
+  width: 18px;
+  border-radius: 999px;
+  background: var(--color-blue);
+  border: 3px solid #fff;
+  box-shadow: 0 2px 8px rgba(11, 80, 200, 0.4);
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.15); }
+input[type="range"]::-moz-range-thumb {
+  height: 18px; width: 18px; border-radius: 999px;
+  background: var(--color-blue); border: 3px solid #fff; cursor: pointer;
+}

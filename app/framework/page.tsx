@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Container, Section, SectionHeading, Button } from "@/components/ui";
 import { PageHero } from "@/components/page-hero";
 import { Icon } from "@/components/icon";
+import { DomainWeightChart } from "@/components/domain-weight-chart";
+import { TrustScoreSimulator } from "@/components/trust-score-simulator";
 import { CtaBand } from "@/components/cta-band";
 import { domains, scoringAxes, evidenceTiers, trustScoreBands } from "@/data/framework";
 import {
@@ -29,7 +31,7 @@ export default function FrameworkPage() {
         intro="The Nucleus Systems Code Trust Assurance Framework is the standard for proving software can be trusted. It measures how well an organisation controls its software — from who writes the code to how it behaves in production — and turns that into one evidence-backed score."
       >
         <Button href="#in-simple-terms" variant="light" size="lg">
-          What is Nucleus Systems Code Trust Assurance Framework?
+          What is the Framework?
         </Button>
         <Button href="#trust-score" variant="orange" size="lg">
           Understand the Trust Score
@@ -156,7 +158,11 @@ export default function FrameworkPage() {
             title="Each domain is a trust boundary"
             intro="Domain weights reflect their relative impact on overall software trust posture. Together they span identity, integrity, development, dependencies, runtime, and governance."
           />
-          <div className="mt-12 space-y-4">
+          <div className="mt-12 rounded-[var(--radius-brand)] border border-line bg-white p-6 shadow-[var(--shadow-brand-sm)] md:p-8">
+            <DomainWeightChart />
+          </div>
+
+          <div className="mt-8 space-y-4">
             {domains.map((d) => (
               <div
                 key={d.id}
@@ -307,6 +313,20 @@ export default function FrameworkPage() {
                 <div className="flex-1 text-sm text-blue-soft/70">{b.action}</div>
               </div>
             ))}
+          </div>
+        </Container>
+      </Section>
+
+      {/* Trust Score simulator */}
+      <Section className="scroll-mt-16" id="simulator">
+        <Container>
+          <SectionHeading
+            eyebrow="Try it"
+            title="See how maturity moves the Trust Score"
+            intro="Drag each domain to the maturity level you believe you are at today. The weighted Trust Score and the certification level it would clear update as you go."
+          />
+          <div className="mt-12">
+            <TrustScoreSimulator />
           </div>
         </Container>
       </Section>

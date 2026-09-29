@@ -68,6 +68,7 @@ export default function RootLayout({
       className={`${spaceGrotesk.variable} ${ibmPlexSans.variable} ${ibmPlexMono.variable}`}
     >
       <body className="min-h-screen bg-white text-ink antialiased">
+        <div className="scroll-progress" aria-hidden />
         <SiteHeader />
         <main>{children}</main>
         <SiteFooter />

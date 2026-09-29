@@ -111,7 +111,8 @@ export function Button({
   type = "button",
   target,
 }: ButtonProps) {
-  const cls = `inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full font-medium leading-none font-[var(--font-display)] transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${variantClasses[variant]} ${sizeClasses[size]} ${className}`;
+  const solid = variant === "primary" || variant === "orange" || variant === "dark";
+  const cls = `inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full font-medium leading-none font-[var(--font-display)] ${solid ? "sheen" : ""} transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${variantClasses[variant]} ${sizeClasses[size]} ${className}`;
   if (href) {
     const external = href.startsWith("http") || target === "_blank";
     if (external) {
