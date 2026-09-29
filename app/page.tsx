@@ -45,8 +45,9 @@ export default function HomePage() {
               NS-CTAF
             </p>
             <p className="mt-7 max-w-xl text-lg leading-relaxed text-blue-soft/80 md:text-xl">
-              Measure, evidence, and certify software trust across code identity, integrity,
-              secure development, supply chain, runtime behaviour, and governance.
+              A continuous, cryptographically verifiable, and measurable standard for software code
+              trust — spanning identity, integrity, secure development, supply chain, runtime
+              assurance, and governance.
             </p>
             <p className="mt-6 flex items-center gap-3 font-display text-lg font-semibold text-orange md:text-xl">
               <span className="h-8 w-1 rounded-full bg-orange" />

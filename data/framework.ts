@@ -141,12 +141,50 @@ export const maturityLevels: MaturityLevel[] = [
   },
 ];
 
-export const scoringAxes = [
-  { name: "Coverage", description: "How much of the estate the control actually reaches." },
-  { name: "Automation", description: "How far the control runs without human intervention." },
-  { name: "Integration", description: "How deeply it is embedded into the delivery pipeline." },
-  { name: "Verification", description: "How independently the control’s operation can be proven." },
-  { name: "Continuous Assurance", description: "How continuously the control is evidenced over time." },
+export interface ScoringAxis {
+  name: string;
+  weight: number; // percentage of the control score
+  assesses: string;
+  why: string;
+}
+
+// The official NS-CTAF v1.0 5-axis scoring model. A control is only as strong
+// as its weakest dimension, so strength in one axis cannot mask a critical
+// weakness in another.
+export const scoringAxes: ScoringAxis[] = [
+  {
+    name: "Design Adequacy",
+    weight: 20,
+    assesses:
+      "Is the control well designed for the specific trust threat? Are appropriate cryptographic primitives used, across the full population?",
+    why: "A poorly designed signing scheme — wrong algorithms or key lengths — gives false assurance no matter how consistently it is applied.",
+  },
+  {
+    name: "Implementation Coverage",
+    weight: 25,
+    assesses:
+      "Is the control deployed across 100% of the in-scope population, with exceptions formally documented?",
+    why: "90% signing coverage means 10% of artifacts can be substituted without detection. Coverage is binary from an attacker's perspective.",
+  },
+  {
+    name: "Operating Effectiveness",
+    weight: 25,
+    assesses:
+      "Does the control operate consistently in normal operations, with three or more months of continuous evidence?",
+    why: "Signing processes that fail silently provide no real protection. Consistent operation is the difference between a control and a policy statement.",
+  },
+  {
+    name: "Monitoring & Assurance",
+    weight: 20,
+    assesses: "Is the control independently tested, and are trust metrics reported against KPIs?",
+    why: "Unmeasured trust controls degrade silently. Monitoring ensures degradation is detected before an attacker exploits it.",
+  },
+  {
+    name: "Automation & Resilience",
+    weight: 10,
+    assesses: "Is the control automated, and does it sustain itself without constant human intervention?",
+    why: "Manual processes cannot scale with modern code velocity, particularly as AI-generated code volume grows.",
+  },
 ];
 
 export interface EvidenceTier {

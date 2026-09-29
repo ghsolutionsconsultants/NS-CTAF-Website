@@ -2,9 +2,14 @@ import type { Metadata } from "next";
 import { Container, Section, SectionHeading, Button } from "@/components/ui";
 import { PageHero } from "@/components/page-hero";
 import { Icon } from "@/components/icon";
-import { MaturityLadder } from "@/components/maturity-ladder";
 import { CtaBand } from "@/components/cta-band";
 import { domains, scoringAxes, evidenceTiers, trustScoreBands } from "@/data/framework";
+import {
+  definition,
+  domainRationale,
+  maturityDetail,
+  frameworkAttributes,
+} from "@/data/framework-detail";
 import { alignments } from "@/data/alignments";
 import { HARD_GATES } from "@/data/certification";
 import { ArrowRight, ShieldCheck, Gauge, Award, ClipboardCheck, Layers, BadgeCheck } from "lucide-react";
@@ -173,6 +178,10 @@ export default function FrameworkPage() {
                     <h3 className="text-xl font-bold text-navy">{d.title}</h3>
                   </div>
                   <p className="mt-2 text-sm leading-relaxed text-slate">{d.scope}</p>
+                  <p className="mt-3 border-l-2 border-orange/40 pl-3 text-sm leading-relaxed text-ink">
+                    <span className="font-semibold text-navy">Why it is weighted this way — </span>
+                    {domainRationale[d.id]}
+                  </p>
                 </div>
                 <div className="flex items-center gap-6 md:flex-col md:items-end md:gap-1">
                   <div className="text-center md:text-right">
@@ -191,16 +200,49 @@ export default function FrameworkPage() {
       </Section>
 
       {/* Maturity model */}
-      <Section id="maturity">
+      <Section id="maturity" className="scroll-mt-16 bg-soft">
         <Container>
-          <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
-            <SectionHeading
-              eyebrow="Maturity model"
-              title="Five levels, applied per control"
-              intro="A maturity level is not an organisation-wide score — it characterises how well a specific capability is embedded. The same organisation may be L4 on one control and L1 on another."
-            />
-            <MaturityLadder />
+          <SectionHeading
+            eyebrow="Maturity model"
+            title="Maturity measures how well a control performs, not whether it exists"
+            intro="A control that exists on paper but fails under pressure, operates inconsistently, or lacks verifiable evidence does not represent maturity — it represents risk. Each of the 86 controls is rated independently, so the same organisation may be L4 on one and L1 on another."
+          />
+          <div className="mt-12 space-y-4">
+            {maturityDetail.map((m, i) => (
+              <div
+                key={m.level}
+                className="grid gap-5 rounded-[var(--radius-brand)] border border-line bg-white p-6 md:grid-cols-[260px_1fr_1fr]"
+              >
+                <div>
+                  <div className="flex items-baseline gap-3">
+                    <div
+                      className="flex h-11 w-11 items-center justify-center rounded-xl font-display text-sm font-bold text-white"
+                      style={{ background: `var(--color-l${i + 1})` }}
+                    >
+                      L{i + 1}
+                    </div>
+                    <div>
+                      <div className="font-display font-bold text-navy">{m.level.split(" — ")[1]}</div>
+                      <div className="tabular font-mono text-xs text-slate">Score {m.score}</div>
+                    </div>
+                  </div>
+                </div>
+                <p className="text-sm leading-relaxed text-slate">{m.meaning}</p>
+                <ul className="space-y-1.5">
+                  {m.characteristics.map((c) => (
+                    <li key={c} className="flex gap-2 text-sm text-ink">
+                      <span className="text-blue">·</span> {c}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
+          <p className="mt-8 max-w-3xl text-sm leading-relaxed text-slate">
+            Maturity therefore represents a progression from ad hoc, reactive activity to continuous,
+            automated, and independently verifiable assurance. At the highest levels trust is no
+            longer assessed periodically — it is continuously computed, monitored, and improved.
+          </p>
         </Container>
       </Section>
 
@@ -211,19 +253,22 @@ export default function FrameworkPage() {
             light
             eyebrow="Scoring model"
             title="From maturity ratings to one Trust Score"
-            intro="Each control is scored across five axes, aggregated into weighted domain scores, then composed into a single executive-readable Trust Score."
+            intro="A control is only as strong as its weakest dimension, so each is scored across five weighted axes rather than given one subjective rating. Those roll into weighted domain scores and a single executive-readable Trust Score."
           />
           <div className="mt-12 grid gap-6 lg:grid-cols-[1fr_1fr]">
             <div className="rounded-[var(--radius-brand)] border border-white/12 bg-white/5 p-6">
               <h3 className="font-display text-lg font-bold !text-white">The five scoring axes</h3>
               <div className="mt-5 space-y-3">
-                {scoringAxes.map((a, i) => (
-                  <div key={a.name} className="flex gap-4">
-                    <span className="font-mono text-sm font-semibold text-orange">0{i + 1}</span>
-                    <div>
+                {scoringAxes.map((a) => (
+                  <div key={a.name} className="border-t border-white/10 pt-3 first:border-0 first:pt-0">
+                    <div className="flex items-baseline justify-between gap-3">
                       <div className="font-semibold !text-white">{a.name}</div>
-                      <div className="text-sm text-blue-soft/70">{a.description}</div>
+                      <span className="tabular shrink-0 rounded-full bg-orange/15 px-2 py-0.5 font-mono text-xs font-semibold text-orange">
+                        {a.weight}%
+                      </span>
                     </div>
+                    <div className="mt-1 text-sm text-blue-soft/70">{a.assesses}</div>
+                    <div className="mt-1.5 text-xs text-blue-soft/55">{a.why}</div>
                   </div>
                 ))}
               </div>
@@ -314,6 +359,28 @@ export default function FrameworkPage() {
             <Button href="/certification" variant="dark">
               See how domains map to CTA levels <ArrowRight className="h-4 w-4" />
             </Button>
+          </div>
+        </Container>
+      </Section>
+
+      {/* Framework at a glance */}
+      <Section className="bg-soft">
+        <Container>
+          <SectionHeading
+            eyebrow="At a glance"
+            title="NS-CTAF v1.0 in one table"
+            intro={definition}
+          />
+          <div className="mt-10 overflow-hidden rounded-[var(--radius-brand)] border border-line bg-white">
+            {frameworkAttributes.map((a, i) => (
+              <div
+                key={a.label}
+                className={`grid gap-2 px-6 py-4 md:grid-cols-[240px_1fr] md:gap-6 ${i !== 0 ? "border-t border-line" : ""}`}
+              >
+                <div className="font-display font-semibold text-navy">{a.label}</div>
+                <div className="text-sm leading-relaxed text-slate">{a.value}</div>
+              </div>
+            ))}
           </div>
         </Container>
       </Section>
