@@ -1,24 +1,21 @@
-name: Build & publish static export
+name: Build & deploy to Hostinger
 
-# Builds the Next.js static export on every push to main and publishes the
-# contents of `out/` to the `hostinger-deploy` branch (static files at the
-# branch root). Point Hostinger hPanel -> Git at the `hostinger-deploy` branch
-# with auto-deployment enabled so it pulls on every update.
+# Builds the Next.js static export and uploads it straight into public_html
+# over FTPS. Hostinger does no building and no git pull — it only serves the
+# files we put there, which removes every moving part that previously left the
+# live site stale.
 
 on:
   push:
     branches: [main]
   workflow_dispatch:
 
-permissions:
-  contents: write
-
 concurrency:
   group: hostinger-deploy
   cancel-in-progress: true
 
 jobs:
-  build-and-publish:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -36,37 +33,47 @@ jobs:
       - name: Build static export
         run: npm run build
 
-      - name: Publish out/ to hostinger-deploy branch
-        # Commit on top of the existing deploy-branch history so Hostinger's
-        # `git pull` can always fast-forward. A fresh `git init` + force-push
-        # would give the branch an unrelated history every run, which makes
-        # Hostinger's pull fail and silently leaves the live site on an old
-        # build. Never force-push this branch.
+      - name: Sanity-check the build
         run: |
-          REMOTE="https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          test -f out/index.html || { echo "::error::out/index.html missing — refusing to deploy"; exit 1; }
+          echo "Publishing $(find out -type f | wc -l) files."
 
-          if git ls-remote --exit-code --heads "$REMOTE" hostinger-deploy >/dev/null 2>&1; then
-            git clone --branch hostinger-deploy --single-branch "$REMOTE" deploy-repo
-          else
-            git clone "$REMOTE" deploy-repo
-            git -C deploy-repo checkout --orphan hostinger-deploy
-            git -C deploy-repo rm -rfq --cached . || true
-          fi
-
-          # Replace the working tree with the fresh build, keeping .git intact.
-          find deploy-repo -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
-          cp -a out/. deploy-repo/
-          touch deploy-repo/.nojekyll
-
-          cd deploy-repo
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -A
-          if git diff --cached --quiet; then
-            echo "No changes to publish."
-          else
-            git commit -q -m "Deploy ${GITHUB_SHA::7}"
-            git push origin hostinger-deploy
-          fi
+      - name: Check FTP credentials are configured
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          FTP_HOST: ${{ secrets.FTP_HOST }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          missing=""
+          [ -z "$FTP_HOST" ]     && missing="$missing FTP_HOST"
+          [ -z "$FTP_USERNAME" ] && missing="$missing FTP_USERNAME"
+          [ -z "$FTP_PASSWORD" ] && missing="$missing FTP_PASSWORD"
+          if [ -n "$missing" ]; then
+            echo "::error::Missing repository secret(s):$missing — add them under Settings > Secrets and variables > Actions. Values come from hPanel > Files > FTP Accounts."
+            exit 1
+          fi
+          echo "FTP credentials present."
+
+      - name: Install lftp
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+
+      - name: Upload to public_html over FTPS
+        env:
+          FTP_HOST: ${{ secrets.FTP_HOST }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          LFTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          REMOTE_DIR: public_html
+        run: |
+          lftp -c "
+            set cmd:fail-exit true;
+            set ftp:ssl-force true;
+            set ftp:ssl-protect-data true;
+            set ssl:verify-certificate no;
+            set net:max-retries 3;
+            set net:timeout 30;
+            open --env-password -u '$FTP_USERNAME' '$FTP_HOST';
+            mirror --reverse --delete --parallel=4 --verbose \
+                   --exclude-glob .well-known/ \
+                   --exclude-glob cgi-bin/ \
+                   out/ '$REMOTE_DIR/';
+          "
