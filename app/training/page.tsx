@@ -9,7 +9,7 @@ import { ArrowRight } from "lucide-react";
 export const metadata: Metadata = {
   title: "Training & Enablement",
   description:
-    "Role-based NS-CTAF training: executive briefing, practitioner, developer foundation, security champion, assessor, and procurement tracks.",
+    "Role-based Nucleus Systems Code Trust Assurance Framework (NS-CTAF) training: executive briefing, practitioner, developer foundation, security champion, assessor, and procurement tracks.",
 };
 
 export default function TrainingPage() {
@@ -18,7 +18,7 @@ export default function TrainingPage() {
       <PageHero
         eyebrow="Training & enablement"
         title="Role-based pathways to code trust"
-        intro="From boards to build engineers to accredited assessors — enablement that makes NS-CTAF operational across your organisation."
+        intro="From boards to build engineers to accredited assessors — enablement that makes the Nucleus Systems Code Trust Assurance Framework (NS-CTAF) operational across your organisation."
       />
       <Section>
         <Container>

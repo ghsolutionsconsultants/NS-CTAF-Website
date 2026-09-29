@@ -2,18 +2,17 @@ import type { Metadata } from "next";
 import { Container, Section, SectionHeading, Button } from "@/components/ui";
 import { PageHero } from "@/components/page-hero";
 import { Icon } from "@/components/icon";
-import { ControlLibrary } from "@/components/control-library";
 import { MaturityLadder } from "@/components/maturity-ladder";
 import { CtaBand } from "@/components/cta-band";
 import { domains, scoringAxes, evidenceTiers, trustScoreBands } from "@/data/framework";
 import { alignments } from "@/data/alignments";
 import { HARD_GATES } from "@/data/certification";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ShieldCheck, Gauge, Award, ClipboardCheck, Layers, BadgeCheck } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Framework",
   description:
-    "The NS-CTAF framework: 6 weighted domains, 86 controls, a 5-level maturity model, the 5-axis scoring model, and the 0–100 Trust Score.",
+    "The Nucleus Systems Code Trust Assurance Framework (NS-CTAF) explained in plain terms: what it is, what it does, its six domains, five maturity levels, and the 0–100 Trust Score.",
 };
 
 export default function FrameworkPage() {
@@ -22,15 +21,127 @@ export default function FrameworkPage() {
       <PageHero
         eyebrow="The framework"
         title="Where software trust is defined and measured"
-        intro="Code Trust Assurance Intelligence — creating public trust in the modern software supply chain. Six domains, 86 controls, five maturity levels, and a single 0–100 Trust Score."
+        intro="The Nucleus Systems Code Trust Assurance Framework (NS-CTAF) is the standard for proving software can be trusted. It measures how well an organisation controls its software — from who writes the code to how it behaves in production — and turns that into one evidence-backed score."
       >
-        <Button href="#controls" variant="light" size="lg">
-          Browse the control library
+        <Button href="#in-simple-terms" variant="light" size="lg">
+          What is NS-CTAF?
         </Button>
         <Button href="#trust-score" variant="orange" size="lg">
           Understand the Trust Score
         </Button>
       </PageHero>
+
+      {/* Plain-English explainer */}
+      <Section id="in-simple-terms" className="scroll-mt-16">
+        <Container>
+          <SectionHeading
+            eyebrow="In simple terms"
+            title="What NS-CTAF is, and what it actually does"
+            intro="The Nucleus Systems Code Trust Assurance Framework (NS-CTAF) exists to answer one question a customer, regulator, or insurer will eventually ask you: can your software be trusted — and can you prove it?"
+          />
+
+          <div className="mt-12 grid gap-5 md:grid-cols-3">
+            {[
+              {
+                icon: ShieldCheck,
+                t: "What it is",
+                d: "A structured, independently assessable standard for software trust. Not a scan and not a checklist — it measures whether the controls that protect your software genuinely work, and whether you can evidence it.",
+              },
+              {
+                icon: Gauge,
+                t: "What it does",
+                d: "An independent assessor rates 86 controls across six domains, each on a five-level maturity scale. Those ratings roll up into a single Trust Score from 0 to 100 that a non-technical reader can act on.",
+              },
+              {
+                icon: Award,
+                t: "What you get",
+                d: "A certification level from CTA-1 to CTA-4, a signed certificate, a board-ready report, a 12-month improvement roadmap, and a public Trust Registry listing anyone can verify.",
+              },
+            ].map((c) => (
+              <div
+                key={c.t}
+                className="card-accent rounded-[var(--radius-brand)] border border-line bg-white p-6 shadow-[var(--shadow-brand-sm)] transition-all duration-300 hover:-translate-y-1 hover:border-blue/25 hover:shadow-[var(--shadow-brand)]"
+              >
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-soft text-blue">
+                  <c.icon className="h-[22px] w-[22px]" />
+                </div>
+                <h3 className="mt-5 text-[1.0625rem] font-bold text-navy">{c.t}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-slate">{c.d}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Four-step flow */}
+          <div className="mt-14">
+            <h3 className="font-display text-xl font-bold text-navy">How it works, step by step</h3>
+            <div className="mt-6 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+              {[
+                {
+                  n: "01",
+                  icon: ClipboardCheck,
+                  t: "You are assessed",
+                  d: "You complete a structured assessment and provide evidence — SBOMs, signing records, scan output, policies, and pipeline logs.",
+                },
+                {
+                  n: "02",
+                  icon: Layers,
+                  t: "Every control is rated",
+                  d: "An assessor independently rates each control from L1 (ad hoc) to L5 (automated and continuously evidenced).",
+                },
+                {
+                  n: "03",
+                  icon: Gauge,
+                  t: "You get a Trust Score",
+                  d: "Ratings are weighted by domain into a single 0–100 Trust Score, plus a gap analysis showing exactly what to fix first.",
+                },
+                {
+                  n: "04",
+                  icon: BadgeCheck,
+                  t: "You are certified",
+                  d: "Clear the score thresholds and the seven hard gates and you are certified CTA-1 to CTA-4, and listed publicly.",
+                },
+              ].map((s) => (
+                <div
+                  key={s.n}
+                  className="flex h-full flex-col rounded-[var(--radius-brand)] border border-line bg-grey p-6"
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-navy text-white">
+                      <s.icon className="h-5 w-5" />
+                    </div>
+                    <span className="tabular font-mono text-xl font-bold text-line">{s.n}</span>
+                  </div>
+                  <h4 className="mt-5 font-display text-base font-bold text-navy">{s.t}</h4>
+                  <p className="mt-2 text-sm leading-relaxed text-slate">{s.d}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Jargon decoder */}
+          <div className="mt-14 overflow-hidden rounded-[var(--radius-brand)] border border-line">
+            <div className="border-b border-line bg-grey px-6 py-4">
+              <h3 className="font-display text-base font-bold text-navy">The terms, in one line each</h3>
+            </div>
+            {[
+              ["Domain", "One of the six areas of software trust NS-CTAF measures, such as who writes your code or whether builds can be tampered with."],
+              ["Control", "A single specific practice that gets rated — for example, whether your releases are cryptographically signed."],
+              ["Maturity level (L1–L5)", "How well one control actually works, from ad hoc and undocumented (L1) to fully automated and independently assured (L5)."],
+              ["Trust Score (0–100)", "All the control ratings weighted into one number that summarises your overall software trust posture."],
+              ["Hard gate", "A foundational requirement that must pass no matter how high your score is. Strength elsewhere cannot buy your way past it."],
+              ["CTA level (CTA-1 to CTA-4)", "The certification you earn, from CTA-1 Transparent up to CTA-4 Adaptive Trust."],
+            ].map(([term, meaning], i) => (
+              <div
+                key={term}
+                className={`grid gap-1 px-6 py-4 md:grid-cols-[260px_1fr] md:gap-6 ${i !== 0 ? "border-t border-line" : ""}`}
+              >
+                <div className="font-display font-semibold text-navy">{term}</div>
+                <div className="text-sm leading-relaxed text-slate">{meaning}</div>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </Section>
 
       {/* Domains detail */}
       <Section id="domains">
@@ -75,20 +186,6 @@ export default function FrameworkPage() {
                 </div>
               </div>
             ))}
-          </div>
-        </Container>
-      </Section>
-
-      {/* Control library */}
-      <Section id="controls" className="scroll-mt-16 bg-grey">
-        <Container>
-          <SectionHeading
-            eyebrow="Control library"
-            title="All 86 controls, searchable"
-            intro="Filter by domain or search by control ID, name, or what it assesses. This is the same control set an assessment scores independently, L1–L5."
-          />
-          <div className="mt-10">
-            <ControlLibrary />
           </div>
         </Container>
       </Section>

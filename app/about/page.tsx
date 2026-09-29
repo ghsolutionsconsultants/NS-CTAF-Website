@@ -9,7 +9,7 @@ import { Check, ShieldCheck, Scale, Users, ArrowRight } from "lucide-react";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "NS-CTAF was created by Nucleus Systems to make software trust measurable, certifiable, and verifiable. Learn who created it and the credibility safeguards behind it.",
+    "The Nucleus Systems Code Trust Assurance Framework (NS-CTAF) makes software trust measurable, certifiable, and verifiable. Learn who created it and the credibility safeguards behind it.",
 };
 
 export default function AboutPage() {
@@ -18,7 +18,7 @@ export default function AboutPage() {
       <PageHero
         eyebrow="About NS-CTAF"
         title="Created by Nucleus Systems"
-        intro="NS-CTAF is a public trust infrastructure for the software economy — defining trust, measuring trust, certifying trust, and making trust visible to the market."
+        intro="The Nucleus Systems Code Trust Assurance Framework (NS-CTAF) is a public trust infrastructure for the software economy — defining trust, measuring trust, certifying trust, and making trust visible to the market."
       >
         <Button href="/contact" variant="orange" size="lg">
           Get in touch <ArrowRight className="h-4 w-4" />

@@ -8,7 +8,7 @@ import { Mail, CircleDollarSign, CalendarClock, ShieldCheck } from "lucide-react
 export const metadata: Metadata = {
   title: "Get Assessed",
   description:
-    "Request a NS-CTAF assessment. Fixed fee, ~20 business days, and a CTA certificate. Tell us about your software and target certification level.",
+    "Request a Nucleus Systems Code Trust Assurance Framework (NS-CTAF) assessment. Fixed fee, ~20 business days, and a CTA certificate. Tell us about your software and target certification level.",
 };
 
 export default function ContactPage() {

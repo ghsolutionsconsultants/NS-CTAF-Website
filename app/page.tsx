@@ -194,7 +194,7 @@ export default function HomePage() {
           <SectionHeading
             eyebrow="The framework"
             title="Six domains. Eighty-six controls."
-            intro="NS-CTAF measures trust across the full software lifecycle — each domain weighted by its impact on overall software trust posture."
+            intro="The Nucleus Systems Code Trust Assurance Framework (NS-CTAF) measures trust across the full software lifecycle — each domain weighted by its impact on overall software trust posture."
           />
           <div className="mt-12">
             <DomainsGrid />

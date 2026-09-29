@@ -7,7 +7,7 @@ import { certStatuses } from "@/data/certification";
 export const metadata: Metadata = {
   title: "Verify a Certificate",
   description:
-    "Verify a NS-CTAF certificate by its ID. Confirm the certified company, certification level, and current status on the public Trust Registry.",
+    "Verify a Nucleus Systems Code Trust Assurance Framework (NS-CTAF) certificate by its ID. Confirm the certified company, certification level, and current status on the public Trust Registry.",
 };
 
 export default function VerifyPage() {

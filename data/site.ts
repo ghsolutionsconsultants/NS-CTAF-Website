@@ -2,7 +2,7 @@
 
 export const site = {
   name: "NS-CTAF",
-  fullName: "Nucleus Systems Code Trust Assurance Framework",
+  fullName: "Nucleus Systems Code Trust Assurance Framework (NS-CTAF)",
   shortName: "CTAF",
   owner: "Nucleus Systems (Pty) Ltd",
   frameworkVersion: "NS-CTAF v1.0",
@@ -59,7 +59,6 @@ export const footerNav: { heading: string; items: NavItem[] }[] = [
       { label: "What is NS-CTAF", href: "/what-is-ctaf" },
       { label: "The Framework", href: "/framework" },
       { label: "Maturity & Trust Score", href: "/framework#trust-score" },
-      { label: "Control Library", href: "/framework#controls" },
     ],
   },
   {

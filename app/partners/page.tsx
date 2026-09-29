@@ -9,7 +9,7 @@ import { Check, ShieldCheck, ArrowRight } from "lucide-react";
 export const metadata: Metadata = {
   title: "Partner & Assessor Programme",
   description:
-    "Join the NS-CTAF ecosystem: accredited assessor programme, consulting partners, technology integration partners, and regional representatives — governed by strict independence and ethics policies.",
+    "Join the Nucleus Systems Code Trust Assurance Framework (NS-CTAF) ecosystem: accredited assessor programme, consulting partners, technology integration partners, and regional representatives — governed by strict independence and ethics policies.",
 };
 
 export default function PartnersPage() {
@@ -18,7 +18,7 @@ export default function PartnersPage() {
       <PageHero
         eyebrow="Partner, assessor & ecosystem"
         title="Scale code trust through a trusted ecosystem"
-        intro="NS-CTAF grows through accredited assessors, consulting and technology partners, and regional representatives — all held to strict independence, ethics, and quality-assurance standards."
+        intro="The Nucleus Systems Code Trust Assurance Framework (NS-CTAF) grows through accredited assessors, consulting and technology partners, and regional representatives — all held to strict independence, ethics, and quality-assurance standards."
       >
         <Button href="/contact" variant="orange" size="lg">
           Apply to partner <ArrowRight className="h-4 w-4" />

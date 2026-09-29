@@ -6,7 +6,7 @@ import { Building2, FileSearch, ClipboardCheck, Lock, ArrowRight } from "lucide-
 export const metadata: Metadata = {
   title: "Portal",
   description:
-    "The NS-CTAF portal for assessed companies, report subscribers, and assessors — evidence upload, registry search, and assessment workflow.",
+    "The Nucleus Systems Code Trust Assurance Framework (NS-CTAF) portal for assessed companies, report subscribers, and assessors — evidence upload, registry search, and assessment workflow.",
 };
 
 const areas = [

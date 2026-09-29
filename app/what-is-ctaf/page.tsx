@@ -10,7 +10,7 @@ import { ArrowRight, ShieldAlert, Boxes, Cpu, FileCheck2 } from "lucide-react";
 export const metadata: Metadata = {
   title: "What is NS-CTAF",
   description:
-    "NS-CTAF is a measurable trust assurance architecture for software — not a checklist or a scan. Learn what it is, why it exists, and who created it.",
+    "The Nucleus Systems Code Trust Assurance Framework (NS-CTAF) is a measurable trust assurance architecture for software — not a checklist or a scan. Learn what it is, why it exists, and who created it.",
 };
 
 const whyPoints = [
@@ -26,7 +26,7 @@ export default function WhatIsCtafPage() {
       <PageHero
         eyebrow="What is NS-CTAF"
         title="A measurable architecture for software trust"
-        intro="NS-CTAF measures whether software can be trusted across its full lifecycle — from developer identity and code integrity to secure development, dependencies, runtime behaviour, and governance accountability."
+        intro="The Nucleus Systems Code Trust Assurance Framework (NS-CTAF) measures whether software can be trusted across its full lifecycle — from developer identity and code integrity to secure development, dependencies, runtime behaviour, and governance accountability."
       >
         <Button href="/framework" variant="light" size="lg">
           Explore the framework <ArrowRight className="h-4 w-4" />
