@@ -62,18 +62,41 @@ jobs:
           FTP_HOST: ${{ secrets.FTP_HOST }}
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
           LFTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-          REMOTE_DIR: public_html
         run: |
-          lftp -c "
-            set cmd:fail-exit true;
-            set ftp:ssl-force true;
-            set ftp:ssl-protect-data true;
-            set ssl:verify-certificate no;
-            set net:max-retries 3;
-            set net:timeout 30;
-            open --env-password -u '$FTP_USERNAME' '$FTP_HOST';
-            mirror --reverse --delete --parallel=4 --verbose \
+          set -euo pipefail
+
+          # Shared connection settings. The password is passed via LFTP_PASSWORD
+          # and --env-password so it never appears in a command string.
+          COMMON="set ftp:ssl-force true;
+                  set ftp:ssl-protect-data true;
+                  set ssl:verify-certificate no;
+                  set net:max-retries 2;
+                  set net:timeout 30;
+                  open --env-password -u '$FTP_USERNAME' '$FTP_HOST';"
+
+          echo "--- Remote listing at login ---"
+          LIST=$(lftp -c "$COMMON cls -1;" 2>&1) || {
+            echo "::error::Could not connect or list over FTPS. Server said:"
+            echo "$LIST"
+            exit 1
+          }
+          echo "$LIST"
+
+          # Some Hostinger FTP users land at the account root (which contains
+          # public_html); domain-scoped users land inside it already. Pick the
+          # right target instead of creating public_html/public_html.
+          if echo "$LIST" | sed 's#/$##' | grep -qx "public_html"; then
+            TARGET="public_html/"
+          else
+            TARGET="./"
+          fi
+          echo "--- Uploading to: $TARGET ---"
+
+          lftp -c "$COMMON
+            mirror --reverse --delete --parallel=4 \
                    --exclude-glob .well-known/ \
                    --exclude-glob cgi-bin/ \
-                   out/ '$REMOTE_DIR/';
-          "
+                   out/ '$TARGET';"
+
+          echo "--- Verifying index.html landed ---"
+          lftp -c "$COMMON cls -l '$TARGET' | head -30;"
