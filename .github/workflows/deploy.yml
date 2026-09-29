@@ -57,45 +57,57 @@ jobs:
       - name: Install lftp
         run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
 
-      - name: Upload to public_html over FTPS
+      - name: Upload to web root over FTP(S)
         env:
           FTP_HOST: ${{ secrets.FTP_HOST }}
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
           LFTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
         run: |
-          set -euo pipefail
+          set -uo pipefail
 
-          # Shared connection settings. The password is passed via LFTP_PASSWORD
-          # and --env-password so it never appears in a command string.
-          COMMON="set ftp:ssl-force true;
-                  set ftp:ssl-protect-data true;
-                  set ssl:verify-certificate no;
-                  set net:max-retries 2;
-                  set net:timeout 30;
-                  open --env-password -u '$FTP_USERNAME' '$FTP_HOST';"
-
-          echo "--- Remote listing at login ---"
-          LIST=$(lftp -c "$COMMON cls -1;" 2>&1) || {
-            echo "::error::Could not connect or list over FTPS. Server said:"
-            echo "$LIST"
-            exit 1
+          # lftp commands are written to a file one per line. Previously a
+          # multi-line shell string was passed to `lftp -c`, so the YAML
+          # indentation leaked into the command text and lftp failed before
+          # it ever connected - producing an empty error message.
+          make_script() {
+            mode="$1"; shift
+            {
+              echo "debug 3"
+              echo "set ftp:passive-mode on"
+              echo "set net:max-retries 2"
+              echo "set net:timeout 30"
+              echo "set ssl:verify-certificate no"
+              if [ "$mode" = "ftps" ]; then
+                echo "set ftp:ssl-force true"
+                echo "set ftp:ssl-protect-data true"
+              else
+                echo "set ftp:ssl-allow false"
+              fi
+              echo "open --env-password -u '$FTP_USERNAME' '$FTP_HOST'"
+              for c in "$@"; do echo "$c"; done
+            } > /tmp/lftp.cmds
           }
-          echo "$LIST"
 
-          # This account's FTP user lands directly IN the web root — proven:
-          # mirroring to public_html/ produced public_html/public_html, which
-          # was publicly reachable at /public_html/. So upload to "." and let
-          # mirror --delete clear that stray copy. Not auto-detected, because
-          # the stray directory is itself named public_html and would fool it.
-          TARGET="./"
+          MODE=""
+          for m in ftps plain; do
+            echo "=============== connection attempt: $m ==============="
+            make_script "$m" "pwd" "cls -1"
+            if lftp -f /tmp/lftp.cmds 2>&1; then
+              MODE="$m"
+              echo "Connected over $m."
+              break
+            fi
+            echo "Attempt over $m failed (see server output above)."
+          done
 
-          echo "--- Uploading to: $TARGET ---"
+          if [ -z "$MODE" ]; then
+            echo "::error::Could not connect over FTPS or plain FTP - see server output above."
+            exit 1
+          fi
+          if [ "$MODE" = "plain" ]; then
+            echo "::warning::Connected over plain FTP; credentials are unencrypted in transit."
+          fi
 
-          lftp -c "$COMMON
-            mirror --reverse --delete --parallel=4 \
-                   --exclude-glob .well-known/ \
-                   --exclude-glob cgi-bin/ \
-                   out/ '$TARGET';"
-
-          echo "--- Verifying index.html landed ---"
-          lftp -c "$COMMON cls -l '$TARGET' | head -30;"
+          echo "=============== uploading to web root ==============="
+          make_script "$MODE" "mirror --reverse --delete --parallel=4 --exclude-glob .well-known/ --exclude-glob cgi-bin/ out/ ./" "cls -l"
+          lftp -f /tmp/lftp.cmds 2>&1
