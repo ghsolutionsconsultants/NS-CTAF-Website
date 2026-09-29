@@ -82,10 +82,14 @@ jobs:
           }
           echo "$LIST"
 
-          # Some Hostinger FTP users land at the account root (which contains
-          # public_html); domain-scoped users land inside it already. Pick the
-          # right target instead of creating public_html/public_html.
-          if echo "$LIST" | sed 's#/$##' | grep -qx "public_html"; then
+          # Hostinger's domain-scoped FTP user lands INSIDE the web root, so
+          # uploading to public_html/ creates public_html/public_html and the
+          # live site never changes. Ask the right question first: are we
+          # already in the web root? Only fall back to public_html/ if not.
+          ROOT=$(echo "$LIST" | sed 's#/$##')
+          if echo "$ROOT" | grep -qxE "index\.html|_next|404\.html"; then
+            TARGET="./"
+          elif echo "$ROOT" | grep -qx "public_html"; then
             TARGET="public_html/"
           else
             TARGET="./"
