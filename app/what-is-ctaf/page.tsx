@@ -5,8 +5,13 @@ import { CtaBand } from "@/components/cta-band";
 import { DomainsGrid } from "@/components/domains-grid";
 import { useCases } from "@/data/content";
 import { site } from "@/data/site";
-import { ArrowRight, ShieldAlert, Boxes, Cpu, FileCheck2, Check, X, Scale } from "lucide-react";
+import { ArrowRight, ShieldAlert, Boxes, Cpu, FileCheck2, Check, X, Scale, HelpCircle, Layers, ShieldCheck, TrendingDown } from "lucide-react";
 import {
+  fiveQuestions,
+  fragmentationCosts,
+  frameworkFamilies,
+  defensibility,
+  completionProblem,
   definition,
   supplyChainAttacks,
   designPrinciples,
@@ -81,6 +86,47 @@ export default function WhatIsCtafPage() {
         </Container>
       </Section>
 
+      {/* Five questions */}
+      <Section className="bg-navy bg-trust-grid">
+        <Container>
+          <SectionHeading
+            light
+            eyebrow="The honest test"
+            title="Five questions. For most organisations, the honest answer to all five is no."
+            intro="These are not questions a vulnerability scanner was ever designed to answer. They are the questions a regulator, an acquirer, or an enterprise customer will eventually ask you."
+          />
+          <div className="mt-12 grid gap-4 md:grid-cols-2">
+            {fiveQuestions.map((q, i) => (
+              <div
+                key={q}
+                className={`group relative overflow-hidden rounded-[var(--radius-brand)] border border-white/12 bg-white/[0.06] p-7 transition-all duration-300 hover:-translate-y-1 hover:border-orange/40 hover:bg-white/[0.09] ${
+                  i === 4 ? "md:col-span-2" : ""
+                }`}
+              >
+                <span
+                  aria-hidden
+                  className="tabular pointer-events-none absolute -right-2 -top-5 font-display text-[5rem] font-bold leading-none text-white/[0.06] transition-colors duration-300 group-hover:text-orange/20"
+                >
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span className="block h-px w-10 bg-orange transition-all duration-300 group-hover:w-16" />
+                <p className="relative mt-5 text-[0.95rem] leading-relaxed text-blue-soft/85 md:text-base">
+                  {q}
+                </p>
+                <span className="mt-5 inline-flex items-center gap-1.5 rounded-full bg-white/[0.07] px-2.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-blue-soft/60">
+                  Typical answer · No
+                </span>
+              </div>
+            ))}
+          </div>
+          <p className="mt-8 max-w-3xl text-sm leading-relaxed text-blue-soft/70">
+            This is not a gap that adding another scanner closes. It is an architecture gap — and it
+            needs a control architecture, a maturity model, and a certification programme that turn
+            scanning activity into demonstrable, independently verifiable software trust.
+          </p>
+        </Container>
+      </Section>
+
       {/* The trust gap */}
       <Section className="bg-soft">
         <Container>
@@ -144,6 +190,77 @@ export default function WhatIsCtafPage() {
         </Container>
       </Section>
 
+      {/* Framework fragmentation */}
+      <Section>
+        <Container>
+          <SectionHeading
+            eyebrow="Thirty frameworks, one assessment"
+            title="You are probably assessing the same control three times over"
+            intro="A control addressing build provenance might be independently assessed for SLSA Level 3, NIST SSDF RV.1, and Executive Order 14028 Section 4 — three assessments of fundamentally the same trust capability, with three evidence collections, three gap analyses, and three reporting formats."
+          />
+
+          <div className="mt-10 grid gap-5 md:grid-cols-3">
+            {fragmentationCosts.map((c) => (
+              <div
+                key={c.unit}
+                className="card-accent rounded-[var(--radius-brand)] border border-line bg-white p-7 shadow-[var(--shadow-brand-sm)] transition-all duration-300 hover:-translate-y-1 hover:border-orange/30 hover:shadow-[var(--shadow-brand)]"
+              >
+                <div className="tabular text-gradient font-display text-[2.75rem] font-bold leading-none">
+                  {c.stat}
+                </div>
+                <div className="mt-2 text-xs font-semibold uppercase tracking-[0.14em] text-navy">
+                  {c.unit}
+                </div>
+                <p className="mt-4 border-t border-line pt-4 text-sm leading-relaxed text-slate">
+                  {c.detail}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-10 overflow-x-auto thin-scroll">
+            <table className="w-full min-w-[760px] border-collapse text-left text-sm">
+              <thead>
+                <tr className="border-b border-line text-xs uppercase tracking-wider text-slate">
+                  <th className="px-4 py-3 font-semibold">Framework</th>
+                  <th className="px-4 py-3 font-semibold">Role in the trust puzzle</th>
+                  <th className="px-4 py-3 font-semibold">Core obligations</th>
+                  <th className="px-4 py-3 font-semibold">Enforcement</th>
+                </tr>
+              </thead>
+              <tbody>
+                {frameworkFamilies.map((f, i) => (
+                  <tr
+                    key={f.name}
+                    className={`border-b border-line align-top transition-colors hover:bg-blue-soft/40 ${i % 2 ? "bg-grey/50" : ""}`}
+                  >
+                    <td className="px-4 py-4">
+                      <span className="font-display font-bold text-navy">{f.name}</span>
+                    </td>
+                    <td className="px-4 py-4">
+                      <span className="inline-block rounded-md bg-blue-soft px-2 py-1 text-xs font-medium text-blue">
+                        {f.role}
+                      </span>
+                    </td>
+                    <td className="px-4 py-4 text-slate">{f.obligations}</td>
+                    <td className="px-4 py-4 text-slate">{f.enforcement}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <div className="mt-8 flex items-start gap-3 rounded-[var(--radius-brand)] border border-blue/25 bg-blue-soft/40 p-6">
+            <Layers className="mt-0.5 h-5 w-5 flex-shrink-0 text-blue" />
+            <p className="text-sm leading-relaxed text-ink">
+              Fragmentation is not only an efficiency problem. It is a risk management problem and a
+              board communication problem at the same time. One assessment, mapped to all of them,
+              produces one defensible answer instead of seven inconsistent ones.
+            </p>
+          </div>
+        </Container>
+      </Section>
+
       {/* Supply chain attacks */}
       <Section>
         <Container>
@@ -175,6 +292,80 @@ export default function WhatIsCtafPage() {
                 </div>
               </div>
             ))}
+          </div>
+        </Container>
+      </Section>
+
+      {/* Why it is defensible */}
+      <Section className="bg-soft">
+        <Container>
+          <SectionHeading
+            eyebrow="Why it holds up"
+            title="Built so that documentation cannot outscore reality"
+            intro="There is a well-known observation among assessors: the fastest way to improve a code security score is to hire someone skilled in documentation rather than in security engineering. This framework is designed to make that impossible."
+          />
+          <div className="mt-12 grid gap-5 md:grid-cols-2">
+            {defensibility.map((d) => (
+              <div
+                key={d.title}
+                className="card-accent rounded-[var(--radius-brand)] border border-line bg-white p-6 shadow-[var(--shadow-brand-sm)] transition-all duration-300 hover:-translate-y-1 hover:border-blue/25 hover:shadow-[var(--shadow-brand)]"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-soft text-blue">
+                    <ShieldCheck className="h-5 w-5" />
+                  </div>
+                  <h3 className="font-display text-[1.0625rem] font-bold text-navy">{d.title}</h3>
+                </div>
+                <p className="mt-4 text-sm leading-relaxed text-slate">{d.body}</p>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </Section>
+
+      {/* The completion problem */}
+      <Section>
+        <Container>
+          <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
+            <div className="rounded-[calc(var(--radius-brand)+4px)] border border-line bg-white p-8 shadow-[var(--shadow-brand-sm)]">
+              <div className="relative mx-auto" style={{ width: 200, height: 200 }}>
+                <svg width="200" height="200" viewBox="0 0 200 200" role="img" aria-label="70 percent of gaps remain unaddressed">
+                  <style>{`
+                    @keyframes gap-ring { from { stroke-dashoffset: 534; } }
+                    .gap-ring { animation: gap-ring 1.3s cubic-bezier(0.22,1,0.36,1) both; }
+                    @media (prefers-reduced-motion: reduce) { .gap-ring { animation: none; } }
+                  `}</style>
+                  <circle cx="100" cy="100" r="85" fill="none" stroke="var(--color-line)" strokeWidth="18" />
+                  <circle
+                    className="gap-ring"
+                    cx="100" cy="100" r="85" fill="none"
+                    stroke="var(--color-orange)" strokeWidth="18" strokeLinecap="round"
+                    strokeDasharray="534"
+                    strokeDashoffset={534 - 534 * 0.7}
+                    transform="rotate(-90 100 100)"
+                  />
+                </svg>
+                <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center">
+                  <span className="tabular font-display text-[2.75rem] font-bold leading-none text-orange">
+                    {completionProblem.stat}
+                  </span>
+                  <span className="mt-1.5 flex items-center gap-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-slate">
+                    <TrendingDown className="h-3 w-3" /> still open
+                  </span>
+                </div>
+              </div>
+              <p className="mt-6 text-center text-sm font-semibold leading-snug text-navy">
+                {completionProblem.claim}
+              </p>
+            </div>
+            <div>
+              <SectionHeading
+                eyebrow="Measure versus manage"
+                title="Most assessments are built to measure, not to manage"
+              />
+              <p className="mt-5 leading-relaxed text-slate">{completionProblem.diagnosis}</p>
+              <p className="mt-4 leading-relaxed text-slate">{completionProblem.answer}</p>
+            </div>
           </div>
         </Container>
       </Section>

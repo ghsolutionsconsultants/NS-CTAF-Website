@@ -15,6 +15,8 @@ import { DomainsGrid } from "@/components/domains-grid";
 import { CtaLevelCards } from "@/components/cta-levels";
 import { RegistryCard } from "@/components/registry-card";
 import { TrustScoreGauge } from "@/components/trust-score-gauge";
+import { TrustPipeline } from "@/components/trust-pipeline";
+import { FrameworkMarquee } from "@/components/framework-marquee";
 import { site } from "@/data/site";
 import { registry } from "@/data/registry";
 import { alignments } from "@/data/alignments";
@@ -41,7 +43,18 @@ export default function HomePage() {
             <h1 className="mt-6 text-[2.5rem] font-bold leading-[1.04] !text-white md:text-[3.25rem] lg:text-[3.6rem]">
               Nucleus Systems Code Trust Assurance Framework
             </h1>
-            <p className="mt-7 max-w-xl text-lg leading-relaxed text-blue-soft/80 md:text-xl">
+            <p className="mt-6 flex flex-wrap items-baseline gap-x-2.5 font-display text-xl font-semibold !text-white md:text-2xl">
+              <span>Trust, proven across</span>
+              <span className="rotator text-gradient">
+                <span>identity</span>
+                <span>integrity</span>
+                <span>secure development</span>
+                <span>the supply chain</span>
+                <span>runtime behaviour</span>
+                <span>governance</span>
+              </span>
+            </p>
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-blue-soft/80">
               A continuous, cryptographically verifiable, and measurable standard for software code
               trust — spanning identity, integrity, secure development, supply chain, runtime
               assurance, and governance.
@@ -61,26 +74,20 @@ export default function HomePage() {
               className="pointer-events-none absolute -inset-8 rounded-full bg-blue-bright/20 blur-3xl"
             />
             <div className="relative rounded-[calc(var(--radius-brand)+8px)] border border-white/[0.14] bg-white/[0.07] p-6 shadow-[0_30px_80px_rgba(0,0,0,0.35)] backdrop-blur-md">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2 text-sm text-blue-soft/80">
-                  <Fingerprint className="h-4 w-4 text-orange" /> Specimen · Paxley Software
+              <TrustPipeline />
+
+              <div className="mt-6 rounded-2xl bg-white p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.9)]">
+                <div className="mb-1 flex items-center justify-between">
+                  <span className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-slate">
+                    <Fingerprint className="h-3.5 w-3.5 text-orange" /> Specimen · Paxley Software
+                  </span>
+                  <span className="rounded-full bg-orange px-2 py-0.5 text-[10px] font-bold text-white">
+                    CTA-4
+                  </span>
                 </div>
-                <span className="rounded-full bg-orange px-2.5 py-1 text-xs font-bold text-white shadow-[var(--shadow-orange)]">
-                  CTA-4
-                </span>
-              </div>
-              <div className="mt-5 flex justify-center rounded-2xl bg-white p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.9)]">
-                <TrustScoreGauge score={84} />
-              </div>
-              <div className="mt-4 grid grid-cols-3 gap-2 text-center">
-                {["86/86 controls", "L4 overall", "Active"].map((t) => (
-                  <div
-                    key={t}
-                    className="rounded-lg border border-white/[0.08] bg-white/[0.06] px-2 py-2.5 text-xs font-medium text-blue-soft/85"
-                  >
-                    {t}
-                  </div>
-                ))}
+                <div className="flex justify-center">
+                  <TrustScoreGauge score={84} size={190} />
+                </div>
               </div>
             </div>
           </div>
@@ -108,6 +115,11 @@ export default function HomePage() {
             </Link>
           </div>
         </Container>
+
+        {/* Aligned frameworks marquee */}
+        <div className="relative border-t border-white/10 py-5">
+          <FrameworkMarquee />
+        </div>
 
         {/* Metrics strip */}
         <div className="edge-glow relative border-t border-white/10 bg-[#071324]/60 backdrop-blur-sm">

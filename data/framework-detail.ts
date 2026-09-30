@@ -251,3 +251,87 @@ export const measurableOutcomes = [
   { title: "Defensible", detail: "under audit, regulatory scrutiny, and due diligence" },
   { title: "Scalable", detail: "through automation and continuous assurance" },
 ];
+
+// ---------------------------------------------------------------------------
+// Sourced from the Nucleus Systems thought-leadership series (Articles 1-5,
+// 2026) and the Brief Summary. Explanatory positioning only — no controls.
+// ---------------------------------------------------------------------------
+
+/** The five questions most organisations answer "no" to. */
+export const fiveQuestions = [
+  "Can you cryptographically prove that the developer who committed code to your production branch is who they claim to be?",
+  "Can you demonstrate that your build pipeline was not modified between the last security audit and today's release?",
+  "Do you have independently verifiable build provenance attestations a downstream consumer could verify without trusting your assertions?",
+  "Is every dependency in your production software pinned to a cryptographically verified version?",
+  "When a runtime anomaly occurs in production, can you trace it to a specific code change, in a specific commit, by a specific verified contributor?",
+];
+
+export const fragmentationCosts = [
+  { stat: "400–800", unit: "person-hours a year", detail: "lost to duplicate evidence collection across overlapping frameworks." },
+  { stat: "2–4", unit: "weeks of engineering", detail: "per material framework update, for gap analysis and control mapping." },
+  { stat: "7", unit: "inconsistent views", detail: "instead of one defensible truth about your code trust posture." },
+];
+
+export interface FrameworkFamily {
+  name: string;
+  role: string;
+  obligations: string;
+  enforcement: string;
+}
+
+export const frameworkFamilies: FrameworkFamily[] = [
+  {
+    name: "SLSA",
+    role: "Build integrity — the what of artifact provenance",
+    obligations: "L1 documentation, L2 signed provenance, L3 hardened build platform, L4 reproducible builds with independent verification.",
+    enforcement: "Market-driven: increasingly required by enterprise procurement and referenced in US CISA guidance.",
+  },
+  {
+    name: "NIST SSDF SP 800-218",
+    role: "Development process — the how of secure development",
+    obligations: "Prepare, Protect, Produce and Respond practices, with specific tasks and examples for each function.",
+    enforcement: "Mandatory for US federal software suppliers; referenced in Executive Order 14028 attestation and FedRAMP.",
+  },
+  {
+    name: "OWASP SAMM v2.0",
+    role: "Development maturity — the measure of programme quality",
+    obligations: "5 business functions, 15 security practices, 3 maturity levels per practice across governance to operations.",
+    enforcement: "De facto standard for measuring software security programmes; referenced in PCI DSS Req. 6 and ISO/IEC 27001.",
+  },
+  {
+    name: "EU Cyber Resilience Act",
+    role: "Product security law — the legal obligation in the EU",
+    obligations: "Article 13 SBOM, Article 14 vulnerability handling with notification timelines, Article 18 supply chain security.",
+    enforcement: "Binding law. Fines up to €15 million or 2.5% of global annual turnover.",
+  },
+];
+
+/** Why the assessment survives scrutiny rather than rewarding documentation. */
+export const defensibility = [
+  {
+    title: "The cryptographic evidence gate",
+    body: "For identity and integrity controls, the absence of cryptographic evidence caps the score at L2 — no matter how well written the policy is. A policy requiring signed commits, without evidence that enforcement actually functioned over the last three months, cannot score above L2.",
+  },
+  {
+    title: "Coverage and operation carry half the score",
+    body: "Implementation Coverage and Operating Effectiveness together account for 50% of every control score, because the most reliable predictor of genuine trust is consistent, verifiable operation across the full scope of in-scope systems.",
+  },
+  {
+    title: "Weighting follows real risk",
+    body: "Secure Development carries the highest weight at 22% because upstream prevention has multiplicative downstream effects. Dependency and Supply Chain carries 20% because the average enterprise application is 70–80% open-source components, and every unverified dependency is an attack vector.",
+  },
+  {
+    title: "Seven hard gates that cannot be papered over",
+    body: "Absolute ceilings that limit attainable maturity regardless of the composite calculation, because certain conditions make it structurally impossible for a control to be genuinely mature.",
+  },
+];
+
+/** Why most assessments fail to change anything. */
+export const completionProblem = {
+  stat: "70%",
+  claim: "of identified gaps remain unaddressed six months after a typical supply chain security assessment.",
+  diagnosis:
+    "This is not a failure of intent — it is a failure of design. Most code security assessments are built to measure, not to manage. They produce findings but not the operational infrastructure through which gaps are closed, tracked, and continuously verified.",
+  answer:
+    "Assessment output becomes board-ready trust reporting, a prioritised improvement roadmap, certification readiness indicators, and longitudinal maturity tracking — management intelligence as a natural output of operations rather than a separate reporting effort.",
+};
