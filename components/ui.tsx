@@ -34,7 +34,7 @@ export function Eyebrow({ children, light = false }: { children: ReactNode; ligh
         light ? "text-blue-soft/90" : "text-blue"
       }`}
     >
-      <span className="h-px w-7 bg-orange" />
+      <span className="rule-draw h-px w-7 bg-orange" />
       {children}
     </span>
   );
@@ -54,7 +54,7 @@ export function SectionHeading({
   light?: boolean;
 }) {
   return (
-    <div className={`max-w-3xl ${align === "center" ? "mx-auto text-center" : ""}`}>
+    <div className={`heading-in max-w-3xl ${align === "center" ? "mx-auto text-center" : ""}`}>
       {eyebrow && <Eyebrow light={light}>{eyebrow}</Eyebrow>}
       <h2
         className={`mt-5 text-[1.75rem] font-bold leading-[1.12] md:text-[2.35rem] ${light ? "!text-white" : ""}`}
@@ -163,19 +163,25 @@ export function StatTile({
   value,
   label,
   light = false,
+  countTo,
 }: {
   value: ReactNode;
   label: string;
   light?: boolean;
+  /** When the value is a plain number, animate it counting up to this. */
+  countTo?: number;
 }) {
   return (
     <div className="text-center">
       <div
-        className={`tabular whitespace-nowrap font-display text-[1.75rem] font-bold leading-none tracking-tight md:text-[2.125rem] ${
+        className={`count tabular inline-block whitespace-nowrap font-display text-[1.75rem] font-bold leading-none tracking-tight md:text-[2.125rem] ${
           light ? "text-white" : "text-navy"
         }`}
+        {...(countTo !== undefined
+          ? { "data-to": "", style: { ["--to" as string]: countTo } }
+          : {})}
       >
-        {value}
+        <span className="count__text">{value}</span>
       </div>
       <div
         className={`mt-2.5 text-[10px] font-semibold uppercase tracking-[0.16em] ${
@@ -200,7 +206,7 @@ export function Card({
   const Comp = as;
   return (
     <Comp
-      className={`card-accent rounded-[var(--radius-brand)] border border-line bg-white p-6 shadow-[var(--shadow-brand-sm)] transition-all duration-300 hover:-translate-y-1 hover:border-blue/25 hover:shadow-[var(--shadow-brand)] ${className}`}
+      className={`card-accent lift group rounded-[var(--radius-brand)] border border-line bg-white p-6 shadow-[var(--shadow-brand-sm)] hover:border-blue/25 hover:shadow-[var(--shadow-brand)] ${className}`}
     >
       {children}
     </Comp>

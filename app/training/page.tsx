@@ -22,7 +22,7 @@ export default function TrainingPage() {
       />
       <Section>
         <Container>
-          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          <div className="stagger-in grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {trainingTracks.map((t) => (
               <div
                 key={t.title}

@@ -21,7 +21,7 @@ export default function ContactPage() {
       />
       <Section>
         <Container>
-          <div className="grid gap-10 lg:grid-cols-[1fr_1.4fr]">
+          <div className="stagger-in grid gap-10 lg:grid-cols-[1fr_1.4fr]">
             <div>
               <h2 className="font-display text-xl font-bold text-navy">What to expect</h2>
               <div className="mt-5 space-y-4">

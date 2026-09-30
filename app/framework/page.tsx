@@ -4,6 +4,8 @@ import { PageHero } from "@/components/page-hero";
 import { Icon } from "@/components/icon";
 import { DomainWeightChart } from "@/components/domain-weight-chart";
 import { TrustScoreSimulator } from "@/components/trust-score-simulator";
+import { DomainExplorer } from "@/components/domain-explorer";
+import { MaturityExplorer } from "@/components/maturity-explorer";
 import { CtaBand } from "@/components/cta-band";
 import { domains, scoringAxes, evidenceTiers, trustScoreBands } from "@/data/framework";
 import {
@@ -47,7 +49,7 @@ export default function FrameworkPage() {
             intro="The Nucleus Systems Code Trust Assurance Framework exists to answer one question a customer, regulator, or insurer will eventually ask you: can your software be trusted — and can you prove it?"
           />
 
-          <div className="mt-12 grid gap-5 md:grid-cols-3">
+          <div className="stagger-in mt-12 grid gap-5 md:grid-cols-3">
             {[
               {
                 icon: ShieldCheck,
@@ -81,7 +83,7 @@ export default function FrameworkPage() {
           {/* Four-step flow */}
           <div className="mt-14">
             <h3 className="font-display text-xl font-bold text-navy">How it works, step by step</h3>
-            <div className="mt-6 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+            <div className="stagger-in mt-6 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
               {[
                 {
                   n: "01",
@@ -162,45 +164,8 @@ export default function FrameworkPage() {
             <DomainWeightChart />
           </div>
 
-          <div className="mt-8 space-y-4">
-            {domains.map((d) => (
-              <div
-                key={d.id}
-                id={d.slug}
-                className="grid scroll-mt-24 gap-6 rounded-[var(--radius-brand)] border border-line bg-white p-6 md:grid-cols-[auto_1fr_auto] md:items-center md:p-8"
-              >
-                <div className="flex items-center gap-4">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-soft text-blue">
-                    <Icon name={d.icon} className="h-7 w-7" />
-                  </div>
-                  <div className="md:hidden">
-                    <div className="font-mono text-xs font-semibold text-slate">{d.id} · {d.weight}%</div>
-                    <h3 className="text-lg font-bold text-navy">{d.title}</h3>
-                  </div>
-                </div>
-                <div>
-                  <div className="hidden items-center gap-3 md:flex">
-                    <span className="font-mono text-xs font-semibold text-slate">{d.id}</span>
-                    <h3 className="text-xl font-bold text-navy">{d.title}</h3>
-                  </div>
-                  <p className="mt-2 text-sm leading-relaxed text-slate">{d.scope}</p>
-                  <p className="mt-3 border-l-2 border-orange/40 pl-3 text-sm leading-relaxed text-ink">
-                    <span className="font-semibold text-navy">Why it is weighted this way — </span>
-                    {domainRationale[d.id]}
-                  </p>
-                </div>
-                <div className="flex items-center gap-6 md:flex-col md:items-end md:gap-1">
-                  <div className="text-center md:text-right">
-                    <div className="font-display text-2xl font-bold text-navy">{d.weight}%</div>
-                    <div className="text-xs text-slate">weight</div>
-                  </div>
-                  <div className="text-center md:text-right">
-                    <div className="font-display text-2xl font-bold text-blue">{d.controlCount}</div>
-                    <div className="text-xs text-slate">controls</div>
-                  </div>
-                </div>
-              </div>
-            ))}
+          <div className="mt-10">
+            <DomainExplorer />
           </div>
         </Container>
       </Section>
@@ -213,36 +178,8 @@ export default function FrameworkPage() {
             title="Maturity measures how well a control performs, not whether it exists"
             intro="A control that exists on paper but fails under pressure, operates inconsistently, or lacks verifiable evidence does not represent maturity — it represents risk. Each of the 86 controls is rated independently, so the same organisation may be L4 on one and L1 on another."
           />
-          <div className="mt-12 space-y-4">
-            {maturityDetail.map((m, i) => (
-              <div
-                key={m.level}
-                className="grid gap-5 rounded-[var(--radius-brand)] border border-line bg-white p-6 md:grid-cols-[260px_1fr_1fr]"
-              >
-                <div>
-                  <div className="flex items-baseline gap-3">
-                    <div
-                      className="flex h-11 w-11 items-center justify-center rounded-xl font-display text-sm font-bold text-white"
-                      style={{ background: `var(--color-l${i + 1})` }}
-                    >
-                      L{i + 1}
-                    </div>
-                    <div>
-                      <div className="font-display font-bold text-navy">{m.level.split(" — ")[1]}</div>
-                      <div className="tabular font-mono text-xs text-slate">Score {m.score}</div>
-                    </div>
-                  </div>
-                </div>
-                <p className="text-sm leading-relaxed text-slate">{m.meaning}</p>
-                <ul className="space-y-1.5">
-                  {m.characteristics.map((c) => (
-                    <li key={c} className="flex gap-2 text-sm text-ink">
-                      <span className="text-blue">·</span> {c}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+          <div className="mt-12">
+            <MaturityExplorer />
           </div>
           <p className="mt-8 max-w-3xl text-sm leading-relaxed text-slate">
             Maturity therefore represents a progression from ad hoc, reactive activity to continuous,
@@ -261,7 +198,7 @@ export default function FrameworkPage() {
             title="From maturity ratings to one Trust Score"
             intro="A control is only as strong as its weakest dimension, so each is scored across five weighted axes rather than given one subjective rating. Those roll into weighted domain scores and a single executive-readable Trust Score."
           />
-          <div className="mt-12 grid gap-6 lg:grid-cols-[1fr_1fr]">
+          <div className="stagger-in mt-12 grid gap-6 lg:grid-cols-[1fr_1fr]">
             <div className="rounded-[var(--radius-brand)] border border-white/12 bg-white/5 p-6">
               <h3 className="font-display text-lg font-bold !text-white">The five scoring axes</h3>
               <div className="mt-5 space-y-3">
@@ -339,7 +276,7 @@ export default function FrameworkPage() {
             title="Not all evidence is equal"
             intro="Assessment is evidence-first. Cryptographic proof outranks documentation, which outranks assertion — and higher maturity levels require higher-tier evidence."
           />
-          <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+          <div className="stagger-in mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
             {evidenceTiers.map((t) => (
               <div key={t.tier} className="rounded-[var(--radius-brand)] border border-line bg-white p-6">
                 <div className="flex items-center justify-between">
@@ -362,7 +299,7 @@ export default function FrameworkPage() {
             title="One assessment, many obligations"
             intro="Nucleus Systems Code Trust Assurance Framework maps to the standards and regulations that shape software security worldwide."
           />
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="stagger-in mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {alignments.map((a) => (
               <div key={a.name} className="rounded-[var(--radius-brand)] border border-line bg-white p-5">
                 <div className="flex items-center justify-between">

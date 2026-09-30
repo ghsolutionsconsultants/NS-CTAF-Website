@@ -21,7 +21,7 @@ export default function ResourcesPage() {
       />
       <Section>
         <Container>
-          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          <div className="stagger-in grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {resources.map((r) => (
               <div
                 key={r.title}

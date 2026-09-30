@@ -34,7 +34,7 @@ export default function VerifyPage() {
             eyebrow="Status meanings"
             title="What each certificate status means"
           />
-          <div className="mx-auto mt-10 grid max-w-4xl gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="stagger-in mx-auto mt-10 grid max-w-4xl gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {certStatuses.map((s) => (
               <div key={s.status} className="rounded-[var(--radius-brand)] border border-line bg-white p-5">
                 <div className="flex items-center gap-2">

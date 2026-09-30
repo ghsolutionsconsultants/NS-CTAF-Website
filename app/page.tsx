@@ -35,9 +35,9 @@ export default function HomePage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-mesh bg-trust-grid text-white">
+      <section className="relative overflow-hidden bg-mesh bg-trust-grid grid-drift text-white">
         <Container className="relative py-20 md:py-28">
-          <div className="grid gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
+          <div className="stagger-in grid gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
           <div className="animate-fade-up">
             <Eyebrow light>{site.category}</Eyebrow>
             <h1 className="mt-6 text-[2.5rem] font-bold leading-[1.04] !text-white md:text-[3.25rem] lg:text-[3.6rem]">
@@ -123,10 +123,10 @@ export default function HomePage() {
 
         {/* Metrics strip */}
         <div className="edge-glow relative border-t border-white/10 bg-[#071324]/60 backdrop-blur-sm">
-          <Container className="grid grid-cols-2 gap-y-8 py-10 md:grid-cols-3 lg:grid-cols-6 lg:gap-y-0">
+          <Container className="stagger-in grid grid-cols-2 gap-y-8 py-10 md:grid-cols-3 lg:grid-cols-6 lg:gap-y-0">
             {[
-              { v: site.metrics.controls, l: "Controls" },
-              { v: site.metrics.domains, l: "Domains" },
+              { v: site.metrics.controls, l: "Controls", n: site.metrics.controls },
+              { v: site.metrics.domains, l: "Domains", n: site.metrics.domains },
               { v: `${site.metrics.axes}-axis`, l: "Scoring model" },
               { v: "L1–L5", l: "Maturity" },
               { v: "CTA-1→4", l: "Certification" },
@@ -140,7 +140,7 @@ export default function HomePage() {
                     : ""
                 }
               >
-                <StatTile light value={m.v} label={m.l} />
+                <StatTile light value={m.v} label={m.l} countTo={(m as { n?: number }).n} />
               </div>
             ))}
           </Container>
@@ -150,7 +150,7 @@ export default function HomePage() {
       {/* Problem → solution */}
       <Section>
         <Container>
-          <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
+          <div className="stagger-in grid gap-10 lg:grid-cols-2 lg:items-center">
             <Reveal>
               <Eyebrow>The trust gap</Eyebrow>
               <h2 className="mt-4 text-3xl font-bold md:text-4xl">
@@ -173,7 +173,7 @@ export default function HomePage() {
               </div>
             </Reveal>
             <Reveal delay={0.15}>
-              <div className="grid gap-4 sm:grid-cols-2">
+              <div className="stagger-in grid gap-4 sm:grid-cols-2">
                 {[
                   { k: "Security tools", v: "Find issues in code you already have.", muted: true },
                   { k: "This framework", v: "Proves the whole system can be trusted.", muted: false },
@@ -225,7 +225,7 @@ export default function HomePage() {
             title="From evidence to a public trust signal"
             intro="Assessment combines evidence, maturity scoring, automated tooling, and independent assessor validation."
           />
-          <Stagger className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+          <Stagger className="stagger-in mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
             {flow.map((s, i) => (
               <StaggerItem key={s.title}>
                 <div className="flex h-full flex-col rounded-[var(--radius-brand)] border border-line bg-white p-6 shadow-[var(--shadow-brand-sm)]">
@@ -277,7 +277,7 @@ export default function HomePage() {
               Search the registry <ArrowRight className="h-4 w-4" />
             </Button>
           </div>
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="stagger-in mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {featured.map((e) => (
               <RegistryCard key={e.slug} entry={e} />
             ))}
@@ -298,7 +298,7 @@ export default function HomePage() {
       {/* Trust score bands */}
       <Section className="bg-grey">
         <Container>
-          <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+          <div className="stagger-in grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
             <Reveal>
               <SectionHeading
                 eyebrow="Executive-readable"

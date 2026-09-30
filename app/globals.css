@@ -412,3 +412,153 @@ input[type="range"]::-moz-range-thumb {
   .marquee:hover .marquee__track { animation-play-state: paused; }
   @keyframes marquee { to { transform: translateX(-100%); } }
 }
+
+/* ---------------------------------------------------------------------------
+   Site-wide motion system
+   Everything here is CSS-only and gated behind @supports / reduced-motion, so
+   the resting state is always the readable one.
+   --------------------------------------------------------------------------- */
+
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(26px) scale(0.985); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes rise-in-left {
+  from { opacity: 0; transform: translateX(-24px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes draw-line { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes float-slow {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50%      { transform: translate3d(18px, -22px, 0) scale(1.06); }
+}
+@keyframes hero-in {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    /* Any grid/list marked stagger-in cascades its children into view. */
+    .stagger-in > * {
+      animation: rise-in 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+      animation-timeline: view();
+    }
+    .stagger-in > *:nth-child(1)  { animation-range: entry 0%  entry 46%; }
+    .stagger-in > *:nth-child(2)  { animation-range: entry 4%  entry 50%; }
+    .stagger-in > *:nth-child(3)  { animation-range: entry 8%  entry 54%; }
+    .stagger-in > *:nth-child(4)  { animation-range: entry 12% entry 58%; }
+    .stagger-in > *:nth-child(5)  { animation-range: entry 16% entry 62%; }
+    .stagger-in > *:nth-child(6)  { animation-range: entry 20% entry 66%; }
+    .stagger-in > *:nth-child(7)  { animation-range: entry 22% entry 68%; }
+    .stagger-in > *:nth-child(8)  { animation-range: entry 24% entry 70%; }
+    .stagger-in > *:nth-child(n+9){ animation-range: entry 26% entry 72%; }
+
+    /* Section headings drift up as they enter. */
+    .heading-in {
+      animation: rise-in-left 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 50%;
+    }
+
+    /* The orange rule in an eyebrow draws itself. */
+    .rule-draw {
+      transform-origin: left;
+      animation: draw-line 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+      animation-timeline: view();
+      animation-range: entry 5% entry 45%;
+    }
+  }
+}
+
+/* Page-hero entrance: time-based (it is above the fold), `forwards` so the
+   resting style is the visible one. */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-stagger > * { animation: hero-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+  .hero-stagger > *:nth-child(1) { animation-delay: 0.05s; }
+  .hero-stagger > *:nth-child(2) { animation-delay: 0.15s; }
+  .hero-stagger > *:nth-child(3) { animation-delay: 0.25s; }
+  .hero-stagger > *:nth-child(4) { animation-delay: 0.35s; }
+  .hero-stagger > *:nth-child(5) { animation-delay: 0.45s; }
+
+  /* Ambient floating orbs behind dark bands. */
+  .orb { animation: float-slow 18s ease-in-out infinite; }
+  .orb-2 { animation-duration: 24s; animation-direction: alternate-reverse; }
+}
+
+/* Counting numbers. Text is the real value; only where @property and
+   scroll timelines exist do we swap in the animated counter. */
+.count { position: relative; }
+@property --n { syntax: "<integer>"; initial-value: 0; inherits: false; }
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .count[data-to] { --n: 0; counter-reset: n var(--n); }
+    .count[data-to] > .count__text { visibility: hidden; }
+    .count[data-to]::after {
+      content: counter(n);
+      position: absolute;
+      inset: 0;
+      animation: count-to 1.6s ease-out both;
+      animation-timeline: view();
+      animation-range: entry 10% entry 70%;
+    }
+    @keyframes count-to { to { --n: var(--to); } }
+  }
+}
+
+/* Cards that lift and glow on hover. */
+.lift {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.35s ease;
+}
+.lift:hover { transform: translateY(-6px); }
+
+/* Arrow nudges forward on hover of its parent. */
+.group:hover .nudge { transform: translateX(4px); }
+.nudge { transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1); }
+
+/* Icon tiles get a subtle pop on card hover. */
+.group:hover .icon-pop { transform: scale(1.08) rotate(-3deg); }
+.icon-pop { transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.3s ease, color 0.3s ease; }
+
+/* Scroll-linked parallax: element drifts as its section passes the viewport. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .parallax-slow {
+      animation: parallax-y linear both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 100%;
+    }
+    @keyframes parallax-y {
+      from { transform: translateY(40px); }
+      to   { transform: translateY(-40px); }
+    }
+
+    /* Big statements reveal word by word as they scroll in. */
+    .words > span {
+      display: inline-block;
+      animation: rise-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+      animation-timeline: view();
+    }
+    .words > span:nth-child(1)  { animation-range: entry 0%  entry 40%; }
+    .words > span:nth-child(2)  { animation-range: entry 3%  entry 43%; }
+    .words > span:nth-child(3)  { animation-range: entry 6%  entry 46%; }
+    .words > span:nth-child(4)  { animation-range: entry 9%  entry 49%; }
+    .words > span:nth-child(5)  { animation-range: entry 12% entry 52%; }
+    .words > span:nth-child(6)  { animation-range: entry 15% entry 55%; }
+    .words > span:nth-child(7)  { animation-range: entry 18% entry 58%; }
+    .words > span:nth-child(n+8){ animation-range: entry 21% entry 61%; }
+
+    /* Dark bands subtly zoom their dotted grid as you pass. */
+    .grid-drift {
+      animation: grid-drift linear both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 100%;
+    }
+    @keyframes grid-drift {
+      from { background-position: 0 0; }
+      to   { background-position: 0 90px; }
+    }
+  }
+}

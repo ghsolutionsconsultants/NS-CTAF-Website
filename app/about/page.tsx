@@ -27,7 +27,7 @@ export default function AboutPage() {
 
       <Section>
         <Container>
-          <div className="grid gap-12 lg:grid-cols-2">
+          <div className="stagger-in grid gap-12 lg:grid-cols-2">
             <div>
               <SectionHeading eyebrow="Who created the Framework" title="A framework built on assurance work" />
               <p className="mt-5 text-lg leading-relaxed text-slate">
@@ -48,7 +48,7 @@ export default function AboutPage() {
                 </Button>
               </div>
             </div>
-            <div className="grid gap-4 sm:grid-cols-2">
+            <div className="stagger-in grid gap-4 sm:grid-cols-2">
               {[
                 { icon: ShieldCheck, t: "Methodological rigour", d: "Evidence-first scoring, hard gates, and independent review before certification." },
                 { icon: Scale, t: "Independence", d: "Assessor ethics, conflict-of-interest, and quality-assurance policies." },
@@ -73,7 +73,7 @@ export default function AboutPage() {
             title="How the Framework stays trustworthy"
             intro="A framework that certifies trust must itself be governed transparently. These safeguards keep Nucleus Systems Code Trust Assurance Framework credible as it scales."
           />
-          <div className="mt-10 grid gap-4 md:grid-cols-2">
+          <div className="stagger-in mt-10 grid gap-4 md:grid-cols-2">
             {governanceSafeguards.map((g) => (
               <div key={g} className="flex gap-3 rounded-[var(--radius-brand)] border border-line bg-white p-5">
                 <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-blue" />

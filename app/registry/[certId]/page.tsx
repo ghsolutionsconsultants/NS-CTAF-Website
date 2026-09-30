@@ -100,7 +100,7 @@ export default async function CompanyProfilePage({
 
       <Section>
         <Container>
-          <div className="grid gap-8 lg:grid-cols-[1.4fr_1fr]">
+          <div className="stagger-in grid gap-8 lg:grid-cols-[1.4fr_1fr]">
             {/* Details */}
             <div>
               <h2 className="font-display text-xl font-bold text-navy">Certificate details</h2>

@@ -61,7 +61,7 @@ export default function CertificationPage() {
             title="From application to renewal"
             intro="Certification is a lifecycle, not a one-off — with annual renewal and, for higher levels, quarterly verification."
           />
-          <div className="mt-10 grid gap-4 md:grid-cols-2">
+          <div className="stagger-in mt-10 grid gap-4 md:grid-cols-2">
             {certificationLifecycle.map((step, i) => (
               <div key={step} className="flex gap-4 rounded-[var(--radius-brand)] border border-line bg-white p-5">
                 <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-navy font-mono text-sm font-bold text-white">
@@ -82,7 +82,7 @@ export default function CertificationPage() {
             title="Status the market can rely on"
             intro="Every certificate carries a public status. Basic verification is always free; deeper access is available through Report Access."
           />
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="stagger-in mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {certStatuses.map((s) => (
               <div key={s.status} className="rounded-[var(--radius-brand)] border border-line bg-white p-5">
                 <div className="flex items-center gap-2">

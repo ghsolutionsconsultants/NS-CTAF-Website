@@ -50,7 +50,7 @@ export default function WhatIsCtafPage() {
 
       <Section>
         <Container>
-          <div className="grid gap-12 lg:grid-cols-2">
+          <div className="stagger-in grid gap-12 lg:grid-cols-2">
             <div>
               <SectionHeading eyebrow="Definition" title="Not a checklist. Not a scan." />
               <p className="mt-5 text-lg leading-relaxed text-slate">{definition}</p>
@@ -95,7 +95,7 @@ export default function WhatIsCtafPage() {
             title="Five questions. For most organisations, the honest answer to all five is no."
             intro="These are not questions a vulnerability scanner was ever designed to answer. They are the questions a regulator, an acquirer, or an enterprise customer will eventually ask you."
           />
-          <div className="mt-12 grid gap-4 md:grid-cols-2">
+          <div className="stagger-in mt-12 grid gap-4 md:grid-cols-2">
             {fiveQuestions.map((q, i) => (
               <div
                 key={q}
@@ -135,7 +135,7 @@ export default function WhatIsCtafPage() {
             title="Scanning tells you what you found. It cannot tell you what you can trust."
             intro="Most organisations can say how many vulnerabilities their scanner found last quarter. Almost none can cryptographically prove who wrote their code, that their build pipeline was not compromised, or that the dependencies they shipped were not substituted in transit."
           />
-          <div className="mt-10 grid gap-5 lg:grid-cols-2">
+          <div className="stagger-in mt-10 grid gap-5 lg:grid-cols-2">
             <div className="rounded-[var(--radius-brand)] border border-line bg-white p-6">
               <div className="flex items-center gap-2 text-sm font-semibold text-slate">
                 <X className="h-4 w-4" /> A checklist asks
@@ -164,7 +164,7 @@ export default function WhatIsCtafPage() {
             </div>
           </div>
 
-          <div className="mt-8 grid gap-5 md:grid-cols-2">
+          <div className="stagger-in mt-8 grid gap-5 md:grid-cols-2">
             <div className="rounded-[var(--radius-brand)] border border-line bg-white p-6">
               <h3 className="font-display font-bold text-navy">What it evaluates</h3>
               <ul className="mt-4 space-y-2">
@@ -199,7 +199,7 @@ export default function WhatIsCtafPage() {
             intro="A control addressing build provenance might be independently assessed for SLSA Level 3, NIST SSDF RV.1, and Executive Order 14028 Section 4 — three assessments of fundamentally the same trust capability, with three evidence collections, three gap analyses, and three reporting formats."
           />
 
-          <div className="mt-10 grid gap-5 md:grid-cols-3">
+          <div className="stagger-in mt-10 grid gap-5 md:grid-cols-3">
             {fragmentationCosts.map((c) => (
               <div
                 key={c.unit}
@@ -304,7 +304,7 @@ export default function WhatIsCtafPage() {
             title="Built so that documentation cannot outscore reality"
             intro="There is a well-known observation among assessors: the fastest way to improve a code security score is to hire someone skilled in documentation rather than in security engineering. This framework is designed to make that impossible."
           />
-          <div className="mt-12 grid gap-5 md:grid-cols-2">
+          <div className="stagger-in mt-12 grid gap-5 md:grid-cols-2">
             {defensibility.map((d) => (
               <div
                 key={d.title}
@@ -326,7 +326,7 @@ export default function WhatIsCtafPage() {
       {/* The completion problem */}
       <Section>
         <Container>
-          <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
+          <div className="stagger-in grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
             <div className="rounded-[calc(var(--radius-brand)+4px)] border border-line bg-white p-8 shadow-[var(--shadow-brand-sm)]">
               <div className="relative mx-auto" style={{ width: 200, height: 200 }}>
                 <svg width="200" height="200" viewBox="0 0 200 200" role="img" aria-label="70 percent of gaps remain unaddressed">
@@ -379,7 +379,7 @@ export default function WhatIsCtafPage() {
             title="Structural responses to real failure modes"
             intro="These are not theoretical ideals. Each principle answers a failure mode observed in a real supply chain attack."
           />
-          <div className="mt-12 grid gap-5 md:grid-cols-2">
+          <div className="stagger-in mt-12 grid gap-5 md:grid-cols-2">
             {designPrinciples.map((p, i) => (
               <div
                 key={p.name}
@@ -410,7 +410,7 @@ export default function WhatIsCtafPage() {
             title="Software supply chain security is no longer voluntary"
             intro="Three regulations now impose mandatory obligations on the organisations that build and supply software. Every Nucleus Systems Code Trust Assurance Framework control maps to specific articles, so assessment output is auditor-ready."
           />
-          <div className="mt-10 grid gap-5 md:grid-cols-3">
+          <div className="stagger-in mt-10 grid gap-5 md:grid-cols-3">
             {regulations.map((r) => (
               <div
                 key={r.name}
@@ -446,7 +446,7 @@ export default function WhatIsCtafPage() {
             title="Built by Nucleus Systems"
             intro="Nucleus Systems Code Trust Assurance Framework was created by Nucleus Systems as part of its work in software assurance, code security, secure delivery, supply-chain risk, and evidence-based maturity measurement."
           />
-          <div className="mt-8 grid gap-5 md:grid-cols-3">
+          <div className="stagger-in mt-8 grid gap-5 md:grid-cols-3">
             {[
               { t: "The framework", d: "The Nucleus Systems Code Trust Assurance Framework model itself — 86 controls, six domains, and the Trust Score methodology." },
               { t: "The assessment", d: "A fixed-fee, evidence-first engagement that independently scores your posture." },

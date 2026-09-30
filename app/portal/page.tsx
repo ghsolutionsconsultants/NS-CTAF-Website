@@ -52,7 +52,7 @@ export default function PortalPage() {
       />
       <Section>
         <Container>
-          <div className="grid gap-5 md:grid-cols-3">
+          <div className="stagger-in grid gap-5 md:grid-cols-3">
             {areas.map((a) => (
               <div key={a.title} className="flex flex-col rounded-[var(--radius-brand)] border border-line bg-white p-6 shadow-[var(--shadow-brand-sm)]">
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-navy text-white">

@@ -26,7 +26,7 @@ export default function RegistryPage() {
       </PageHero>
 
       <div className="border-b border-line bg-white">
-        <Container className="grid grid-cols-2 gap-6 py-6 md:grid-cols-4">
+        <Container className="stagger-in grid grid-cols-2 gap-6 py-6 md:grid-cols-4">
           <Stat value={registry.length} label="Listed companies" />
           <Stat value={active} label="Active certificates" />
           <Stat value="7" label="Continents covered" />

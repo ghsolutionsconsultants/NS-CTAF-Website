@@ -75,7 +75,7 @@ export default function ReportAccessPage() {
 
       <Section className="bg-grey">
         <Container>
-          <div className="grid gap-10 lg:grid-cols-2">
+          <div className="stagger-in grid gap-10 lg:grid-cols-2">
             <div>
               <SectionHeading eyebrow="Every bundle includes" title="Bundle features" />
               <ul className="mt-6 space-y-3">

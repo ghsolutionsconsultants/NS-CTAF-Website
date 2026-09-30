@@ -32,7 +32,7 @@ export default function PartnersPage() {
             title="Four ways to join the ecosystem"
             intro="Whether you assess, implement, integrate, or represent Nucleus Systems Code Trust Assurance Framework regionally, there is a defined pathway."
           />
-          <div className="mt-12 grid gap-5 md:grid-cols-2">
+          <div className="stagger-in mt-12 grid gap-5 md:grid-cols-2">
             {partnerTracks.map((t) => (
               <div key={t.title} className="flex flex-col rounded-[var(--radius-brand)] border border-line bg-white p-6 shadow-[var(--shadow-brand-sm)]">
                 <div className="flex items-center gap-4">
@@ -59,13 +59,13 @@ export default function PartnersPage() {
 
       <Section className="bg-grey">
         <Container>
-          <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+          <div className="stagger-in grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
             <SectionHeading
               eyebrow="Independence & quality"
               title="Trust in the assessors, not just the assessment"
               intro="A framework that certifies trust must hold its own assessors to the highest standard. These policies keep Nucleus Systems Code Trust Assurance Framework certifications credible and comparable."
             />
-            <div className="grid gap-4 sm:grid-cols-2">
+            <div className="stagger-in grid gap-4 sm:grid-cols-2">
               {assessorPolicies.map((p) => (
                 <div key={p} className="flex gap-3 rounded-[var(--radius-brand)] border border-line bg-white p-5">
                   <ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-blue" />

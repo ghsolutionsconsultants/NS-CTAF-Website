@@ -37,7 +37,7 @@ export default function AssessmentPage() {
       {/* Commercial facts */}
       <Section>
         <Container>
-          <div className="grid gap-5 md:grid-cols-3">
+          <div className="stagger-in grid gap-5 md:grid-cols-3">
             {[
               { icon: CircleDollarSign, v: site.fee, l: "Fixed fee — all-inclusive" },
               { icon: CalendarClock, v: site.turnaround, l: "From kickoff to certificate" },
@@ -65,7 +65,7 @@ export default function AssessmentPage() {
             title="Six phases from scope to certification readiness"
             intro="Automated tooling structures the scoring; independent assessors validate the evidence."
           />
-          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          <div className="stagger-in mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {assessmentPhases.map((p, i) => (
               <div key={p.phase} className="flex flex-col rounded-[var(--radius-brand)] border border-line bg-white p-6">
                 <span className="font-mono text-2xl font-bold text-line">0{i + 1}</span>
@@ -81,7 +81,7 @@ export default function AssessmentPage() {
       {/* Deliverables + principles */}
       <Section>
         <Container>
-          <div className="grid gap-10 lg:grid-cols-2">
+          <div className="stagger-in grid gap-10 lg:grid-cols-2">
             <div>
               <SectionHeading eyebrow="Deliverables" title="What you receive" />
               <ul className="mt-6 space-y-3">
@@ -116,7 +116,7 @@ export default function AssessmentPage() {
             title="Cryptographic proof beats assertion"
             intro="Higher maturity levels require higher-tier evidence — there is no maturity inflation through policy-only documentation."
           />
-          <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+          <div className="stagger-in mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
             {evidenceTiers.map((t) => (
               <div key={t.tier} className="rounded-[var(--radius-brand)] border border-line bg-white p-6">
                 <span className="font-mono text-lg font-bold text-blue">{t.tier}</span>
@@ -136,7 +136,7 @@ export default function AssessmentPage() {
             title="Eight stages, ~20 business days"
             intro="From first contact to CTA certification — a predictable path with a fixed fee and defined deliverables at each stage."
           />
-          <div className="mt-12 grid grid-cols-2 gap-6 border-b border-line pb-8 md:grid-cols-4">
+          <div className="stagger-in mt-12 grid grid-cols-2 gap-6 border-b border-line pb-8 md:grid-cols-4">
             <StatTile value="86" label="Controls scored" />
             <StatTile value="6" label="Domains" />
             <StatTile value="~20" label="Business days" />
@@ -147,7 +147,7 @@ export default function AssessmentPage() {
             {journey.map((s) => (
               <div
                 key={s.n}
-                className="grid gap-4 rounded-[var(--radius-brand)] border border-line bg-white p-6 md:grid-cols-[auto_1fr_1.2fr]"
+                className="stagger-in grid gap-4 rounded-[var(--radius-brand)] border border-line bg-white p-6 md:grid-cols-[auto_1fr_1.2fr]"
               >
                 <div className="flex items-center gap-4 md:flex-col md:items-start">
                   <span className="font-display text-3xl font-bold text-line">{s.n}</span>
