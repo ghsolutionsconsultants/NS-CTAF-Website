@@ -7,7 +7,6 @@ import {
   FileCheck2,
   BadgeCheck,
   Radar,
-  Fingerprint,
 } from "lucide-react";
 import { Container, Section, SectionHeading, Button, StatTile, Eyebrow } from "@/components/ui";
 import { Reveal, Stagger, StaggerItem } from "@/components/reveal";
@@ -15,8 +14,9 @@ import { DomainsGrid } from "@/components/domains-grid";
 import { CtaLevelCards } from "@/components/cta-levels";
 import { RegistryCard } from "@/components/registry-card";
 import { TrustScoreGauge } from "@/components/trust-score-gauge";
-import { TrustPipeline } from "@/components/trust-pipeline";
 import { FrameworkMarquee } from "@/components/framework-marquee";
+import { TrustGraphBg } from "@/components/trust-graph-bg";
+import { HeroDashboard } from "@/components/hero-dashboard";
 import { site } from "@/data/site";
 import { registry } from "@/data/registry";
 import { alignments } from "@/data/alignments";
@@ -35,7 +35,8 @@ export default function HomePage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-mesh bg-trust-grid grid-drift text-white">
+      <section className="relative overflow-hidden bg-mesh bg-trust-grid text-white">
+        <TrustGraphBg />
         <Container className="relative py-20 md:py-28">
           <div className="stagger-in grid gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
           <div className="animate-fade-up">
@@ -65,31 +66,14 @@ export default function HomePage() {
             </p>
           </div>
 
-          {/* Above the fold: rendered visible by default, entrance is CSS-only
-              enhancement so the card never depends on JS to be seen. */}
+          {/* Live dashboard cluster. Everything renders at its final, readable
+              state by default; the motion is a CSS-only enhancement. */}
           <div className="animate-fade-up relative [animation-delay:120ms]">
-            {/* Ambient glow behind the specimen card */}
             <div
               aria-hidden
               className="pointer-events-none absolute -inset-8 rounded-full bg-blue-bright/20 blur-3xl"
             />
-            <div className="relative rounded-[calc(var(--radius-brand)+8px)] border border-white/[0.14] bg-white/[0.07] p-6 shadow-[0_30px_80px_rgba(0,0,0,0.35)] backdrop-blur-md">
-              <TrustPipeline />
-
-              <div className="mt-6 rounded-2xl bg-white p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.9)]">
-                <div className="mb-1 flex items-center justify-between">
-                  <span className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-slate">
-                    <Fingerprint className="h-3.5 w-3.5 text-orange" /> Specimen · Paxley Software
-                  </span>
-                  <span className="rounded-full bg-orange px-2 py-0.5 text-[10px] font-bold text-white">
-                    CTA-4
-                  </span>
-                </div>
-                <div className="flex justify-center">
-                  <TrustScoreGauge score={84} size={190} />
-                </div>
-              </div>
-            </div>
+            <HeroDashboard />
           </div>
           </div>
 
@@ -122,7 +106,7 @@ export default function HomePage() {
         </div>
 
         {/* Metrics strip */}
-        <div className="edge-glow relative border-t border-white/10 bg-[#071324]/60 backdrop-blur-sm">
+        <div className="edge-glow relative border-t border-white/10 bg-[#071324]/60">
           <Container className="stagger-in grid grid-cols-2 gap-y-8 py-10 md:grid-cols-3 lg:grid-cols-6 lg:gap-y-0">
             {[
               { v: site.metrics.controls, l: "Controls", n: site.metrics.controls },
@@ -217,32 +201,47 @@ export default function HomePage() {
         </Container>
       </Section>
 
-      {/* How it works */}
-      <Section>
-        <Container>
+      {/* How it works — pinned and scroll-scrubbed */}
+      <section className="relative overflow-hidden bg-navy bg-trust-grid py-20 text-white md:py-28">
+        <TrustGraphBg />
+        <Container className="relative">
           <SectionHeading
+            light
             eyebrow="How assessment works"
             title="From evidence to a public trust signal"
             intro="Assessment combines evidence, maturity scoring, automated tooling, and independent assessor validation."
           />
-          <Stagger className="stagger-in mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-            {flow.map((s, i) => (
-              <StaggerItem key={s.title}>
-                <div className="flex h-full flex-col rounded-[var(--radius-brand)] border border-line bg-white p-6 shadow-[var(--shadow-brand-sm)]">
-                  <div className="flex items-center justify-between">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-navy text-white">
-                      <s.icon className="h-5 w-5" />
+
+          <div className="scrub-wrap relative mt-14 lg:min-h-[190vh]">
+            <div className="scrub-sticky">
+              {/* Progress spine */}
+              <div className="mb-8 h-0.5 w-full overflow-hidden rounded-full bg-white/10">
+                <div className="scrub-line h-full w-full origin-left rounded-full bg-gradient-to-r from-blue-bright to-orange" />
+              </div>
+
+              <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+                {flow.map((s2, i) => (
+                  <div
+                    key={s2.title}
+                    className="scrub-stage glow-border flex h-full flex-col rounded-[var(--radius-brand)] border border-white/12 bg-[#0e2143]/90 p-6"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="icon-pop flex h-12 w-12 items-center justify-center rounded-xl bg-white/10 text-white">
+                        <s2.icon className="h-5 w-5" />
+                      </div>
+                      <span className="tabular font-mono text-2xl font-bold text-white/50">
+                        0{i + 1}
+                      </span>
                     </div>
-                    <span className="font-mono text-2xl font-bold text-line">0{i + 1}</span>
+                    <h3 className="mt-5 font-display text-lg font-bold !text-white">{s2.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-blue-soft/75">{s2.text}</p>
                   </div>
-                  <h3 className="mt-5 text-lg font-bold text-navy">{s.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-slate">{s.text}</p>
-                </div>
-              </StaggerItem>
-            ))}
-          </Stagger>
+                ))}
+              </div>
+            </div>
+          </div>
         </Container>
-      </Section>
+      </section>
 
       {/* Certification levels */}
       <Section className="bg-navy bg-trust-grid">

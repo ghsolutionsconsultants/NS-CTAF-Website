@@ -120,7 +120,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={state.s === "loading"}
-        className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-orange px-6 py-3.5 text-base font-medium text-white shadow-[0_10px_30px_rgba(244,128,30,0.28)] transition hover:brightness-105 disabled:opacity-60 sm:w-auto"
+        className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-orange px-6 py-3.5 text-base font-medium text-navy shadow-[0_10px_30px_rgba(244,128,30,0.28)] transition hover:brightness-105 disabled:opacity-60 sm:w-auto"
       >
         {state.s === "loading" ? (
           <>
@@ -153,7 +153,7 @@ function Field({
   return (
     <label className="block">
       <span className="mb-1.5 block text-sm font-semibold text-navy">
-        {label} {required && <span className="text-orange">*</span>}
+        {label} {required && <span className="text-orange-ink">*</span>}
       </span>
       <input
         type={type}

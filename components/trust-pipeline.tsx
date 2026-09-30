@@ -39,7 +39,7 @@ export function TrustPipeline() {
             <s.icon className="h-4 w-4 shrink-0 text-blue-soft/90" />
             <div className="min-w-0 flex-1">
               <div className="truncate text-[13px] font-semibold text-white">{s.label}</div>
-              <div className="truncate text-[11px] text-blue-soft/60">{s.note}</div>
+              <div className="truncate text-[11px] text-blue-soft/80">{s.note}</div>
             </div>
             <span
               className="pipe-check flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-status-active/20"

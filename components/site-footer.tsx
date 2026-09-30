@@ -25,7 +25,7 @@ export function SiteFooter() {
             <div className="mt-6">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 rounded-full bg-orange px-5 py-2.5 text-sm font-medium text-white transition hover:brightness-105"
+                className="inline-flex items-center gap-2 rounded-full bg-orange px-5 py-2.5 text-sm font-medium text-navy transition hover:brightness-105"
               >
                 Get Assessed <ArrowRight className="h-4 w-4" />
               </Link>
@@ -53,7 +53,7 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col gap-4 border-t border-white/10 pt-6 text-xs text-blue-soft/60 md:flex-row md:items-center md:justify-between">
+        <div className="mt-14 flex flex-col gap-4 border-t border-white/10 pt-6 text-xs text-blue-soft/80 md:flex-row md:items-center md:justify-between">
           <p>
             © {new Date().getFullYear()} {site.owner}. {site.frameworkVersion}. Confidential
             framework material.

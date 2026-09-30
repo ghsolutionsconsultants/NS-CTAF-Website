@@ -105,7 +105,7 @@ export default function WhatIsCtafPage() {
               >
                 <span
                   aria-hidden
-                  className="tabular pointer-events-none absolute -right-2 -top-5 font-display text-[5rem] font-bold leading-none text-white/[0.06] transition-colors duration-300 group-hover:text-orange/20"
+                  className="tabular pointer-events-none absolute -right-2 -top-5 font-display text-[5rem] font-bold leading-none text-white/[0.10] transition-colors duration-300 group-hover:text-orange/20"
                 >
                   {String(i + 1).padStart(2, "0")}
                 </span>
@@ -113,7 +113,7 @@ export default function WhatIsCtafPage() {
                 <p className="relative mt-5 text-[0.95rem] leading-relaxed text-blue-soft/85 md:text-base">
                   {q}
                 </p>
-                <span className="mt-5 inline-flex items-center gap-1.5 rounded-full bg-white/[0.07] px-2.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-blue-soft/60">
+                <span className="mt-5 inline-flex items-center gap-1.5 rounded-full bg-white/[0.07] px-2.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-blue-soft/80">
                   Typical answer · No
                 </span>
               </div>
@@ -346,7 +346,7 @@ export default function WhatIsCtafPage() {
                   />
                 </svg>
                 <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center">
-                  <span className="tabular font-display text-[2.75rem] font-bold leading-none text-orange">
+                  <span className="tabular font-display text-[2.75rem] font-bold leading-none text-orange-ink">
                     {completionProblem.stat}
                   </span>
                   <span className="mt-1.5 flex items-center gap-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-slate">
@@ -392,7 +392,7 @@ export default function WhatIsCtafPage() {
                   <h3 className="font-display text-base font-bold !text-white">{p.name}</h3>
                 </div>
                 <p className="mt-3 text-sm leading-relaxed text-blue-soft/80">{p.description}</p>
-                <p className="mt-3 border-t border-white/10 pt-3 text-xs leading-relaxed text-blue-soft/60">
+                <p className="mt-3 border-t border-white/10 pt-3 text-xs leading-relaxed text-blue-soft/80">
                   <span className="font-semibold text-blue-soft/80">Why it matters — </span>
                   {p.why}
                 </p>
@@ -418,7 +418,7 @@ export default function WhatIsCtafPage() {
               >
                 <Scale className="h-6 w-6 text-blue" />
                 <h3 className="mt-4 font-display font-bold text-navy">{r.name}</h3>
-                <p className="mt-1 text-xs font-medium text-orange">{r.inForce}</p>
+                <p className="mt-1 text-xs font-medium text-orange-ink">{r.inForce}</p>
                 <p className="mt-3 text-sm leading-relaxed text-slate">{r.requirement}</p>
               </div>
             ))}

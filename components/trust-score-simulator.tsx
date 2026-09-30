@@ -51,6 +51,9 @@ export function TrustScoreSimulator() {
     : thresholds[thresholds.length - 1];
 
   const accent = level?.colorVar ?? "var(--color-slate)";
+  // The big score sits on a light panel, where CTA-4's brand orange is not
+  // legible; inkVar is the same hue darkened to clear contrast.
+  const accentInk = level?.inkVar ?? "var(--color-slate)";
 
   return (
     <div className="overflow-hidden rounded-[calc(var(--radius-brand)+4px)] border border-line bg-white shadow-[var(--shadow-brand)]">
@@ -127,7 +130,7 @@ export function TrustScoreSimulator() {
           <div className="mt-6 flex items-end gap-4">
             <div
               className="tabular font-display text-[4rem] font-bold leading-none transition-colors duration-500"
-              style={{ color: accent }}
+              style={{ color: accentInk }}
             >
               {score}
             </div>

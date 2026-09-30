@@ -43,7 +43,7 @@ export default function CertificationPage() {
             <CtaLevelCards detailed />
           </div>
           <div className="mt-8 flex items-start gap-3 rounded-[var(--radius-brand)] border border-orange/30 bg-orange-soft p-5">
-            <ShieldCheck className="h-6 w-6 flex-shrink-0 text-orange" />
+            <ShieldCheck className="h-6 w-6 flex-shrink-0 text-orange-ink" />
             <p className="text-sm text-ink">
               <span className="font-semibold">Seven hard gates.</span> {HARD_GATES} foundational
               requirements must pass before any CTA level is awarded — regardless of the overall

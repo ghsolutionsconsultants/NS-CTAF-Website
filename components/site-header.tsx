@@ -98,7 +98,7 @@ export function SiteHeader() {
           </Link>
           <Link
             href="/contact"
-            className="inline-flex h-11 items-center gap-2 whitespace-nowrap rounded-full bg-orange px-5 text-sm font-medium leading-none text-white shadow-[0_10px_24px_rgba(244,128,30,0.28)] transition hover:brightness-105"
+            className="inline-flex h-11 items-center gap-2 whitespace-nowrap rounded-full bg-orange px-5 text-sm font-medium leading-none text-navy shadow-[0_10px_24px_rgba(244,128,30,0.28)] transition hover:brightness-105"
           >
             <span>Start Assessment</span>
             <ArrowRight className="h-4 w-4 shrink-0" />
@@ -137,7 +137,7 @@ export function SiteHeader() {
               </Link>
               <Link
                 href="/contact"
-                className="flex w-full items-center justify-center gap-2 rounded-full bg-orange px-4 py-3 text-sm font-medium text-white shadow-[0_10px_24px_rgba(244,128,30,0.28)]"
+                className="flex w-full items-center justify-center gap-2 rounded-full bg-orange px-4 py-3 text-sm font-medium text-navy shadow-[0_10px_24px_rgba(244,128,30,0.28)]"
               >
                 Start Assessment <ArrowRight className="h-4 w-4 shrink-0" />
               </Link>

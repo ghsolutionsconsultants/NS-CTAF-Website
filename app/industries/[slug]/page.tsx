@@ -47,7 +47,7 @@ export default async function IndustryPage({
         <Container>
           <div className="stagger-in grid gap-8 lg:grid-cols-3">
             <div className="rounded-[var(--radius-brand)] border border-line bg-white p-6">
-              <Target className="h-6 w-6 text-orange" />
+              <Target className="h-6 w-6 text-orange-ink" />
               <h3 className="mt-4 font-display font-bold text-navy">The trust problem</h3>
               <p className="mt-2 text-sm leading-relaxed text-slate">{ind.problem}</p>
             </div>

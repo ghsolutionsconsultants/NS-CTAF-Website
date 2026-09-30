@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { Container, Section, Button } from "@/components/ui";
 import { CtaBand } from "@/components/cta-band";
 import { registry, findByCertId } from "@/data/registry";
-import { ctaColor, ctaLevels, statusColor } from "@/data/certification";
+import { ctaColor, ctaLevels, ctaOnColor, statusColor } from "@/data/certification";
 import {
   ArrowLeft,
   MapPin,
@@ -73,8 +73,8 @@ export default async function CompanyProfilePage({
               <p className="mt-2 text-blue-soft/80">{entry.product}</p>
               <div className="mt-4 flex flex-wrap items-center gap-3">
                 <span
-                  className="rounded-full px-3 py-1 text-sm font-bold text-white"
-                  style={{ background: ctaColor(entry.level) }}
+                  className="rounded-full px-3 py-1 text-sm font-bold"
+                  style={{ background: ctaColor(entry.level), color: ctaOnColor(entry.level) }}
                 >
                   {entry.level} · {levelDef?.name}
                 </span>

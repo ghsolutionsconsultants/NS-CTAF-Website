@@ -68,7 +68,7 @@ export default function AssessmentPage() {
           <div className="stagger-in mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {assessmentPhases.map((p, i) => (
               <div key={p.phase} className="flex flex-col rounded-[var(--radius-brand)] border border-line bg-white p-6">
-                <span className="font-mono text-2xl font-bold text-line">0{i + 1}</span>
+                <span className="font-mono text-2xl font-bold text-blue/70">0{i + 1}</span>
                 <h3 className="mt-2 font-display text-lg font-bold text-navy">{p.phase.replace(/^\d+\.\s/, "")}</h3>
                 <p className="mt-2 flex-1 text-sm leading-relaxed text-slate">{p.description}</p>
                 <p className="mt-4 border-t border-line pt-3 text-xs font-medium text-blue">→ {p.output}</p>
@@ -150,7 +150,7 @@ export default function AssessmentPage() {
                 className="stagger-in grid gap-4 rounded-[var(--radius-brand)] border border-line bg-white p-6 md:grid-cols-[auto_1fr_1.2fr]"
               >
                 <div className="flex items-center gap-4 md:flex-col md:items-start">
-                  <span className="font-display text-3xl font-bold text-line">{s.n}</span>
+                  <span className="font-display text-3xl font-bold text-blue/70">{s.n}</span>
                   <div>
                     <div className="text-[11px] font-semibold uppercase tracking-wider text-blue">{s.phase}</div>
                     <div className="text-xs text-slate">{s.duration}</div>

@@ -14,14 +14,14 @@ export function CtaLevelCards({ detailed = false }: { detailed?: boolean }) {
             style={{ background: lvl.colorVar }}
           />
           <div className="flex items-baseline justify-between">
-            <span className="font-mono text-sm font-semibold" style={{ color: lvl.colorVar }}>
+            <span className="font-mono text-sm font-semibold" style={{ color: lvl.inkVar }}>
               {lvl.id}
             </span>
             <span
               className="rounded-full px-2.5 py-1 text-xs font-semibold"
               style={{
-                background: `color-mix(in srgb, ${lvl.colorVar} 14%, white)`,
-                color: lvl.colorVar,
+                background: `color-mix(in srgb, ${lvl.inkVar} 10%, white)`,
+                color: lvl.inkVar,
               }}
             >
               Trust {lvl.trustScore}
@@ -34,7 +34,7 @@ export function CtaLevelCards({ detailed = false }: { detailed?: boolean }) {
             <ul className="mt-4 space-y-2 border-t border-line pt-4">
               {lvl.requirements.map((r) => (
                 <li key={r} className="flex gap-2 text-xs text-ink">
-                  <Check className="mt-0.5 h-3.5 w-3.5 flex-shrink-0" style={{ color: lvl.colorVar }} />
+                  <Check className="mt-0.5 h-3.5 w-3.5 flex-shrink-0" style={{ color: lvl.inkVar }} />
                   {r}
                 </li>
               ))}

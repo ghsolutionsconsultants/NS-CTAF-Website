@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 const toneStyle: Record<string, string> = {
   public: "text-status-active",
   metered: "text-blue",
-  paid: "text-orange",
+  paid: "text-orange-ink",
   private: "text-status-expired",
 };
 

@@ -5,7 +5,11 @@ export type CtaLevel = "CTA-1" | "CTA-2" | "CTA-3" | "CTA-4";
 export interface CtaLevelDef {
   id: CtaLevel;
   name: string;
-  colorVar: string; // css var token
+  colorVar: string;
+  /** Same hue, darkened where needed so it passes contrast as TEXT on white. */
+  inkVar: string;
+  /** Text colour to use when this level is the BACKGROUND of a chip. */
+  onFillVar: string;
   meaning: string;
   trustScore: string;
   controls: string;
@@ -17,6 +21,8 @@ export const ctaLevels: CtaLevelDef[] = [
     id: "CTA-1",
     name: "Transparent",
     colorVar: "var(--color-cta1)",
+    inkVar: "var(--color-cta1)",
+    onFillVar: "var(--color-white)",
     meaning:
       "The software supply chain is visible. SBOMs, basic scanning, dependency inventory, and ownership are in place.",
     trustScore: "≥ 30",
@@ -31,6 +37,8 @@ export const ctaLevels: CtaLevelDef[] = [
     id: "CTA-2",
     name: "Verified",
     colorVar: "var(--color-cta2)",
+    inkVar: "var(--color-cta2)",
+    onFillVar: "var(--color-white)",
     meaning:
       "Trust is backed by cryptographic evidence — artifact signing, build provenance, and automated security controls.",
     trustScore: "≥ 48",
@@ -45,6 +53,8 @@ export const ctaLevels: CtaLevelDef[] = [
     id: "CTA-3",
     name: "Assured",
     colorVar: "var(--color-cta3)",
+    inkVar: "var(--color-cta3)",
+    onFillVar: "var(--color-white)",
     meaning:
       "Trust is continuously measured across development, supply chain, runtime, and governance.",
     trustScore: "≥ 62",
@@ -59,6 +69,8 @@ export const ctaLevels: CtaLevelDef[] = [
     id: "CTA-4",
     name: "Adaptive Trust",
     colorVar: "var(--color-cta4)",
+    inkVar: "var(--color-orange-ink)",
+    onFillVar: "var(--color-navy)",
     meaning:
       "Trust is automated, continuously computed, self-healing, and independently verified.",
     trustScore: "≥ 78",
@@ -100,6 +112,11 @@ export const certStatuses: { status: CertStatus; meaning: string; colorVar: stri
   { status: "Withdrawn", meaning: "Certification has been removed.", colorVar: "var(--color-status-withdrawn)" },
   { status: "Superseded", meaning: "Replaced by a newer certificate or assessment.", colorVar: "var(--color-status-withdrawn)" },
 ];
+
+/** Readable text colour for a chip filled with that level's colour. */
+export function ctaOnColor(level: CtaLevel): string {
+  return ctaLevels.find((l) => l.id === level)?.onFillVar ?? "var(--color-white)";
+}
 
 export function ctaColor(level: CtaLevel): string {
   return ctaLevels.find((l) => l.id === level)?.colorVar ?? "var(--color-blue)";

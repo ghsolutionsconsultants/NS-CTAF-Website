@@ -4,8 +4,24 @@
     {
       "name": "ctaf-dev",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev"],
+      "runtimeArgs": [
+        "run",
+        "dev"
+      ],
       "port": 3000
+    },
+    {
+      "name": "ctaf-static",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": [
+        "--yes",
+        "serve",
+        "out",
+        "-l",
+        "3210",
+        "--no-clipboard"
+      ],
+      "port": 3210
     }
   ]
 }

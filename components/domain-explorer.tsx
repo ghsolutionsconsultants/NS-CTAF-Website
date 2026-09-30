@@ -5,6 +5,7 @@ import { Icon } from "./icon";
 import { domains } from "@/data/framework";
 import { domainRationale } from "@/data/framework-detail";
 
+// Accents for the light detail panel.
 const ACCENT: Record<string, string> = {
   D1: "var(--color-blue-bright)",
   D2: "var(--color-blue)",
@@ -12,6 +13,17 @@ const ACCENT: Record<string, string> = {
   D4: "#0a3aa0",
   D5: "#1fb5a0",
   D6: "var(--color-slate)",
+};
+
+// The selected tab sits on navy, where the accents above are far too dark to
+// read. These are the same hues lifted into a legible range on a dark surface.
+const ACCENT_ON_DARK: Record<string, string> = {
+  D1: "#7aa3e8",
+  D2: "#9dbcf2",
+  D3: "var(--color-orange)",
+  D4: "#8fb0f0",
+  D5: "#5fd3c2",
+  D6: "#b6c4d6",
 };
 
 export function DomainExplorer() {
@@ -40,8 +52,8 @@ export function DomainExplorer() {
               <span
                 className="icon-pop flex h-9 w-9 shrink-0 items-center justify-center rounded-lg"
                 style={{
-                  background: on ? accent : "var(--color-blue-soft)",
-                  color: on ? "#fff" : "var(--color-blue)",
+                  background: on ? ACCENT_ON_DARK[x.id] : "var(--color-blue-soft)",
+                  color: on ? "var(--color-navy)" : "var(--color-blue)",
                 }}
               >
                 <Icon name={x.icon} className="h-[18px] w-[18px]" />
@@ -54,7 +66,7 @@ export function DomainExplorer() {
               </span>
               <span
                 className="tabular shrink-0 font-display text-sm font-bold"
-                style={{ color: on ? accent : "var(--color-navy)" }}
+                style={{ color: on ? ACCENT_ON_DARK[x.id] : "var(--color-navy)" }}
               >
                 {x.weight}%
               </span>

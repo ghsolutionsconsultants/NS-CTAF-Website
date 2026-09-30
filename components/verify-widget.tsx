@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { ShieldCheck, ShieldX, Search, ArrowRight } from "lucide-react";
 import { findByCertId, type RegistryEntry } from "@/data/registry";
-import { ctaColor, ctaLevels, statusColor } from "@/data/certification";
+import { ctaColor, ctaLevels, ctaOnColor, statusColor } from "@/data/certification";
 
 type Result = { state: "idle" } | { state: "found"; entry: RegistryEntry } | { state: "missing"; q: string };
 
@@ -57,7 +57,10 @@ export function VerifyWidget() {
               <h3 className="font-display text-xl font-bold text-navy">{result.entry.company}</h3>
               <p className="text-sm text-slate">{result.entry.product}</p>
               <div className="mt-3 flex flex-wrap items-center gap-2">
-                <span className="rounded-full px-2.5 py-1 text-xs font-bold text-white" style={{ background: ctaColor(result.entry.level) }}>
+                <span
+                  className="rounded-full px-2.5 py-1 text-xs font-bold"
+                  style={{ background: ctaColor(result.entry.level), color: ctaOnColor(result.entry.level) }}
+                >
                   {result.entry.level} · {ctaLevels.find((l) => l.id === result.entry.level)?.name}
                 </span>
                 <span className="inline-flex items-center gap-1.5 text-xs font-semibold" style={{ color: statusColor(result.entry.status) }}>

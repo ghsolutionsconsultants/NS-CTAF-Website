@@ -88,7 +88,7 @@ const variantClasses: Record<NonNullable<ButtonProps["variant"]>, string> = {
   primary:
     "bg-blue text-white shadow-[var(--shadow-blue)] hover:bg-blue-bright hover:shadow-[0_14px_36px_rgba(11,80,200,0.34)] hover:-translate-y-0.5",
   orange:
-    "bg-orange text-white shadow-[var(--shadow-orange)] hover:brightness-[1.06] hover:shadow-[0_14px_36px_rgba(244,128,30,0.34)] hover:-translate-y-0.5",
+    "bg-orange text-navy shadow-[var(--shadow-orange)] hover:brightness-[1.06] hover:shadow-[0_14px_36px_rgba(244,128,30,0.34)] hover:-translate-y-0.5",
   dark: "bg-navy text-white hover:bg-ink hover:-translate-y-0.5 hover:shadow-[var(--shadow-brand)]",
   outline:
     "border border-line bg-white text-ink hover:border-blue hover:text-blue hover:shadow-[var(--shadow-brand-sm)]",
@@ -185,7 +185,7 @@ export function StatTile({
       </div>
       <div
         className={`mt-2.5 text-[10px] font-semibold uppercase tracking-[0.16em] ${
-          light ? "text-blue-soft/60" : "text-slate"
+          light ? "text-blue-soft/80" : "text-slate"
         }`}
       >
         {label}

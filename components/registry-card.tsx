@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { MapPin, ArrowUpRight } from "lucide-react";
 import type { RegistryEntry } from "@/data/registry";
-import { ctaColor, statusColor } from "@/data/certification";
+import { ctaColor, ctaOnColor, statusColor } from "@/data/certification";
 
 export function RegistryCard({ entry }: { entry: RegistryEntry }) {
   return (
@@ -12,8 +12,8 @@ export function RegistryCard({ entry }: { entry: RegistryEntry }) {
       {/* Level badge sits on its own line so long company names never collide */}
       <div className="flex items-center justify-between gap-3">
         <span
-          className="rounded-full px-2.5 py-1 text-[11px] font-bold leading-none text-white"
-          style={{ background: ctaColor(entry.level) }}
+          className="rounded-full px-2.5 py-1 text-[11px] font-bold leading-none"
+          style={{ background: ctaColor(entry.level), color: ctaOnColor(entry.level) }}
         >
           {entry.level}
         </span>

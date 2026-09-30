@@ -118,7 +118,7 @@ export default function FrameworkPage() {
                     <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-navy text-white">
                       <s.icon className="h-5 w-5" />
                     </div>
-                    <span className="tabular font-mono text-xl font-bold text-line">{s.n}</span>
+                    <span className="tabular font-mono text-xl font-bold text-blue/70">{s.n}</span>
                   </div>
                   <h4 className="mt-5 font-display text-base font-bold text-navy">{s.t}</h4>
                   <p className="mt-2 text-sm leading-relaxed text-slate">{s.d}</p>
@@ -210,8 +210,8 @@ export default function FrameworkPage() {
                         {a.weight}%
                       </span>
                     </div>
-                    <div className="mt-1 text-sm text-blue-soft/70">{a.assesses}</div>
-                    <div className="mt-1.5 text-xs text-blue-soft/55">{a.why}</div>
+                    <div className="mt-1 text-sm text-blue-soft/85">{a.assesses}</div>
+                    <div className="mt-1.5 text-xs text-blue-soft/75">{a.why}</div>
                   </div>
                 ))}
               </div>
@@ -247,7 +247,7 @@ export default function FrameworkPage() {
                 <div className="font-display font-semibold !text-white md:w-64">
                   {b.label} · {b.readiness}
                 </div>
-                <div className="flex-1 text-sm text-blue-soft/70">{b.action}</div>
+                <div className="flex-1 text-sm text-blue-soft/85">{b.action}</div>
               </div>
             ))}
           </div>
