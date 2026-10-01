@@ -11,6 +11,9 @@ import {
 import { Container, Section, SectionHeading, Button, StatTile, Eyebrow } from "@/components/ui";
 import { Reveal, Stagger, StaggerItem } from "@/components/reveal";
 import { DomainsGrid } from "@/components/domains-grid";
+import { DomainExplorer } from "@/components/domain-explorer";
+import { ReadinessCheck } from "@/components/readiness-check";
+import { VerifyWidget } from "@/components/verify-widget";
 import { CtaLevelCards } from "@/components/cta-levels";
 import { RegistryCard } from "@/components/registry-card";
 import { TrustScoreGauge } from "@/components/trust-score-gauge";
@@ -46,15 +49,19 @@ export default function HomePage() {
             <h1 className="mt-6 text-[2.5rem] font-bold leading-[1.04] !text-white md:text-[3.25rem] lg:text-[3.6rem]">
               Nucleus Systems Code Trust Assurance Framework
             </h1>
-            <p className="mt-6 flex flex-wrap items-baseline gap-x-2.5 font-display text-xl font-semibold !text-white md:text-2xl">
-              <span>Trust, proven across</span>
-              <span className="rotator text-gradient">
-                <span>identity</span>
-                <span>integrity</span>
-                <span>secure development</span>
-                <span>the supply chain</span>
-                <span>runtime behaviour</span>
-                <span>governance</span>
+            <p className="mt-6 font-display text-xl font-semibold !text-white md:text-2xl">
+              {/* The rotator reserves the width of its longest word, so leaving it
+                  inline made the line wrap unpredictably between breakpoints. */}
+              <span className="block">Trust, proven across</span>
+              <span className="mt-1 block">
+                <span className="rotator text-gradient">
+                  <span>identity</span>
+                  <span>integrity</span>
+                  <span>secure development</span>
+                  <span>the supply chain</span>
+                  <span>runtime behaviour</span>
+                  <span>governance</span>
+                </span>
               </span>
             </p>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-blue-soft/80">
@@ -208,6 +215,9 @@ export default function HomePage() {
               ))}
             </ol>
           </div>
+          <div className="mt-10">
+            <ReadinessCheck />
+          </div>
           <div className="mt-10 flex flex-wrap items-center gap-3 border-t border-white/10 pt-8">
             <p className="flex-1 text-sm text-blue-soft/85">
               Every one of these maps to a scored control, an evidence requirement, and a maturity
@@ -231,6 +241,11 @@ export default function HomePage() {
           <div className="mt-12">
             <DomainsGrid />
           </div>
+          {/* Interactive: pick a domain to see why it is weighted the way it is. */}
+          <div className="mt-12">
+            <DomainExplorer />
+          </div>
+
           {/* How the domains are weighted into the Trust Score. */}
           <div className="mt-12 rounded-[var(--radius-brand)] border border-line bg-white p-7 shadow-[var(--shadow-brand-sm)]">
             <div className="flex flex-wrap items-baseline justify-between gap-3">
@@ -383,6 +398,19 @@ export default function HomePage() {
               <RegistryCard key={e.slug} entry={e} />
             ))}
           </div>
+          <div className="mt-10 rounded-[calc(var(--radius-brand)+4px)] border border-line bg-grey p-6 md:p-8">
+            <h3 className="font-display text-lg font-bold text-navy">
+              Check a certificate right here
+            </h3>
+            <p className="mt-1.5 text-sm text-slate">
+              Enter a certificate ID — or try one of the specimens — to see exactly what a customer
+              doing due diligence on you would see.
+            </p>
+            <div className="mt-5">
+              <VerifyWidget />
+            </div>
+          </div>
+
           <div className="mt-8 flex flex-wrap items-center gap-3 rounded-[var(--radius-brand)] border border-line bg-grey p-5">
             <ShieldCheck className="h-6 w-6 text-blue" />
             <p className="flex-1 text-sm text-ink">
