@@ -492,23 +492,10 @@ input[type="range"]::-moz-range-thumb {
 
 /* Counting numbers. Text is the real value; only where @property and
    scroll timelines exist do we swap in the animated counter. */
+/* The real figure is always what renders. A count-up that replaced it with a
+   CSS counter meant the strip read "0 Controls" whenever the scroll-driven
+   animation had not run — wrong numbers are worse than no animation. */
 .count { position: relative; }
-@property --n { syntax: "<integer>"; initial-value: 0; inherits: false; }
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
-    .count[data-to] { --n: 0; counter-reset: n var(--n); }
-    .count[data-to] > .count__text { visibility: hidden; }
-    .count[data-to]::after {
-      content: counter(n);
-      position: absolute;
-      inset: 0;
-      animation: count-to 1.6s ease-out both;
-      animation-timeline: view();
-      animation-range: entry 10% entry 70%;
-    }
-    @keyframes count-to { to { --n: var(--to); } }
-  }
-}
 
 /* Cards that lift and glow on hover. */
 .lift {

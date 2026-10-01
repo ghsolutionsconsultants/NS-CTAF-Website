@@ -163,13 +163,10 @@ export function StatTile({
   value,
   label,
   light = false,
-  countTo,
 }: {
   value: ReactNode;
   label: string;
   light?: boolean;
-  /** When the value is a plain number, animate it counting up to this. */
-  countTo?: number;
 }) {
   return (
     <div className="text-center">
@@ -177,11 +174,8 @@ export function StatTile({
         className={`count tabular inline-block whitespace-nowrap font-display text-[1.75rem] font-bold leading-none tracking-tight md:text-[2.125rem] ${
           light ? "text-white" : "text-navy"
         }`}
-        {...(countTo !== undefined
-          ? { "data-to": "", style: { ["--to" as string]: countTo } }
-          : {})}
       >
-        <span className="count__text">{value}</span>
+        {value}
       </div>
       <div
         className={`mt-2.5 text-[10px] font-semibold uppercase tracking-[0.16em] ${

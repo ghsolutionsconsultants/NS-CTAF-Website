@@ -15,12 +15,14 @@ import { CtaLevelCards } from "@/components/cta-levels";
 import { RegistryCard } from "@/components/registry-card";
 import { TrustScoreGauge } from "@/components/trust-score-gauge";
 import { FrameworkMarquee } from "@/components/framework-marquee";
+import { TrustPipeline } from "@/components/trust-pipeline";
 import { TrustGraphBg } from "@/components/trust-graph-bg";
 import { HeroDashboard } from "@/components/hero-dashboard";
 import { site } from "@/data/site";
 import { registry } from "@/data/registry";
 import { alignments } from "@/data/alignments";
-import { trustScoreBands } from "@/data/framework";
+import { fiveQuestions } from "@/data/framework-detail";
+import { trustScoreBands, evidenceTiers, domains } from "@/data/framework";
 
 const flow = [
   { icon: ScanLine, title: "Evidence", text: "SBOMs, signing, scans, attestations, runtime and governance data collected and registered." },
@@ -109,8 +111,8 @@ export default function HomePage() {
         <div className="edge-glow relative border-t border-white/10 bg-[#071324]/60">
           <Container className="stagger-in grid grid-cols-2 gap-y-8 py-10 md:grid-cols-3 lg:grid-cols-6 lg:gap-y-0">
             {[
-              { v: site.metrics.controls, l: "Controls", n: site.metrics.controls },
-              { v: site.metrics.domains, l: "Domains", n: site.metrics.domains },
+              { v: site.metrics.controls, l: "Controls" },
+              { v: site.metrics.domains, l: "Domains" },
               { v: `${site.metrics.axes}-axis`, l: "Scoring model" },
               { v: "L1–L5", l: "Maturity" },
               { v: "CTA-1→4", l: "Certification" },
@@ -124,7 +126,7 @@ export default function HomePage() {
                     : ""
                 }
               >
-                <StatTile light value={m.v} label={m.l} countTo={(m as { n?: number }).n} />
+                <StatTile light value={m.v} label={m.l} />
               </div>
             ))}
           </Container>
@@ -182,6 +184,42 @@ export default function HomePage() {
         </Container>
       </Section>
 
+      {/* The five questions */}
+      <Section className="bg-navy bg-trust-grid text-white">
+        <Container>
+          <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+            <SectionHeading
+              light
+              eyebrow="The test"
+              title="Five questions most organisations cannot answer"
+              intro="Not with policy. With evidence a third party could verify independently. The framework exists because these answers have to be provable, not asserted."
+            />
+            <ol className="stagger-in space-y-3">
+              {fiveQuestions.map((q, i) => (
+                <li
+                  key={q}
+                  className="flex gap-4 rounded-[var(--radius-brand)] border border-white/12 bg-[#0e2143]/90 p-5"
+                >
+                  <span className="tabular shrink-0 font-mono text-sm font-bold text-orange">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <p className="text-sm leading-relaxed text-blue-soft/90">{q}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+          <div className="mt-10 flex flex-wrap items-center gap-3 border-t border-white/10 pt-8">
+            <p className="flex-1 text-sm text-blue-soft/85">
+              Every one of these maps to a scored control, an evidence requirement, and a maturity
+              level — so the answer becomes a number you can put in front of a board or a customer.
+            </p>
+            <Button href="/what-is-ctaf" variant="light" size="md">
+              Read the full rationale <ArrowRight className="h-4 w-4" />
+            </Button>
+          </div>
+        </Container>
+      </Section>
+
       {/* Domains */}
       <Section className="bg-grey">
         <Container>
@@ -193,6 +231,42 @@ export default function HomePage() {
           <div className="mt-12">
             <DomainsGrid />
           </div>
+          {/* How the domains are weighted into the Trust Score. */}
+          <div className="mt-12 rounded-[var(--radius-brand)] border border-line bg-white p-7 shadow-[var(--shadow-brand-sm)]">
+            <div className="flex flex-wrap items-baseline justify-between gap-3">
+              <h3 className="font-display text-lg font-bold text-navy">
+                How the domains are weighted
+              </h3>
+              <p className="text-sm text-slate">
+                Weights reflect each domain’s impact on overall software trust posture.
+              </p>
+            </div>
+            <div className="mt-6 grid gap-x-10 gap-y-3.5 md:grid-cols-2">
+              {domains.map((d, i) => (
+                <div key={d.id} className="flex min-w-0 items-center gap-2.5">
+                  <span className="tabular w-7 shrink-0 font-mono text-[11px] font-semibold text-blue">
+                    {d.id}
+                  </span>
+                  <span className="min-w-0 flex-1 truncate text-sm font-medium text-ink">
+                    {d.title}
+                  </span>
+                  <span className="h-1.5 w-16 shrink-0 overflow-hidden rounded-full bg-line sm:w-28">
+                    <span
+                      className="bar-fill block h-full rounded-full bg-gradient-to-r from-blue to-blue-bright"
+                      style={{
+                        width: `${(d.weight / 22) * 100}%`,
+                        animationDelay: `${0.1 + i * 0.08}s`,
+                      }}
+                    />
+                  </span>
+                  <span className="tabular w-9 shrink-0 text-right font-display text-sm font-bold text-navy">
+                    {d.weight}%
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+
           <div className="mt-8">
             <Button href="/framework" variant="dark">
               Open the full framework <ArrowRight className="h-4 w-4" />
@@ -212,34 +286,62 @@ export default function HomePage() {
             intro="Assessment combines evidence, maturity scoring, automated tooling, and independent assessor validation."
           />
 
-          <div className="scrub-wrap relative mt-14 lg:min-h-[190vh]">
-            <div className="scrub-sticky">
-              {/* Progress spine */}
-              <div className="mb-8 h-0.5 w-full overflow-hidden rounded-full bg-white/10">
-                <div className="scrub-line h-full w-full origin-left rounded-full bg-gradient-to-r from-blue-bright to-orange" />
+          {/* Four stages, shown as a grid rather than a pinned scroll sequence —
+              the same detail without spending two screens of scrolling on it. */}
+          <div className="stagger-in mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+            {flow.map((s2, i) => (
+              <div
+                key={s2.title}
+                className="flex h-full flex-col rounded-[var(--radius-brand)] border border-white/12 bg-[#0e2143]/90 p-6"
+              >
+                <div className="flex items-center justify-between">
+                  <div className="icon-pop flex h-12 w-12 items-center justify-center rounded-xl bg-white/10 text-white">
+                    <s2.icon className="h-5 w-5" />
+                  </div>
+                  <span className="tabular font-mono text-2xl font-bold text-white/50">
+                    0{i + 1}
+                  </span>
+                </div>
+                <h3 className="mt-5 font-display text-lg font-bold !text-white">{s2.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-blue-soft/85">{s2.text}</p>
               </div>
+            ))}
+          </div>
 
-              <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-                {flow.map((s2, i) => (
-                  <div
-                    key={s2.title}
-                    className="scrub-stage glow-border flex h-full flex-col rounded-[var(--radius-brand)] border border-white/12 bg-[#0e2143]/90 p-6"
-                  >
-                    <div className="flex items-center justify-between">
-                      <div className="icon-pop flex h-12 w-12 items-center justify-center rounded-xl bg-white/10 text-white">
-                        <s2.icon className="h-5 w-5" />
-                      </div>
-                      <span className="tabular font-mono text-2xl font-bold text-white/50">
-                        0{i + 1}
-                      </span>
+          {/* The lifecycle it runs over, plus what counts as evidence. */}
+          <div className="mt-12 grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
+            <div className="rounded-[var(--radius-brand)] border border-white/12 bg-[#0e2143]/90 p-6">
+              <div className="font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-blue-soft">
+                The chain of trust
+              </div>
+              <div className="mt-5">
+                <TrustPipeline />
+              </div>
+            </div>
+            <div className="rounded-[var(--radius-brand)] border border-white/12 bg-[#0e2143]/90 p-6">
+              <div className="font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-blue-soft">
+                Evidence tiers
+              </div>
+              <p className="mt-3 text-sm leading-relaxed text-blue-soft/85">
+                Not all evidence carries the same weight. A control scores higher when its evidence
+                is machine-verifiable and independently reproducible rather than asserted.
+              </p>
+              <div className="mt-5 space-y-3">
+                {evidenceTiers.map((t) => (
+                  <div key={t.tier} className="flex gap-3 border-t border-white/10 pt-3 first:border-0 first:pt-0">
+                    <span className="tabular mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-white/10 font-mono text-[11px] font-bold text-white">
+                      {t.tier}
+                    </span>
+                    <div>
+                      <div className="font-display text-sm font-bold !text-white">{t.name}</div>
+                      <p className="mt-0.5 text-xs leading-relaxed text-blue-soft/85">{t.description}</p>
                     </div>
-                    <h3 className="mt-5 font-display text-lg font-bold !text-white">{s2.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-blue-soft/75">{s2.text}</p>
                   </div>
                 ))}
               </div>
             </div>
           </div>
+
         </Container>
       </section>
 
