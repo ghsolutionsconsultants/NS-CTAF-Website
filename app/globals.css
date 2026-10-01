@@ -492,11 +492,6 @@ input[type="range"]::-moz-range-thumb {
 
 /* Counting numbers. Text is the real value; only where @property and
    scroll timelines exist do we swap in the animated counter. */
-/* The real figure is always what renders. A count-up that replaced it with a
-   CSS counter meant the strip read "0 Controls" whenever the scroll-driven
-   animation had not run — wrong numbers are worse than no animation. */
-.count { position: relative; }
-
 /* Cards that lift and glow on hover. */
 .lift {
   transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),

@@ -171,7 +171,7 @@ export function StatTile({
   return (
     <div className="text-center">
       <div
-        className={`count tabular inline-block whitespace-nowrap font-display text-[1.75rem] font-bold leading-none tracking-tight md:text-[2.125rem] ${
+        className={`tabular inline-block whitespace-nowrap font-display text-[1.75rem] font-bold leading-none tracking-tight md:text-[2.125rem] ${
           light ? "text-white" : "text-navy"
         }`}
       >
