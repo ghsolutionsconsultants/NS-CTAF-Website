@@ -1,5 +1,5 @@
 // The 8-stage client assessment journey — first contact to CTA certification.
-// Fixed fee $5,000 USD · ~20 business days.
+// Fixed fee $15,000 USD · ~20 business days.
 
 export interface JourneyStage {
   n: string;
@@ -45,7 +45,7 @@ export const journey: JourneyStage[] = [
     owner: "Client + NS",
     duration: "2–5 days",
     steps: [
-      "NS issues a fixed-fee proposal — $5,000 USD all-inclusive",
+      "NS issues a fixed-fee proposal — $15,000 USD all-inclusive",
       "Covers form, verification, session, report, and certificate",
       "Client signs the engagement letter and processes payment",
     ],

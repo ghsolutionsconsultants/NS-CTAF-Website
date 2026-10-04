@@ -30,7 +30,7 @@ export default function FrameworkPage() {
       <PageHero
         eyebrow="The framework"
         title="Where software trust is defined and measured"
-        intro="The Nucleus Systems Code Trust Assurance Framework is the standard for proving software can be trusted. It measures how well an organisation controls its software — from who writes the code to how it behaves in production — and turns that into one evidence-backed score."
+        intro="The Nucleus Systems Code Trust Assurance Framework (NS-CTAF) is the standard for proving software can be trusted. It measures how well an organisation controls its software — from who writes the code to how it behaves in production — and turns that into one evidence-backed score."
       >
         <Button href="#in-simple-terms" variant="light" size="lg">
           What is the Framework?
@@ -46,7 +46,7 @@ export default function FrameworkPage() {
           <SectionHeading
             eyebrow="In simple terms"
             title="What the Framework is, and what it actually does"
-            intro="The Nucleus Systems Code Trust Assurance Framework exists to answer one question a customer, regulator, or insurer will eventually ask you: can your software be trusted — and can you prove it?"
+            intro="The NS-CTAF exists to answer one question a customer, regulator, or insurer will eventually ask you: can your software be trusted — and can you prove it?"
           />
 
           <div className="stagger-in mt-12 grid gap-5 md:grid-cols-3">
@@ -133,7 +133,7 @@ export default function FrameworkPage() {
               <h3 className="font-display text-base font-bold text-navy">The terms, in one line each</h3>
             </div>
             {[
-              ["Domain", "One of the six areas of software trust Nucleus Systems Code Trust Assurance Framework measures, such as who writes your code or whether builds can be tampered with."],
+              ["Domain", "One of the six areas of software trust NS-CTAF measures, such as who writes your code or whether builds can be tampered with."],
               ["Control", "A single specific practice that gets rated — for example, whether your releases are cryptographically signed."],
               ["Maturity level (L1–L5)", "How well one control actually works, from ad hoc and undocumented (L1) to fully automated and independently assured (L5)."],
               ["Trust Score (0–100)", "All the control ratings weighted into one number that summarises your overall software trust posture."],
@@ -297,7 +297,7 @@ export default function FrameworkPage() {
           <SectionHeading
             eyebrow="Framework alignment"
             title="One assessment, many obligations"
-            intro="Nucleus Systems Code Trust Assurance Framework maps to the standards and regulations that shape software security worldwide."
+            intro="NS-CTAF maps to the standards and regulations that shape software security worldwide."
           />
           <div className="stagger-in mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {alignments.map((a) => (
@@ -325,7 +325,7 @@ export default function FrameworkPage() {
         <Container>
           <SectionHeading
             eyebrow="At a glance"
-            title="Nucleus Systems Code Trust Assurance Framework v1.0 in one table"
+            title="NS-CTAF v1.0 in one table"
             intro={definition}
           />
           <div className="mt-10 overflow-hidden rounded-[var(--radius-brand)] border border-line bg-white">

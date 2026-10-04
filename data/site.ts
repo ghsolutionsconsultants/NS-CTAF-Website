@@ -7,7 +7,7 @@ export const site = {
   owner: "Nucleus Systems (Pty) Ltd",
   frameworkVersion: "Nucleus Systems Code Trust Assurance Framework v1.0",
   email: "info@nucleus-systems.com",
-  fee: "$5,000 USD",
+  fee: "$15,000 USD",
   turnaround: "~20 business days",
   tagline: "Security tools find issues. This framework proves trust.",
   category: "Code Trust Assurance Intelligence",
