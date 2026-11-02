@@ -160,7 +160,7 @@ export default function ArticlePage() {
                 >
                   <img
                     src="/insights/black-october-2026.jpg"
-                    alt="Black October — October 2026. A verified review grouping the month's incidents into eight supply chain compromises, eight platform and data breaches, and five critical vulnerability disclosures, with the three failures that recur across them."
+                    alt="Black October — the month in evidence. A verified review of twenty-one October 2026 incidents: a chart of their distribution across the month, then tables of eight supply chain compromises, eight platform and data breaches, and five critical vulnerability disclosures."
                     width={1200}
                     height={1500}
                     className="block h-auto w-full"
