@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, ArrowLeft } from "lucide-react";
+import { ArrowRight, ArrowLeft, Download } from "lucide-react";
 import { Container, Section, Button, Eyebrow } from "@/components/ui";
 import { CtaBand } from "@/components/cta-band";
 import { site } from "@/data/site";
@@ -9,6 +9,17 @@ export const metadata: Metadata = {
   title: "Code Trust Assurance and the Security Controls That Could Have Interrupted October's Attacks",
   description:
     "October 2026 produced a cluster of supply chain compromises, credential failures and a certificate authority key exposure. An analysis of which controls would have interrupted the documented attack paths — and which would not.",
+  openGraph: {
+    title: "Code Trust Assurance and the Security Controls That Could Have Interrupted October's Attacks",
+    description:
+      "A verified review of October 2026: supply chain compromises, platform breaches and critical disclosures, grouped by what each one actually establishes.",
+    images: [{ url: "/insights/black-october-2026-og.jpg", width: 1200, height: 628 }],
+    type: "article",
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/insights/black-october-2026-og.jpg"],
+  },
 };
 
 const SECTIONS: { id: string; label: string }[] = [
@@ -138,6 +149,39 @@ export default function ArticlePage() {
                 on the specific weakness, the attacker’s access and whether the relevant controls
                 remain effective under compromise.
               </P>
+
+              {/* The verified incident review */}
+              <figure className="mt-12">
+                <a
+                  href="/insights/Black-October-2026-Nucleus-Systems.jpg"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group block overflow-hidden rounded-[calc(var(--radius-brand)+4px)] border border-line shadow-[var(--shadow-brand)] transition-shadow duration-300 hover:shadow-[var(--shadow-brand-lg)]"
+                >
+                  <img
+                    src="/insights/black-october-2026.jpg"
+                    alt="Black October — October 2026. A verified review grouping the month's incidents into eight supply chain compromises, eight platform and data breaches, and five critical vulnerability disclosures, with the three failures that recur across them."
+                    width={1200}
+                    height={1500}
+                    className="block h-auto w-full"
+                  />
+                </a>
+                <figcaption className="mt-4 flex flex-wrap items-start gap-x-6 gap-y-3 border-t border-line pt-4">
+                  <p className="min-w-0 flex-1 text-sm leading-relaxed text-slate">
+                    Grouped by what each incident establishes. Dates reflect when the incident
+                    occurred where known, not when it was disclosed. Compiled from the affected
+                    organisations’ own disclosures and published security research.
+                  </p>
+                  <a
+                    href="/insights/Black-October-2026-Nucleus-Systems.jpg"
+                    download
+                    className="inline-flex h-10 shrink-0 items-center gap-2 rounded-full border border-line bg-white px-4 text-sm font-medium text-ink transition-all duration-300 hover:border-blue hover:text-blue hover:shadow-[var(--shadow-brand-sm)]"
+                  >
+                    <Download className="h-4 w-4" />
+                    Download (JPEG, 2400×3000)
+                  </a>
+                </figcaption>
+              </figure>
 
               <H id="what-the-incidents-show">Establishing what the incidents actually demonstrate</H>
               <P>
