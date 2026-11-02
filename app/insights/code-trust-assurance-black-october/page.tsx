@@ -192,6 +192,15 @@ export default function ArticlePage() {
                       <Download className="h-4 w-4" />
                       Full resolution (2400×4605)
                     </a>
+                    {/* Square, 12-page version for LinkedIn document posts. */}
+                    <a
+                      href="/insights/Black-October-2026-Carousel.pdf"
+                      download
+                      className="inline-flex h-10 items-center gap-2 rounded-full border border-line bg-white px-4 text-sm font-medium text-ink transition-all duration-300 hover:border-blue hover:text-blue hover:shadow-[var(--shadow-brand-sm)]"
+                    >
+                      <Download className="h-4 w-4" />
+                      Carousel (PDF, 12 pages)
+                    </a>
                   </span>
                 </figcaption>
               </figure>
