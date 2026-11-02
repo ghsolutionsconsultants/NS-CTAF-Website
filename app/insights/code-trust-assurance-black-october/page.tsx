@@ -160,9 +160,9 @@ export default function ArticlePage() {
                 >
                   <img
                     src="/insights/black-october-2026.jpg"
-                    alt="Black October — the month in evidence. A verified review of twenty-one October 2026 incidents: a chart of their distribution across the month, then tables of eight supply chain compromises, eight platform and data breaches, and five critical vulnerability disclosures."
+                    alt="Black October, October 2026 — a Nucleus Systems verified incident review. A dated timeline of twenty-one incidents, each colour-coded as a supply chain compromise, a platform or data breach, or a vulnerability disclosure, with the source for each."
                     width={1200}
-                    height={1500}
+                    height={2302}
                     className="block h-auto w-full"
                   />
                 </a>
@@ -190,7 +190,7 @@ export default function ArticlePage() {
                       className="inline-flex h-10 items-center gap-2 rounded-full border border-line bg-white px-4 text-sm font-medium text-ink transition-all duration-300 hover:border-blue hover:text-blue hover:shadow-[var(--shadow-brand-sm)]"
                     >
                       <Download className="h-4 w-4" />
-                      Full resolution (2160×2700)
+                      Full resolution (2400×4605)
                     </a>
                   </span>
                 </figcaption>
