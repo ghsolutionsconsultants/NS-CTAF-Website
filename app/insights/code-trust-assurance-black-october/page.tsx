@@ -172,14 +172,26 @@ export default function ArticlePage() {
                     occurred where known, not when it was disclosed. Compiled from the affected
                     organisations’ own disclosures and published security research.
                   </p>
-                  <a
-                    href="/insights/Black-October-2026-Nucleus-Systems.jpg"
-                    download
-                    className="inline-flex h-10 shrink-0 items-center gap-2 rounded-full border border-line bg-white px-4 text-sm font-medium text-ink transition-all duration-300 hover:border-blue hover:text-blue hover:shadow-[var(--shadow-brand-sm)]"
-                  >
-                    <Download className="h-4 w-4" />
-                    Download (JPEG, 2400×3000)
-                  </a>
+                  <span className="flex shrink-0 flex-wrap gap-2">
+                    <a
+                      href="/insights/Black-October-2026-Nucleus-Systems.jpg"
+                      download
+                      className="inline-flex h-10 items-center gap-2 rounded-full border border-line bg-white px-4 text-sm font-medium text-ink transition-all duration-300 hover:border-blue hover:text-blue hover:shadow-[var(--shadow-brand-sm)]"
+                    >
+                      <Download className="h-4 w-4" />
+                      Download JPEG
+                    </a>
+                    {/* The image CDN downscales and recompresses JPEGs in
+                        transit; the archive reaches the visitor untouched. */}
+                    <a
+                      href="/insights/Black-October-2026-Nucleus-Systems-fullres.zip"
+                      download
+                      className="inline-flex h-10 items-center gap-2 rounded-full border border-line bg-white px-4 text-sm font-medium text-ink transition-all duration-300 hover:border-blue hover:text-blue hover:shadow-[var(--shadow-brand-sm)]"
+                    >
+                      <Download className="h-4 w-4" />
+                      Full resolution (2400×3000)
+                    </a>
+                  </span>
                 </figcaption>
               </figure>
 
