@@ -18,6 +18,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/report-access",
     "/industries",
     "/resources",
+    "/insights/code-trust-assurance-black-october",
     "/training",
     "/partners",
     "/about",

@@ -6,7 +6,8 @@ import { Icon } from "@/components/icon";
 import { resources } from "@/data/content";
 import { regulations } from "@/data/framework-detail";
 import { site } from "@/data/site";
-import { Scale, ChevronRight } from "lucide-react";
+import { Scale, ChevronRight, ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 const GLOSSARY: [string, string][] = [
   ["Domain", "One of the six areas of software trust the framework measures — who writes your code, whether artefacts are tamper-evident, how you build, what you depend on, how it behaves in production, and how it is governed."],
@@ -72,6 +73,37 @@ export default function ResourcesPage() {
           </div>
         </Container>
       </Section>
+      {/* Featured analysis */}
+      <Section>
+        <Container>
+          <SectionHeading
+            eyebrow="Latest analysis"
+            title="Published insight"
+          />
+          <Link
+            href="/insights/code-trust-assurance-black-october/"
+            className="group mt-8 block overflow-hidden rounded-[calc(var(--radius-brand)+4px)] border border-line bg-navy bg-trust-grid p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-[var(--shadow-brand-lg)] md:p-10"
+          >
+            <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-orange">
+              Analysis · October 2026
+            </span>
+            <h3 className="mt-4 max-w-3xl font-display text-2xl font-bold leading-tight !text-white md:text-3xl">
+              Code Trust Assurance and the Security Controls That Could Have Interrupted
+              October’s Attacks
+            </h3>
+            <p className="mt-4 max-w-3xl text-[1.0625rem] leading-relaxed text-blue-soft/90">
+              October 2026 produced a cluster of supply chain compromises, credential failures and
+              a certificate authority key exposure. Which controls would have interrupted the
+              documented attack paths — and which would not.
+            </p>
+            <span className="mt-6 inline-flex items-center gap-2 font-display text-sm font-semibold text-white">
+              Read the analysis
+              <ArrowRight className="nudge h-4 w-4" />
+            </span>
+          </Link>
+        </Container>
+      </Section>
+
       {/* Available now: the glossary. Every card above says "coming soon", so the
           page needs something a visitor can actually use today. */}
       <Section className="bg-grey">
