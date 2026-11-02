@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 148" width="128" height="148" role="img" aria-label="Code Trust Assurance">
+  <title>Code Trust Assurance</title>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="11">
+    <path d="M 56 15 L 112 30 V 74 C 112 101 91 121 64 133" stroke="#0a192f"/>
+    <path d="M 16 38 V 74 C 16 101 37 121 64 133" stroke="#0a192f"/>
+  </g>
+  <path d="M 40 73 L 58 91 L 92 53" fill="none" stroke="#0a192f"
+        stroke-width="19" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
